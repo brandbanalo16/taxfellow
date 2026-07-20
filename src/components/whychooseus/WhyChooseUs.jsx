@@ -31,30 +31,28 @@ function WhyChooseUs() {
                             <div className="service-h2-content pl--30">
                                 <div className="title-area  service-h2 service">
                                     <span>Why Choose Us</span>
-                                    <h2 className="title">We focus to get excellent performance </h2>
+                                    <h2 className="title">We focus on 100% compliance and growth </h2>
                                 </div>
                                 <div className="content-wrapper">
                                     <p className="disc">
-                                        Aliquet porta est cras proin donec odio curabitur convallis,
-                                        penatibus vulputate facilisi montes blandit condimentum quisque
-                                        platea, sociosqu ut nec nam cursus magnis leo nullam
+                                        We take the burden of tax filings, corporate compliance, and accounting off your shoulders so you can focus entirely on scaling your business. Handled by expert professionals.
                                     </p>
                                     <div className="feature-one-wrapper mt--40">
                                         <div className="single-feature-one">
                                             <i className="fal fa-check" />
-                                            <p>Fast Growing Sells</p>
+                                            <p>100% Legal & Compliant</p>
                                         </div>
                                         <div className="single-feature-one">
                                             <i className="fal fa-check" />
-                                            <p>24/7 Quality Services</p>
+                                            <p>One-Stop Solution</p>
                                         </div>
                                         <div className="single-feature-one">
                                             <i className="fal fa-check" />
-                                            <p>Expert Members</p>
+                                            <p>Expert CAs & Advisors</p>
                                         </div>
                                         <div className="single-feature-one">
                                             <i className="fal fa-check" />
-                                            <p>Best Quality Services</p>
+                                            <p>Transparent Pricing</p>
                                         </div>
                                     </div>
                                     <div className="support-team">

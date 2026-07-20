@@ -8,8 +8,8 @@ function WorkingProcess() {
                 <div className="container">
                     <div className="row mt--40">
                         <div className="title-area text-center working-process">
-                            <span>Working Steps</span>
-                            <h2 className="title">Our Basic Work Process</h2>
+                            <span>How We Work</span>
+                            <h2 className="title">Our 4-Step Process</h2>
                         </div>
                     </div>
                     <div className="row g-5 mt--20 align-items-center">
@@ -25,9 +25,9 @@ function WorkingProcess() {
                                     </div>
                                 </div>
                                 <div className="content">
-                                    <h6 className="title">Make a Plan</h6>
+                                    <h6 className="title">1. Initial Consultation</h6>
                                     <p className="disc">
-                                        Nostra proin fusce hendrerit <br /> viverra nisl torquent.
+                                        Understanding your specific <br /> business & compliance needs.
                                     </p>
                                 </div>
                             </div>
@@ -45,9 +45,9 @@ function WorkingProcess() {
                                     </div>
                                 </div>
                                 <div className="content">
-                                    <h6 className="title">Cost Calculating</h6>
+                                    <h6 className="title">2. Document Collection</h6>
                                     <p className="disc">
-                                        Nostra proin fusce hendrerit <br /> viverra nisl torquent.
+                                        Gathering all required <br /> legal & financial paperwork.
                                     </p>
                                 </div>
                             </div>
@@ -65,9 +65,9 @@ function WorkingProcess() {
                                     </div>
                                 </div>
                                 <div className="content">
-                                    <h6 className="title">Business Growth</h6>
+                                    <h6 className="title">3. Execution & Filing</h6>
                                     <p className="disc">
-                                        Nostra proin fusce hendrerit <br /> viverra nisl torquent.
+                                        Fast and accurate registration <br /> and tax submissions.
                                     </p>
                                 </div>
                             </div>
@@ -85,9 +85,9 @@ function WorkingProcess() {
                                     </div>
                                 </div>
                                 <div className="content">
-                                    <h6 className="title">Success Mission</h6>
+                                    <h6 className="title">4. Ongoing Compliance</h6>
                                     <p className="disc">
-                                        Nostra proin fusce hendrerit <br /> viverra nisl torquent.
+                                        Monthly bookkeeping, Virtual CFO <br /> and ROC support.
                                     </p>
                                 </div>
                             </div>

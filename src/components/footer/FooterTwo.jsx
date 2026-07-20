@@ -12,6 +12,9 @@ function FooterTwo() {
                             {/* single wized */}
                             <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div className="footer-two-single-wized left">
+                                    <div className="mb-4">
+                                        <img src="/assets/images/logo/TAXFELLOW.jpg.jpeg" alt="Taxfello Logo" style={{ maxHeight: '60px', width: 'auto', marginBottom: '20px' }} />
+                                    </div>
                                     <h3 className="title">
                                         <span>Ready To</span> <br />
                                         Work With Us?

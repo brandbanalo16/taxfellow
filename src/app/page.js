@@ -1,6 +1,6 @@
 import HeaderTwo from "@/components/header/HeaderTwo";
 import BannerTwo from "@/components/banner/BannerTwo";
-import ServiceTwo from "@/components/service/ServiceTwo";
+import ComprehensiveServices from "@/components/service/ComprehensiveServices";
 import BackToTop from "@/components/BackToTop";
 import CallToAction from "@/components/calltoaction/CallToAction";
 import AboutTwo from "@/components/about/AboutTwo";
@@ -18,7 +18,8 @@ export default function Home() {
         <div className="home-blue">
             <HeaderTwo />
             <BannerTwo />
-            <ServiceTwo />
+            <ComprehensiveServices />
+
             <CallToAction />
             <AboutTwo />
             <WorkingProcess />

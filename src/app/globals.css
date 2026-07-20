@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -299,3 +303,4 @@ body { padding-top: 64px; }
   transition: box-shadow 0.2s;
 }
 .mega-menu-footer .footer-link:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.12); }
+

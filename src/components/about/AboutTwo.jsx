@@ -13,15 +13,15 @@ function AboutTwo() {
                             <div className="title-area about-company">
                                 <span>About Our Company</span>
                                 <h2 className="title">
-                                    Professional And Dedicated <br />
+                                    Professional & Dedicated <br />
                                     Consulting Services
                                 </h2>
                             </div>
                             <div className="about-company-wrapper">
                                 <p className="disc">
-                                    We are licensed and insured with over 14 years of experience in
-                                    providing <br /> United States with top-rated USA business
-                                    services
+                                    We are a team of expert Chartered Accountants and Financial Advisors
+                                    with years of experience in providing top-rated registration, tax,
+                                    and corporate compliance services.
                                 </p>
                                 <div className="rts-tab-style-one">
                                     <div className=" align-items-start contoler-company">
@@ -32,30 +32,27 @@ function AboutTwo() {
                                             id="controlled-tab-example"
                                             className="mb-3 nav button-area"
                                         >
-                                            <Tab eventKey="home1" title=" 01. The Great Mission" />
-                                            <Tab eventKey="profile1" title="02. Amazing Vision" />
-                                            <Tab eventKey="contact1" title="03. Our Destination" />
+                                            <Tab eventKey="home1" title=" 01. Business Setup" />
+                                            <Tab eventKey="profile1" title="02. Tax & Compliance" />
+                                            <Tab eventKey="contact1" title="03. Virtual CFO" />
                                         </Tabs>
                                         {activeKey === 'home1' && (
                                             <TabContent>
                                                 {/* start tab content */}
                                                 <div className="rts-tab-content-one">
                                                     <p className="disc">
-                                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere exercitationem atque voluptatum! Massa laoreet lacinia placerat eleifend cs curae
-                                                        imperdiet mattis taciti, scelerisque elementum velit
-                                                        ullamcorper praesent enim temp
+                                                        We make incorporating your business effortless. From Private Limited Companies and LLPs to Section 8 NGOs, we handle all the legal paperwork so you can focus on building your brand.
                                                     </p>
                                                     <div className="check-area">
                                                         <i className="fas fa-check-circle" />
                                                         <p className="disc">
-                                                            Ultricies tellus cubilia at rutrum lobortis dui quis
-                                                            aliquam
+                                                            Fast & legally sound company registrations
                                                         </p>
                                                     </div>
                                                     <div className="check-area">
                                                         <i className="fas fa-check-circle" />
                                                         <p className="disc">
-                                                            Eu nisi quam senectus odio commodo quam pellente
+                                                            DPIIT Startup India recognition support
                                                         </p>
                                                     </div>
                                                     <a
@@ -73,21 +70,18 @@ function AboutTwo() {
                                                 {/* start tab content */}
                                                 <div className="rts-tab-content-one">
                                                     <p className="disc">
-                                                        Business laoreet lacinia placerat eleifend cs curae
-                                                        imperdiet mattis taciti, scelerisque elementum velit
-                                                        ullamcorper praesent enim temp
+                                                        Stay compliant with ease. We handle everything from GST registration and monthly return filings to Corporate Income Tax and MCA annual compliances.
                                                     </p>
                                                     <div className="check-area">
                                                         <i className="fas fa-check-circle" />
                                                         <p className="disc">
-                                                            Ultricies tellus cubilia at rutrum lobortis dui quis
-                                                            aliquam
+                                                            Accurate & timely GST, ITR, and TDS filings
                                                         </p>
                                                     </div>
                                                     <div className="check-area">
                                                         <i className="fas fa-check-circle" />
                                                         <p className="disc">
-                                                            Eu nisi quam senectus odio commodo quam pellente
+                                                            Complete ROC and Labour Law compliance
                                                         </p>
                                                     </div>
                                                     <a
@@ -106,21 +100,18 @@ function AboutTwo() {
                                                 {/* start tab content */}
                                                 <div className="rts-tab-content-one">
                                                     <p className="disc">
-                                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, sunt! lacinia placerat eleifend cs curae
-                                                        imperdiet mattis taciti, scelerisque elementum velit
-                                                        ullamcorper praesent enim temp
+                                                        Unlock your business's true potential with strategic financial planning, cash flow monitoring, and detailed MIS reporting tailored for startups and scaling enterprises.
                                                     </p>
                                                     <div className="check-area">
                                                         <i className="fas fa-check-circle" />
                                                         <p className="disc">
-                                                            Ultricies tellus cubilia at rutrum lobortis dui quis
-                                                            aliquam
+                                                            Budgeting, Forecasting, and Financial Modeling
                                                         </p>
                                                     </div>
                                                     <div className="check-area">
                                                         <i className="fas fa-check-circle" />
                                                         <p className="disc">
-                                                            Eu nisi quam senectus odio commodo quam pellente
+                                                            Fundraising support and investor deck financials
                                                         </p>
                                                     </div>
                                                     <a

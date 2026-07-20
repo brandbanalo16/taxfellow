@@ -17,11 +17,11 @@ function CallToAction() {
                             </div>
                             <div className="body">
                                 <p className="info">
-                                    Contact Our Agent For Any kind off Business Help{" "}
-                                    <span>(24/7 Available)</span>
+                                    Ready to start or scale your business? Let our experts handle the compliance while you focus on growth.{" "}
+                                    <span>(Free Consultation)</span>
                                 </p>
-                                <a href="tel:123-456-7890p123" className="number">
-                                    +215 2153.2159
+                                <a href="tel:+919876543210" className="number">
+                                    +91 98765 43210
                                 </a>
                                 <a href="#" className="rts-btn btn-primary-2">
                                     Contact Us

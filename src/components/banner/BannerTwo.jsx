@@ -42,13 +42,13 @@ function BannerTwo() {
                                             <div className="col-12">
                                                 <div className="banner-two-content text-center">
                                                     <div className="wrapper">
-                                                        <span className="sub">20+ Years In Business</span>
+                                                        <span className="sub">Expert Financial & Legal Advisors</span>
                                                         <h1 className="title">
-                                                            <span>Solving</span> Your Vision Is <br />
-                                                            <span>Our</span> Dedication
+                                                            <span>Seamless</span> Business Registrations <br />
+                                                            <span>&</span> Licensing
                                                         </h1>
-                                                        <a className="rts-btn btn-primary-2" href="#">
-                                                            View Solution
+                                                        <a className="rts-btn btn-primary-2" href="#service">
+                                                            Explore Services
                                                         </a>
                                                     </div>
                                                 </div>
@@ -64,13 +64,13 @@ function BannerTwo() {
                                             <div className="col-12">
                                                 <div className="banner-two-content text-center">
                                                     <div className="wrapper">
-                                                        <span className="sub">20+ Years In Business</span>
+                                                        <span className="sub">Your Trusted Compliance Partner</span>
                                                         <h1 className="title">
-                                                            <span>Boosting</span> Your Business <br /> Is
-                                                            <span>Our</span> Dedication
+                                                            <span>Flawless</span> Tax & MCA Compliances <br />
+                                                            <span>For</span> Your Business
                                                         </h1>
-                                                        <a className="rts-btn btn-primary-2" href="#">
-                                                            View Solution
+                                                        <a className="rts-btn btn-primary-2" href="#service">
+                                                            Get Started
                                                         </a>
                                                     </div>
                                                 </div>
@@ -86,13 +86,13 @@ function BannerTwo() {
                                             <div className="col-12">
                                                 <div className="banner-two-content text-center">
                                                     <div className="wrapper">
-                                                        <span className="sub">20+ Years In Business</span>
+                                                        <span className="sub">Strategic Financial Growth</span>
                                                         <h1 className="title">
-                                                            <span>Making</span> Business Growth Is Our{" "}
-                                                            <span>Dedication</span>
+                                                            <span>Virtual CFO</span> Services For <br />
+                                                            <span>Scaling</span> Startups
                                                         </h1>
-                                                        <a className="rts-btn btn-primary-2" href="#">
-                                                            View Solution
+                                                        <a className="rts-btn btn-primary-2" href="#contact">
+                                                            Book Consultation
                                                         </a>
                                                     </div>
                                                 </div>

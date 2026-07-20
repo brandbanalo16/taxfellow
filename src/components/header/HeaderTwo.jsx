@@ -78,9 +78,10 @@ function HeaderTwo() {
                     <div className="content">
                         <div className="header-left">
                             <Link className="thumbnail" href="/">
-                                <img src="assets/images/logo/logo-4.svg" alt="" />
+                                <img src="/assets/images/logo/TAXFELLOW.jpg.jpeg" alt="Taxfello Logo" style={{ maxHeight: '60px', width: 'auto' }} />
                             </Link>
                             <Nav />
+
                         </div>
                         <div className="header-right">
                             <div className="call-area">
