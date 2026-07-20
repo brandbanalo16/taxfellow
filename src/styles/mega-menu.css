@@ -1,0 +1,521 @@
+/* =======================================================
+   TAXFELLO — PREMIUM MEGA MENU
+   Pure CSS3 | No external dependencies
+   Prefix: mm- (mega-menu) to avoid conflicts
+   ======================================================= */
+
+/* ──────────────────────────────────────────────────────
+   1. NAV WRAPPER & LIST
+────────────────────────────────────────────────────── */
+.mm-nav {
+  display: flex;
+  align-items: center;
+}
+
+.mm-nav-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2px;
+}
+
+.mm-nav-item {
+  position: static;
+}
+
+/* ──────────────────────────────────────────────────────
+   2. NAV LINKS & TRIGGER BUTTONS
+────────────────────────────────────────────────────── */
+.mm-nav-link,
+.mm-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 9px 14px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #1c2340;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: color 0.18s ease, background 0.18s ease;
+  white-space: nowrap;
+  cursor: pointer;
+  line-height: 1;
+  font-family: inherit;
+  letter-spacing: -0.01em;
+}
+
+.mm-nav-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.mm-nav-link:hover,
+.mm-nav-btn:hover {
+  color: #1E5EFF;
+  background: #F0F5FF;
+  text-decoration: none;
+}
+
+/* Active state (when panel is open) */
+.mm-nav-btn.mm-active {
+  color: #1E5EFF;
+  background: #F0F5FF;
+}
+
+/* ──────────────────────────────────────────────────────
+   3. CHEVRON ARROW
+────────────────────────────────────────────────────── */
+.mm-chevron {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  flex-shrink: 0;
+  transition: transform 0.22s ease;
+  opacity: 0.65;
+}
+
+.mm-nav-btn.mm-active .mm-chevron {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* ──────────────────────────────────────────────────────
+   4. MEGA PANEL — shared base
+────────────────────────────────────────────────────── */
+.mm-panel {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1240px;
+  max-width: 96vw;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 28px 28px 32px;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.04),
+    0 20px 60px rgba(0, 0, 0, 0.11),
+    0 0 0 1px rgba(0, 0, 0, 0.04);
+  z-index: 100000;
+  margin-top: 15px;
+
+  /* Hidden by default */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-10px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Open state */
+.mm-panel.mm-panel-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ──────────────────────────────────────────────────────
+   5. PANEL HEADER (title bar)
+────────────────────────────────────────────────────── */
+.mm-panel-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #f0f2f9;
+}
+
+.mm-panel-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #8a91b0;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin: 0;
+}
+
+/* ──────────────────────────────────────────────────────
+   6. MEGA LAYOUT — two-column body
+────────────────────────────────────────────────────── */
+.mm-body {
+  display: flex;
+  gap: 0;
+  min-height: 280px;
+  align-items: flex-start;
+}
+
+/* ── Left Panel ── */
+.mm-left {
+  width: 260px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-right: 16px;
+  border-right: 1px solid #f0f2f9;
+  /* Allow scroll if many categories */
+  max-height: 440px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #e2e8f0 transparent;
+}
+
+.mm-left::-webkit-scrollbar { width: 4px; }
+.mm-left::-webkit-scrollbar-track { background: transparent; }
+.mm-left::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
+
+/* Category Button */
+.mm-cat-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 11px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #404060;
+  background: transparent;
+  border: none;
+  transition: background 0.15s, color 0.15s;
+  font-family: inherit;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mm-cat-btn:hover {
+  background: #F0F5FF;
+  color: #1E5EFF;
+}
+
+.mm-cat-btn.mm-cat-active {
+  background: #1E5EFF;
+  color: #ffffff;
+}
+
+/* ── Right Panel ── */
+.mm-right {
+  flex: 1;
+  min-width: 0;
+  padding-left: 28px;
+}
+
+/* Services sub-panel */
+.mm-services-panel {
+  display: none;
+  animation: mmFadeIn 0.16s ease;
+}
+
+.mm-services-panel.mm-services-active {
+  display: block;
+}
+
+@keyframes mmFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Services heading */
+.mm-services-heading {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a1f3c;
+  margin: 0 0 18px 0;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Subcategory Column Grid Layout */
+.mm-subcat-grid {
+  display: flex;
+  gap: 20px 32px;
+  width: 100%;
+}
+
+.mm-subcat-column {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.mm-subcat-title {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #1a1f3c;
+  margin: 0 0 10px 0;
+  padding-bottom: 6px;
+  border-bottom: 1.5px solid #F0F5FF;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mm-subcat-services {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* Individual service link with inline check circle SVG */
+.mm-service-link {
+  display: flex;
+  align-items: flex-start; /* align icon to top of text */
+  font-size: 13px;
+  font-weight: 400;
+  color: #505070;
+  text-decoration: none;
+  padding: 6px 0;
+  transition: color 0.18s ease, transform 0.18s ease;
+  cursor: pointer;
+  line-height: 1.35;
+  width: 100%;
+  min-width: 0;
+}
+
+.mm-service-link:hover {
+  color: #1E5EFF;
+  transform: translateX(4px);
+  text-decoration: none;
+}
+
+.mm-service-text {
+  white-space: nowrap;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+}
+
+.mm-svc-icon {
+  margin-top: 2px;
+}
+
+/* ──────────────────────────────────────────────────────
+   7. SIMPLE PANEL (Bookkeeping — no left panel)
+────────────────────────────────────────────────────── */
+.mm-panel--simple .mm-subcat-grid {
+  display: flex;
+  gap: 20px 40px;
+}
+
+/* ──────────────────────────────────────────────────────
+   8. BACKDROP OVERLAY
+────────────────────────────────────────────────────── */
+.mm-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(10, 15, 40, 0.18);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.mm-backdrop.mm-backdrop-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ──────────────────────────────────────────────────────
+   9. RESPONSIVE — Laptop 992–1199px
+────────────────────────────────────────────────────── */
+@media (max-width: 1199px) {
+  .mm-subcat-grid {
+    flex-wrap: wrap;
+  }
+  .mm-subcat-column {
+    flex: 1 1 calc(50% - 16px);
+    min-width: 200px;
+  }
+
+  .mm-panel {
+    width: 900px;
+  }
+
+  .mm-left {
+    width: 240px;
+  }
+
+  .mm-nav-link,
+  .mm-nav-btn {
+    font-size: 13.5px;
+    padding: 9px 11px;
+  }
+}
+
+/* ──────────────────────────────────────────────────────
+   10. RESPONSIVE — Tablet 768–991px
+────────────────────────────────────────────────────── */
+@media (max-width: 991px) {
+  .mm-subcat-grid {
+    flex-wrap: wrap;
+  }
+  .mm-subcat-column {
+    flex: 1 1 calc(50% - 16px);
+    min-width: 200px;
+  }
+
+  .mm-panel {
+    max-width: 95vw;
+  }
+}
+
+/* ──────────────────────────────────────────────────────
+   11. MOBILE — hide desktop mega nav on small screens
+       (existing d-none d-xl-block handles this)
+────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .mm-panel,
+  .mm-backdrop {
+    display: none !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────
+   12. MOBILE SIDEBAR ACCORDION (SideMenu)
+────────────────────────────────────────────────────── */
+
+/* Top-level accordion item */
+.mm-mob-item {
+  border-bottom: 1px solid #f0f2f9;
+}
+
+.mm-mob-item:last-child {
+  border-bottom: none;
+}
+
+/* Top-level trigger */
+.mm-mob-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1a1f3c;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+}
+
+.mm-mob-trigger:hover {
+  color: #1E5EFF;
+}
+
+/* Plain link (Home, About Us, Contact Us) */
+.mm-mob-link {
+  display: block;
+  padding: 14px 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1a1f3c;
+  text-decoration: none;
+  border-bottom: 1px solid #f0f2f9;
+}
+
+.mm-mob-link:hover {
+  color: #1E5EFF;
+  text-decoration: none;
+}
+
+/* Accordion chevron */
+.mm-mob-chevron {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  transition: transform 0.22s ease;
+  opacity: 0.5;
+}
+
+.mm-mob-trigger.mm-mob-open .mm-mob-chevron {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* Category section */
+.mm-mob-cats {
+  display: none;
+  padding: 4px 0 8px 0;
+}
+
+.mm-mob-cats.mm-mob-cats-open {
+  display: block;
+}
+
+/* Category accordion trigger */
+.mm-mob-cat-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #404060;
+  background: #f8f9fc;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  margin-bottom: 3px;
+}
+
+.mm-mob-cat-trigger:hover,
+.mm-mob-cat-trigger.mm-mob-cat-open {
+  background: #F0F5FF;
+  color: #1E5EFF;
+}
+
+/* Services list under category */
+.mm-mob-services {
+  display: none;
+  padding: 6px 0 6px 12px;
+}
+
+.mm-mob-services.mm-mob-services-open {
+  display: block;
+}
+
+.mm-mob-service-link {
+  display: block;
+  padding: 7px 8px;
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #505070;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.mm-mob-service-link:hover {
+  color: #1E5EFF;
+  background: #F0F5FF;
+  text-decoration: none;
+}
+
+/* Simple section (no categories) mobile */
+.mm-mob-simple-services {
+  display: none;
+  padding: 4px 0 8px 0;
+}
+
+.mm-mob-simple-services.mm-mob-cats-open {
+  display: block;
+}

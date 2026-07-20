@@ -6,6 +6,7 @@ import "../../public/assets/css/plugins/unicons.css";
 
 import "../../public/assets/css/vendor/bootstrap.min.css";
 import "../../public/assets/css/style.css";
+import "../styles/mega-menu.css";
 import Script from 'next/script';
 
 
