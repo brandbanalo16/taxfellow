@@ -2,10 +2,13 @@
  * MEGA MENU DATA
  * ─────────────────────────────────────────────────
  * Single source of truth for all navigation content.
- * Supports grouping services into subcategories (columns)
- * to showcase clean, structured grid layouts.
+ * All service hrefs use /services/[slug] which resolves
+ * via the global allServices array in services-content.js
  * ─────────────────────────────────────────────────
  */
+
+// Helper: build a service link using the universal /services/[slug] route
+const svc = (label, slug) => ({ label, href: `/services/${slug}` });
 
 export const MEGA_MENU_DATA = [
   // ── 1. Registration & Licences ───────────────────
@@ -21,29 +24,31 @@ export const MEGA_MENU_DATA = [
           {
             label: 'Popular Company Setup',
             services: [
-              { label: 'Private Limited Company Registration', href: '/registration/private-limited-company-registration' },
-              { label: 'One Person Company Registration',      href: '/registration/one-person-company-registration' },
-              { label: 'Limited Liability Partnership Registration', href: '/registration/limited-liability-partnership-registration' },
-              { label: 'Partnership Firm Registration',        href: '/registration/partnership-firm-registration' },
-              { label: 'Sole Proprietorship Setup',            href: '/registration/sole-proprietorship-setup' },
+              svc('Private Limited Company Registration', 'private-limited-company-registration'),
+              svc('One Person Company Registration',      'one-person-company-registration'),
+              svc('Limited Liability Partnership (LLP)',  'limited-liability-partnership-registration'),
+              svc('Partnership Firm Registration',        'partnership-firm-registration'),
+              svc('Sole Proprietorship Setup',            'sole-proprietorship-setup'),
             ]
           },
           {
-            label: 'Special Entity Setup',
+            label: 'Special Entities',
             services: [
-              { label: 'Producer Company Registration',        href: '/registration/producer-company-registration' },
-              { label: 'Public Limited Company Registration',  href: '/registration/public-limited-company-registration' },
-              { label: 'Section 8 Company Registration',       href: '/registration/section-8-company-registration' },
-              { label: 'Section 8 NGO Setup',                  href: '/registration/section-8-ngo-setup' },
+              svc('Producer Company Registration',        'producer-company-registration'),
+              svc('Public Limited Company Registration',  'public-limited-company-registration'),
+              svc('Section 8 Company Registration',       'section-8-company-registration'),
+              svc('Section 8 NGO Setup',                  'section-8-ngo-setup'),
+              svc('Society Registration',                 'society-registration'),
+              svc('Trust Registration',                   'trust-registration'),
             ]
           },
           {
-            label: 'Other Registrations',
+            label: 'Foreign & Subsidiary',
             services: [
-              { label: 'Society Registration',                 href: '/registration/society-registration' },
-              { label: 'Trust Registration',                   href: '/registration/trust-registration' },
-              { label: 'Indian Subsidiary Registration',       href: '/registration/indian-subsidiary-registration' },
-              { label: 'Foreign Entity Setup',                 href: '#' },
+              svc('Indian Subsidiary Registration',       'indian-subsidiary-registration'),
+              svc('Foreign Entity Setup',                 'foreign-entity-setup'),
+              svc('AD Code Registration Support',         'ad-code-registration-support'),
+              svc('PF & ESIC Registration',               'pf-and-esic-registration'),
             ]
           }
         ]
@@ -55,139 +60,103 @@ export const MEGA_MENU_DATA = [
           {
             label: 'Government Schemes',
             services: [
-              { label: 'Startup India DPIIT Recognition',      href: '/registration/startup-india-dpiit-recognition' },
-              { label: 'DPIIT Registration',                  href: '#' },
-              { label: '80IAC Tax Exemption Registration',     href: '#' },
-              { label: 'Project Report Preparation',          href: '#' },
+              svc('Startup India DPIIT Recognition',      'startup-india-dpiit-recognition'),
+              svc('DPIIT Registration',                   'dpiit-registration'),
+              svc('80IAC Tax Exemption',                  '80iac'),
+              svc('Project Report Preparation',           'project-report-preparation'),
             ]
           }
         ]
       },
       {
-        id: 'gst-registration',
-        label: 'GST Registration & Management',
+        id: 'gst',
+        label: 'GST Registration & Compliance',
         subcategories: [
           {
             label: 'GST Registration',
             services: [
-              { label: 'GST Registration',                          href: '/registration/gst' },
-              { label: 'Additional Place of Business GST Registration', href: '#' },
-              { label: 'GST Registration Amendment',                href: '#' },
-              { label: 'GST Cancellation',                          href: '#' },
-              { label: 'GST Revocation of Cancellation',            href: '#' },
+              svc('GST Registration',                     'gst-registration'),
+              svc('Additional Place of Business GST',     'additional-place-of-business-gst-registration'),
+              svc('GST Registration Amendment',           'gst-registration-amendment'),
+              svc('GST Cancellation',                     'gst-cancellation'),
+              svc('GST Revocation of Cancellation',       'gst-revocation-of-cancellation'),
             ]
           },
           {
-            label: 'GST Filing & Compliance',
+            label: 'GST Filing & Returns',
             services: [
-              { label: 'GST Return Filing',                         href: '/compliances/gst-filing' },
-              { label: 'GST Annual Return (GSTR-9)',                href: '#' },
-              { label: 'GST LUT Filing for Exporters',              href: '#' },
-              { label: 'GST Reconciliation & ITC Matching',         href: '#' },
-              { label: 'GST Appeal Filing',                         href: '#' },
-              { label: 'GST Notice Reply',                          href: '#' },
-              { label: 'GST Refund Application',                    href: '#' },
+              svc('GST Return Filing',                    'gst-return-filing'),
+              svc('GST Annual Return (GSTR-9)',           'gst-annual-return-gstr-9'),
+              svc('GST LUT Filing for Exporters',         'gst-lut-filing-for-exporters'),
+              svc('GST Reconciliation & ITC Matching',    'gst-reconciliation-and-itc-matching'),
+              svc('GST Appeal Filing',                    'gst-appeal-filing'),
+              svc('GST Notice Reply',                     'gst-notice-reply'),
+              svc('GST Refund Application',               'gst-refund-application'),
             ]
           }
         ]
       },
       {
         id: 'food-trade',
-        label: 'Food & Trade Licences',
+        label: 'Food, Trade & IP Licences',
         subcategories: [
           {
-            label: 'FSSAI License & Food Safety',
+            label: 'FSSAI & Food Safety',
             services: [
-              { label: 'FSSAI Basic Registration',              href: '#' },
-              { label: 'FSSAI Central Licence',                 href: '#' },
-              { label: 'FSSAI State Licence',                   href: '#' },
+              svc('FSSAI Basic Registration',             'fssai-basic-registration'),
+              svc('FSSAI Central Licence',                'fssai-central-licence'),
+              svc('FSSAI State Licence',                  'fssai-state-licence'),
             ]
           },
           {
-            label: 'Trade & Business Setup',
+            label: 'Trade & Business',
             services: [
-              { label: 'Barcode Registration',                  href: '#' },
-              { label: 'Trade Licence Registration',            href: '#' },
-              { label: 'ISO Certification',                     href: '#' },
-              { label: 'MSME Registration',                     href: '/registration/msme' },
+              svc('Barcode Registration',                 'barcode-registration'),
+              svc('Trade Licence Registration',           'trade-licence-registration'),
+              svc('ISO Certification',                    'iso-certification'),
+              svc('MSME Registration',                    'msme-registration'),
+              svc('Import Export Code (IEC)',             'import-export-code-registration'),
+              svc('RCMC Registration',                    'rcmc-registration'),
+              svc('Digital Signature Certificate (DSC)',  'digital-signature-certificate-dsc'),
             ]
           },
           {
-            label: 'Import Export & Others',
+            label: 'IP & Brand Protection',
             services: [
-              { label: 'Import Export Code Registration',       href: '#' },
-              { label: 'RCMC Registration',                     href: '#' },
-              { label: 'Digital Signature Certificate (DSC)',   href: '#' },
-              { label: 'AD Code Registration Support',         href: '/registration/ad-code-registration-support' },
-              { label: 'PF & ESIC Registration',               href: '/registration/pf-and-esic-registration' },
+              svc('Trademark Registration',               'trademark'),
+              svc('TM Objection Reply',                   'objection-reply'),
+              svc('Copyright Registration',               'copyright-registration'),
+              svc('Patent & Design Registration',         'patent-design'),
             ]
           }
         ]
       },
       {
-        id: 'ip-brand',
-        label: 'IP & Brand Registrations',
+        id: 'state-tax',
+        label: 'State & Labour Registrations',
         subcategories: [
           {
-            label: 'Trademark Registration',
+            label: 'State Tax Setup',
             services: [
-              { label: 'Trademark Registration',       href: '/registration/trademark' },
-              { label: 'Expedited TM Registration',    href: '#' },
-              { label: 'Trademark Renewal',           href: '#' },
-              { label: 'Trademark Search',            href: '#' },
-              { label: 'TM Objection Reply',           href: '#' },
-              { label: 'TM Opposition Reply',          href: '#' },
-              { label: 'TM Hearing Support',           href: '#' },
-              { label: 'TM Infringement',              href: '#' },
-              { label: 'Trademark Transfer',           href: '#' },
-            ]
-          },
-          {
-            label: 'Copyright Registration',
-            services: [
-              { label: 'Copyright Registration',        href: '#' },
-              { label: 'Copyright Objection',           href: '#' },
-              { label: 'Copyright Infringement',        href: '#' },
-              { label: 'Copyright Music',               href: '#' },
-            ]
-          },
-          {
-            label: 'Patent & Design',
-            services: [
-              { label: 'Provisional Patent',            href: '#' },
-              { label: 'Patent Registration',           href: '#' },
-              { label: 'Patent Infringement',           href: '#' },
-              { label: 'Design Registration',           href: '#' },
-            ]
-          }
-        ]
-      },
-      {
-        id: 'tax-trade',
-        label: 'Tax & Trade Registrations',
-        subcategories: [
-          {
-            label: 'State tax setup',
-            services: [
-              { label: 'Professional Tax Registration',     href: '#' },
-              { label: 'Shop & Establishment Registration', href: '#' },
+              svc('Professional Tax Registration',        'professional-tax-registration'),
+              svc('Shop & Establishment Registration',    'shop-and-establishment-registration'),
             ]
           }
         ]
       },
       {
         id: 'ngo-trust',
-        label: 'NGO & Trust',
+        label: 'NGO & Charitable Trust',
         subcategories: [
           {
-            label: 'NGO Registrations',
+            label: 'NGO Registrations & Grants',
             services: [
-              { label: 'NGO Darpan Registration',  href: '#' },
-              { label: '12A & 80G Registration',   href: '#' },
-              { label: 'CSR-1 Registration',       href: '#' },
-              { label: 'FCRA Registration',        href: '#' },
-              { label: 'Tax / Grant Registrations',href: '#' },
-              { label: 'NGO Annual Compliance',    href: '#' },
+              svc('NGO Darpan Registration',              'ngo-darpan-registration'),
+              svc('12A & 80G Registration',               '12a-and-80g-registration'),
+              svc('CSR-1 Registration',                   'csr-1-registration'),
+              svc('FCRA Registration',                    'fcra-registration'),
+              svc('Tax / Grant Registrations',            'tax-grant-registrations'),
+              svc('NGO Annual Compliance',                'ngo-annual-compliance'),
             ]
           }
         ]
@@ -203,32 +172,32 @@ export const MEGA_MENU_DATA = [
     categories: [
       {
         id: 'income-tax',
-        label: 'Income Tax Compliance',
+        label: 'Income Tax Filing',
         subcategories: [
           {
-            label: 'Business tax returns',
+            label: 'Business & Corporate Returns',
             services: [
-              { label: 'Corporate Income Tax Return Filing',      href: '/compliances/income-tax' },
-              { label: 'ITR Filing for Business / Proprietorship',href: '/compliances/income-tax' },
-              { label: 'ITR Filing for LLP / Partnership Firm',   href: '/compliances/income-tax' },
-              { label: 'ITR Filing for NGO / Trust',              href: '/compliances/income-tax' },
+              svc('Corporate Income Tax Return Filing',       'corporate-income-tax-return-filing'),
+              svc('ITR Filing for Business / Proprietorship', 'itr-filing-for-business-or-proprietorship'),
+              svc('ITR Filing for LLP / Partnership Firm',    'itr-filing-for-llp-or-partnership-firm'),
+              svc('ITR Filing for NGO / Trust',               'itr-filing-for-ngo-or-trust'),
             ]
           },
           {
             label: 'Personal & NRI Tax',
             services: [
-              { label: 'ITR Filing for Salaried Individual',      href: '/compliances/income-tax' },
-              { label: 'NRI Income Tax Return Filing',            href: '#' },
-              { label: 'Income Tax Notice Reply',                 href: '#' },
-              { label: 'Income Tax Rectification Request',        href: '#' },
+              svc('ITR Filing for Salaried Individual',       'itr-filing-for-salaried-individual'),
+              svc('NRI Income Tax Return Filing',             'nri-income-tax-return-filing'),
+              svc('Income Tax Notice Reply',                  'income-tax-notice-reply'),
+              svc('Income Tax Rectification Request',         'income-tax-rectification-request'),
             ]
           },
           {
             label: 'TDS / TCS Filing',
             services: [
-              { label: 'TDS Return Filing',                       href: '/compliances/tds-filing' },
-              { label: 'TCS Return Filing',                       href: '#' },
-              { label: 'Form 16 & Form 16A Generation',           href: '#' },
+              svc('TDS Return Filing',                        'tds-return-filing'),
+              svc('TCS Return Filing',                        'tcs-return-filing'),
+              svc('Form 16 & Form 16A Generation',            'form-16-and-form-16a-generation'),
             ]
           }
         ]
@@ -240,28 +209,28 @@ export const MEGA_MENU_DATA = [
           {
             label: 'Annual Filings',
             services: [
-              { label: 'Company Annual Filing (AOC-4 & MGT-7)',  href: '/compliances/roc-filing' },
-              { label: 'LLP Annual Filing (Form-11 & Form-8)',   href: '/compliances/roc-filing' },
-              { label: 'OPC Annual Compliance',                  href: '#' },
-              { label: 'Section 8 Company Annual Compliance',    href: '#' },
+              svc('Company Annual Filing (AOC-4 & MGT-7)',    'company-annual-filing-aoc-4-and-mgt-7'),
+              svc('LLP Annual Filing (Form-11 & Form-8)',     'llp-annual-filing-form-11-and-form-8'),
+              svc('OPC Annual Compliance',                    'opc-annual-compliance'),
+              svc('Section 8 Company Annual Compliance',      'section-8-company-annual-compliance'),
             ]
           },
           {
-            label: 'Setup & Approvals',
+            label: 'Setup & Event Filings',
             services: [
-              { label: 'Auditor Appointment (ADT-1)',            href: '#' },
-              { label: 'Commencement of Business (INC-20A)',     href: '#' },
-              { label: 'Company Strike Off',                     href: '#' },
+              svc('Auditor Appointment (ADT-1)',              'auditor-appointment-filing-adt-1'),
+              svc('Commencement of Business (INC-20A)',       'commencement-of-business-filing-inc-20a'),
+              svc('Company Strike Off',                       'company-strike-off'),
             ]
           },
           {
             label: 'Corporate Changes',
             services: [
-              { label: 'Director Appointment / Resignation',     href: '#' },
-              { label: 'Director KYC (DIR-3 KYC)',               href: '#' },
-              { label: 'Increase Authorised Share Capital',      href: '#' },
-              { label: 'Registered Office Change',               href: '#' },
-              { label: 'Share Allotment Filing',                 href: '#' },
+              svc('Director Appointment / Resignation',       'director-appointment-or-resignation-dir-12'),
+              svc('Director KYC (DIR-3 KYC)',                 'director-kyc-dir-3-kyc'),
+              svc('Increase Authorised Share Capital',        'increase-authorised-share-capital-sh-7'),
+              svc('Registered Office Change',                 'registered-office-change-inc-22'),
+              svc('Share Allotment Filing (PAS-3)',           'share-allotment-filing-pas-3'),
             ]
           }
         ]
@@ -273,54 +242,43 @@ export const MEGA_MENU_DATA = [
           {
             label: 'Payroll Processing',
             services: [
-              { label: 'Monthly Payroll Processing',       href: '/compliances/payroll' },
-              { label: 'Salary Slip Generation',           href: '/compliances/payroll' },
+              svc('Monthly Payroll Processing',               'monthly-payroll-processing'),
+              svc('Salary Slip Generation',                   'salary-slip-generation'),
             ]
           },
           {
-            label: 'PF, ESI & PT Returns',
+            label: 'PF, ESI & PT',
             services: [
-              { label: 'Monthly PF & ESIC Return Filing',  href: '/compliances/payroll' },
-              { label: 'Professional Tax Return Filing',   href: '#' },
-              { label: 'HR Policy & Employee Documentation', href: '#' },
-              { label: 'Labour Law Compliance Review',     href: '#' },
+              svc('Monthly PF & ESIC Return Filing',          'monthly-pf-and-esic-return-filing'),
+              svc('Professional Tax Return Filing',           'professional-tax-return-filing'),
+              svc('HR Policy & Employee Documentation',       'hr-policy-and-employee-document-drafting'),
+              svc('Labour Law Compliance Review',             'labour-law-compliance-review'),
             ]
           }
         ]
       },
       {
         id: 'legal-docs',
-        label: 'Legal & Corporate Documentation',
+        label: 'Legal & Corporate Drafting',
         subcategories: [
           {
             label: 'Agreements & Deeds',
             services: [
-              { label: 'Founder Agreement Drafting',       href: '#' },
-              { label: 'LLP Agreement Drafting',           href: '#' },
-              { label: 'Partnership Deed Drafting',        href: '#' },
-              { label: 'Service Agreement Drafting',       href: '#' },
-              { label: 'Non-Disclosure Agreement (NDA)',   href: '#' },
+              svc('Founder Agreement Drafting',               'founder-agreement-drafting'),
+              svc('LLP Agreement Drafting',                   'llp-agreement-drafting'),
+              svc('Partnership Deed Drafting',                'partnership-deed-drafting'),
+              svc('Service Agreement Drafting',               'service-agreement-drafting'),
+              svc('Non-Disclosure Agreement (NDA)',           'non-disclosure-agreement-nda'),
+              svc('Rent Agreement & NOC Drafting',            'rent-agreement-and-noc-drafting'),
             ]
           },
           {
             label: 'Legal Notices & Resolutions',
             services: [
-              { label: 'Rent Agreement & NOC Drafting',    href: '#' },
-              { label: 'Legal Notice Drafting',            href: '#' },
-              { label: 'Reply to Legal Notice',            href: '#' },
-              { label: 'Board Resolution Drafting',        href: '#' },
-            ]
-          }
-        ]
-      },
-      {
-        id: 'export-fema',
-        label: 'Export & FEMA Compliance',
-        subcategories: [
-          {
-            label: 'International Trade',
-            services: [
-              { label: 'FEMA & FDI Reporting Support', href: '#' },
+              svc('Legal Notice Drafting',                    'legal-notice-drafting'),
+              svc('Reply to Legal Notice',                    'reply-to-legal-notice'),
+              svc('Board Resolution Drafting',                'board-resolution-drafting'),
+              svc('FEMA & FDI Reporting Support',             'fema-and-fdi-reporting-support'),
             ]
           }
         ]
@@ -328,7 +286,7 @@ export const MEGA_MENU_DATA = [
     ],
   },
 
-  // ── 3. Bookkeeping & Accounting (simple – no left panel) ──
+  // ── 3. Bookkeeping & Accounting ──────────────────
   {
     id: 'bookkeeping',
     label: 'Bookkeeping & Accounting',
@@ -336,19 +294,25 @@ export const MEGA_MENU_DATA = [
     heading: 'Accounting & Bookkeeping',
     subcategories: [
       {
-        label: 'Bookkeeping & Statements',
+        label: 'Bookkeeping & Records',
         services: [
-          { label: 'Monthly Accounting & Bookkeeping', href: '/accounting/bookkeeping' },
-          { label: 'Bank Reconciliation',               href: '/accounting/bookkeeping' },
-          { label: 'Accounts Finalisation',             href: '/accounting/financial-statements' },
-          { label: 'Financial Statement Preparation',   href: '/accounting/financial-statements' },
+          svc('Monthly Accounting & Bookkeeping',             'monthly-accounting-and-bookkeeping'),
+          svc('Bank Reconciliation',                          'bank-reconciliation'),
+          svc('Accounts Finalisation',                        'accounts-finalisation'),
+          svc('Financial Statement Preparation',              'financial-statement-preparation'),
+        ]
+      },
+      {
+        label: 'Audit & Due Diligence',
+        services: [
+          svc('Audit Support & Schedules',                    'audit-support-and-schedules'),
+          svc('Due Diligence Data Room Support',              'due-diligence-data-room-support'),
         ]
       },
       {
         label: 'Cloud Software Setup',
         services: [
-          { label: 'Tally Setup',                        href: '/accounting/bookkeeping' },
-          { label: 'Zoho Books Setup',                   href: '/accounting/bookkeeping' },
+          svc('Tally / Zoho Books Setup',                     'tally-or-zoho-books-setup'),
         ]
       }
     ]
@@ -361,17 +325,16 @@ export const MEGA_MENU_DATA = [
     type: 'mega',
     categories: [
       {
-        id: 'financial-projections',
-        label: 'Financial Planning & Projections',
+        id: 'financial-planning',
+        label: 'Financial Planning',
         subcategories: [
           {
-            label: 'Planning & Models',
+            label: 'Budgets & Models',
             services: [
-              { label: 'Projected Financial Statements',    href: '/cfo/financial-planning' },
-              { label: 'Budgeting & Forecasting',           href: '/cfo/financial-planning' },
-              { label: 'Annual Budget Preparation',         href: '/cfo/financial-planning' },
-              { label: 'Business Plan & Financial Model',   href: '/cfo/financial-planning' },
-              { label: 'Rolling Forecast & Scenario Planning', href: '/cfo/financial-planning' },
+              svc('Projected Financial Statements',            'projected-financial-statements'),
+              svc('Annual Budget Preparation',                 'annual-budget-preparation'),
+              svc('Business Plan & Financial Model',           'business-plan-and-financial-model'),
+              svc('Rolling Forecast & Scenario Planning',      'rolling-forecast-and-scenario-planning'),
             ]
           }
         ]
@@ -381,11 +344,11 @@ export const MEGA_MENU_DATA = [
         label: 'Cash Flow & Working Capital',
         subcategories: [
           {
-            label: 'Cash & Liquidity management',
+            label: 'Liquidity Management',
             services: [
-              { label: 'Cash Flow Monitoring',             href: '/cfo/virtual-cfo' },
-              { label: 'Receivable & Payable Ageing Review',href: '/cfo/virtual-cfo' },
-              { label: 'Working Capital Planning',          href: '/cfo/virtual-cfo' },
+              svc('Cash Flow Monitoring',                      'cash-flow-monitoring'),
+              svc('Receivable & Payable Ageing Review',        'receivable-and-payable-ageing-review'),
+              svc('Working Capital Planning',                  'working-capital-planning'),
             ]
           }
         ]
@@ -395,28 +358,28 @@ export const MEGA_MENU_DATA = [
         label: 'Banking & Project Finance',
         subcategories: [
           {
-            label: 'Bank Loan Documentation',
+            label: 'Bank Loan Support',
             services: [
-              { label: 'Project Report for Bank Loan',    href: '/cfo/virtual-cfo' },
-              { label: 'Cash Flow Projection',            href: '/cfo/financial-planning' },
-              { label: 'CMA Data Preparation',            href: '/cfo/virtual-cfo' },
-              { label: 'Drawing Power Calculation',       href: '/cfo/virtual-cfo' },
-              { label: 'Monthly Stock Statement',         href: '/cfo/mis-reporting' },
-              { label: 'MSME Loan & Subsidy Advisory',    href: '/cfo/virtual-cfo' },
+              svc('Project Report for Bank Loan',              'project-report-for-bank-loan'),
+              svc('Cash Flow Projection',                      'cash-flow-projection'),
+              svc('CMA Data Preparation',                      'cma-data-preparation'),
+              svc('Drawing Power Calculation',                 'drawing-power-calculation'),
+              svc('Monthly Stock Statement',                   'monthly-stock-statement'),
+              svc('MSME Loan & Subsidy Advisory',              'msme-loan-and-subsidy-advisory'),
             ]
           }
         ]
       },
       {
         id: 'fundraising',
-        label: 'Fundraising & Banking',
+        label: 'Fundraising & Investor Support',
         subcategories: [
           {
-            label: 'Funding Advisory',
+            label: 'Investor & Bank Presentations',
             services: [
-              { label: 'Investor Deck Financial Support',           href: '/cfo/fundraising' },
-              { label: 'Loan Proposal & Bank Presentation Support', href: '/cfo/fundraising' },
-              { label: 'Banking Covenants & DSCR Review',           href: '/cfo/fundraising' },
+              svc('Investor Deck Financial Support',           'investor-deck-financials-support'),
+              svc('Loan Proposal & Bank Presentation',         'loan-proposal-and-bank-presentation-support'),
+              svc('Banking Covenants & DSCR Review',           'banking-covenants-and-dscr-review'),
             ]
           }
         ]
@@ -426,12 +389,12 @@ export const MEGA_MENU_DATA = [
         label: 'MIS & KPI Reporting',
         subcategories: [
           {
-            label: 'Management reports',
+            label: 'Management Reports',
             services: [
-              { label: 'Monthly MIS & Profit & Loss Report',         href: '/cfo/mis-reporting' },
-              { label: 'Finance KPI Dashboard',                       href: '/cfo/mis-reporting' },
-              { label: 'Budget vs Actual Variance Report',            href: '/cfo/mis-reporting' },
-              { label: 'Department / Branch Wise Profitability Report', href: '/cfo/mis-reporting' },
+              svc('Monthly MIS & Profit & Loss Report',        'monthly-mis-and-profit-loss-report'),
+              svc('Finance KPI Dashboard',                     'finance-kpi-dashboard'),
+              svc('Budget vs Actual Variance Report',          'budget-vs-actual-variance-report'),
+              svc('Dept / Branch Profitability Report',        'department-branch-wise-profitability-report'),
             ]
           }
         ]
@@ -443,9 +406,9 @@ export const MEGA_MENU_DATA = [
           {
             label: 'Margin Optimization',
             services: [
-              { label: 'Cost Optimisation Review',         href: '/cfo/virtual-cfo' },
-              { label: 'Pricing & Unit Economics Advisory',href: '/cfo/virtual-cfo' },
-              { label: 'Product / Service Margin Analysis',href: '/cfo/virtual-cfo' },
+              svc('Cost Optimisation Review',                  'cost-optimisation-review'),
+              svc('Pricing & Unit Economics Advisory',         'pricing-and-unit-economics-advisory'),
+              svc('Product / Service Margin Analysis',         'product-service-margin-analysis'),
             ]
           }
         ]
@@ -457,36 +420,23 @@ export const MEGA_MENU_DATA = [
           {
             label: 'SOPs & Risk Registry',
             services: [
-              { label: 'Finance SOP Drafting',              href: '/cfo/virtual-cfo' },
-              { label: 'Internal Control Review',           href: '/cfo/virtual-cfo' },
-              { label: 'Risk Register & Compliance Tracker',href: '/cfo/virtual-cfo' },
-            ]
-          }
-        ]
-      },
-      {
-        id: 'audit-dd',
-        label: 'Audit & Due Diligence Support',
-        subcategories: [
-          {
-            label: 'Audit & Data Rooms',
-            services: [
-              { label: 'Audit Support & Schedules',        href: '/accounting/audit' },
-              { label: 'Due Diligence Data Room Support',  href: '/cfo/fundraising' },
+              svc('Finance SOP Drafting',                      'finance-sop-drafting'),
+              svc('Internal Control Review',                   'internal-control-review'),
+              svc('Risk Register & Compliance Tracker',        'risk-register-and-compliance-tracker'),
             ]
           }
         ]
       },
       {
         id: 'vcfo-retainer',
-        label: 'Virtual CFO Retainer & Review',
+        label: 'Virtual CFO Retainer',
         subcategories: [
           {
             label: 'Ongoing CFO Support',
             services: [
-              { label: 'Finance Function Setup',            href: '/cfo/virtual-cfo' },
-              { label: 'Monthly Management Review Meeting', href: '/cfo/virtual-cfo' },
-              { label: 'Virtual CFO Monthly Retainer',      href: '/cfo/virtual-cfo' },
+              svc('Finance Function Setup',                    'finance-function-setup'),
+              svc('Monthly Management Review Meeting',         'monthly-management-review-meeting'),
+              svc('Virtual CFO Monthly Retainer',              'virtual-cfo-monthly-retainer'),
             ]
           }
         ]
