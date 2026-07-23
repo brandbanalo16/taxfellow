@@ -16,14 +16,13 @@ function FooterTwo() {
                                         <img src="/assets/images/logo/TAXFELLOW.jpg.jpeg" alt="Taxfello Logo" style={{ maxHeight: '100px', width: 'auto', marginBottom: '20px' }} />
                                     </div>
                                     <h3 className="title">
-                                        <span>Ready To</span> <br />
-                                        Work With Us?
+                                        <span>Ready To Work With</span> <br />
+                                        Tax Fello?
                                     </h3>
                                     <p className="disc">
-                                        Felis consequat magnis est fames sagittis ultrices placerat
-                                        sodales porttitor quisque.
+                                        Tax Fello is a trusted one-stop CA firm for business compliance, offering premier business registration and compliance services and online chartered accountant services.
                                     </p>
-                                    <Link className="rts-btn btn-primary-2 color-h-black" href={'#'}>
+                                    <Link className="rts-btn btn-primary-2 color-h-black" href={'#f-contact'}>
                                         Get a Quote
                                     </Link>
                                 </div>
@@ -33,7 +32,7 @@ function FooterTwo() {
                                     <div className="wized-title-area">
                                         <h5 className="wized-title">Our Services</h5>
                                         <img
-                                            src="assets/images/footer/under-title-2.png"
+                                            src="/assets/images/footer/under-title-2.png"
                                             alt="finbiz_footer"
                                         />
                                     </div>
@@ -79,7 +78,7 @@ function FooterTwo() {
                                     <div className="wized-title-area">
                                         <h5 className="wized-title">Contact Us</h5>
                                         <img
-                                            src="assets/images/footer/under-title-2.png"
+                                            src="/assets/images/footer/under-title-2.png"
                                             alt="finbiz_footer"
                                         />
                                     </div>
@@ -137,7 +136,7 @@ function FooterTwo() {
                             <div className="col-lg-12">
                                 <div className="copyright-h-2-wrapper">
                                     <p className="disc">
-                                        FINBIZ - Copyright 2024. All rights reserved.
+                                        Tax Fello - Copyright 2026. All rights reserved.
                                     </p>
                                     <div className="right">
                                         <ul>

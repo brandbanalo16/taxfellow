@@ -95,12 +95,12 @@ function HeaderTwo() {
                             >
                                 <img
                                     className="menu-dark"
-                                    src="assets/images/icon/menu.png"
+                                    src="/assets/images/icon/menu.png"
                                     alt="Menu-icon"
                                 />
                                 <img
                                     className="menu-light"
-                                    src="assets/images/icon/menu-light.png"
+                                    src="/assets/images/icon/menu-light.png"
                                     alt="Menu-icon"
                                 />
                             </button>

@@ -10,15 +10,15 @@ function WhyChooseUs() {
                     <div className="row g-5 align-items-center">
                         <div className="col-lg-6">
                             <div className="image-area">
-                                <img src="assets/images/service/h2/03.jpg" alt="Service_Image" />
+                                <img src="/assets/images/service/h2/03.jpg" alt="Service_Image" />
                                 <img
                                     className="two"
-                                    src="assets/images/service/h2/02.jpg"
+                                    src="/assets/images/service/h2/02.jpg"
                                     alt="Service_Image"
                                 />
                                 <img
                                     className="three"
-                                    src="assets/images/service/h2/01.jpg"
+                                    src="/assets/images/service/h2/01.jpg"
                                     alt="Service_Image"
                                 />
                                 <div className="ratio-area">
@@ -30,12 +30,12 @@ function WhyChooseUs() {
                         <div className="col-lg-6">
                             <div className="service-h2-content pl--30">
                                 <div className="title-area  service-h2 service">
-                                    <span>Why Choose Us</span>
-                                    <h2 className="title">We focus on 100% compliance and growth </h2>
+                                    <span>Why Choose Tax Fello</span>
+                                    <h2 className="title">Tax Fello: One-stop CA firm for business compliance</h2>
                                 </div>
                                 <div className="content-wrapper">
                                     <p className="disc">
-                                        We take the burden of tax filings, corporate compliance, and accounting off your shoulders so you can focus entirely on scaling your business. Handled by expert professionals.
+                                        As a premier choice for online chartered accountant services, Tax Fello takes the burden of tax filings, corporate compliance, and bookkeeping off your shoulders so you can focus entirely on scaling your business.
                                     </p>
                                     <div className="feature-one-wrapper mt--40">
                                         <div className="single-feature-one">
@@ -58,7 +58,7 @@ function WhyChooseUs() {
                                     <div className="support-team">
                                         <a href="team-details.html" className="thumbnail">
                                             <img
-                                                src="assets/images/business-goal/team.png"
+                                                src="/assets/images/business-goal/team.png"
                                                 alt="Image-team"
                                             />
                                         </a>

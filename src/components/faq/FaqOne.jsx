@@ -12,11 +12,11 @@ function FaqOne() {
                         <div className="col-lg-6">
                             <div className="faq-two-inner">
                                 <div className="title-area-faq">
-                                    <span className="sub">WHY CHOOSE US</span>
+                                    <span className="sub">COMPLIANCE FAQS</span>
                                     <h2 className="title">
-                                        We Are Experienced <br />
+                                        Frequently Asked <br />
                                         <span className="sm-title">
-                                            Business <span>Solution</span>
+                                            Compliance <span>Questions</span>
                                         </span>
                                     </h2>
                                 </div>
@@ -24,33 +24,25 @@ function FaqOne() {
                                 <div className="faq-accordion-area">
                                     <Accordion defaultActiveKey="0">
                                         <Accordion.Item eventKey="0">
-                                            <Accordion.Header><span>01. </span> What should i included my personal
-                                                details?</Accordion.Header>
+                                            <Accordion.Header><span>01. </span> What makes Tax Fello a reliable one-stop CA firm for business compliance?</Accordion.Header>
                                             <Accordion.Body>
-                                                Neque partrient nascetur facilisis suscipit ridiculus agna lobortis imperdiet vivamus est aliquam euismod nector quam convallis ornare justo service lifereu visionary sources unleash online businesss solutions
+                                                Tax Fello provides comprehensive business registration and compliance services across India. We manage everything from company registration to monthly filings, corporate audits, and licensing, ensuring complete compliance for your business.
                                             </Accordion.Body>
                                         </Accordion.Item>
                                         <Accordion.Item eventKey="1">
                                             <Accordion.Header>
-                                                <span>02. </span> Where i can find my business growth
-                                                result?
+                                                <span>02. </span> How do company registration consultants india help scaling startups?
                                             </Accordion.Header>
                                             <Accordion.Body>
-                                                Neque partrient nascetur facilisis suscipit ridiculus agna
-                                                lobortis imperdiet vivamus est aliquam euismod nector quam
-                                                convallis ornare justo service lifereu visionary sources
-                                                unleash online businesss solutions
+                                                As experienced company registration consultants india, our experienced advisors help you navigate private limited company setup, LLP registration, and DPIIT recognition, making us the go-to startup registration and compliance company.
                                             </Accordion.Body>
                                         </Accordion.Item>
                                         <Accordion.Item eventKey="2">
                                             <Accordion.Header>
-                                                <span>03. </span> Did you get any business consultant?
+                                                <span>03. </span> Do you offer online tax filing and GST services?
                                             </Accordion.Header>
                                             <Accordion.Body>
-                                                Neque partrient nascetur facilisis suscipit ridiculus agna
-                                                lobortis imperdiet vivamus est aliquam euismod nector quam
-                                                convallis ornare justo service lifereu visionary sources
-                                                unleash online businesss solutions
+                                                Yes! Tax Fello provides robust online tax filing and GST services. Our professional online CA team covers income tax filing, monthly GST returns, TDS filings, and continuous advisory for startups.
                                             </Accordion.Body>
                                         </Accordion.Item>
                                     </Accordion>
@@ -60,7 +52,7 @@ function FaqOne() {
                         </div>
                         <div className="col-lg-6">
                             <div className="thumbnail-faq-four">
-                                <img src="assets/images/faq/02.png" alt="" />
+                                <img src="/assets/images/faq/02.png" alt="Tax Fello - Online chartered accountant services" />
                             </div>
                         </div>
                     </div>

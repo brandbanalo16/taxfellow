@@ -156,13 +156,13 @@ export default function ComprehensiveServices() {
                 {servicesData[activeTab].subCategories.map((sub, idx) => (
                   <div key={idx} className="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                     <div className="service-category-block h-100 p-4 rounded-3" style={{ backgroundColor: '#f9f9fa', border: '1px solid #eaeaec' }}>
-                      <h4 className="title mb-4" style={{ fontSize: '20px', color: '#1a1a1a', borderBottom: '2px solid #0B4DF5', paddingBottom: '10px', display: 'inline-block' }}>
+                      <h4 className="title mb-4" style={{ fontSize: '20px', color: '#1a1a1a', borderBottom: '2px solid #2c9295', paddingBottom: '10px', display: 'inline-block' }}>
                         {sub.title}
                       </h4>
                       <ul className="service-list" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                         {sub.items.map((item, itemIdx) => (
                           <li key={itemIdx} className="mb-2 d-flex align-items-start">
-                            <i className="far fa-check-circle mt-1 me-2 text-primary" style={{ color: '#0B4DF5' }} />
+                            <i className="far fa-check-circle mt-1 me-2 text-primary" style={{ color: '#2c9295' }} />
                             <span style={{ fontSize: '15px', color: '#4a4a4a', lineHeight: '1.4' }}>{item}</span>
                           </li>
                         ))}

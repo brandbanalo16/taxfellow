@@ -11,17 +11,16 @@ function AboutTwo() {
                     <div className="row">
                         <div className="col-xl-7 col-lg-7 col-md-12 col-sm-12 order-xl-1 order-lg-1 order-md-2 order-sm-2 order-2 mt_sm--30">
                             <div className="title-area about-company">
-                                <span>About Our Company</span>
+                                <span>About Us</span>
                                 <h2 className="title">
-                                    Professional & Dedicated <br />
-                                    Consulting Services
+                                    Tax and Compliance Services <br />
+                                    <span>For Startups By Tax Fello</span>
                                 </h2>
                             </div>
                             <div className="about-company-wrapper">
                                 <p className="disc">
-                                    We are a team of expert Chartered Accountants and Financial Advisors
-                                    with years of experience in providing top-rated registration, tax,
-                                    and corporate compliance services.
+                                    We are Tax Fello, a team of expert Chartered Accountants and advisors
+                                    providing top-rated business registration and compliance services across India.
                                 </p>
                                 <div className="rts-tab-style-one">
                                     <div className=" align-items-start contoler-company">
@@ -41,7 +40,7 @@ function AboutTwo() {
                                                 {/* start tab content */}
                                                 <div className="rts-tab-content-one">
                                                     <p className="disc">
-                                                        We make incorporating your business effortless. From Private Limited Companies and LLPs to Section 8 NGOs, we handle all the legal paperwork so you can focus on building your brand.
+                                                        As leading company registration consultants india, our team makes incorporating your business effortless. We handle Private Limited, LLP, and Section 8 setup.
                                                     </p>
                                                     <div className="check-area">
                                                         <i className="fas fa-check-circle" />
@@ -57,7 +56,7 @@ function AboutTwo() {
                                                     </div>
                                                     <a
                                                         className="rts-btn btn-primary-2 color-h-black"
-                                                        href="#"
+                                                        href="#f-contact"
                                                     >
                                                         Contact Us
                                                     </a>
@@ -70,7 +69,7 @@ function AboutTwo() {
                                                 {/* start tab content */}
                                                 <div className="rts-tab-content-one">
                                                     <p className="disc">
-                                                        Stay compliant with ease. We handle everything from GST registration and monthly return filings to Corporate Income Tax and MCA annual compliances.
+                                                        We are the preferred startup registration and compliance company. Stay compliant with GST registrations, monthly return filings, and ROC filings.
                                                     </p>
                                                     <div className="check-area">
                                                         <i className="fas fa-check-circle" />
@@ -86,7 +85,7 @@ function AboutTwo() {
                                                     </div>
                                                     <a
                                                         className="rts-btn btn-primary-2 color-h-black"
-                                                        href="#"
+                                                        href="#f-contact"
                                                     >
                                                         Contact Us
                                                     </a>
@@ -100,7 +99,7 @@ function AboutTwo() {
                                                 {/* start tab content */}
                                                 <div className="rts-tab-content-one">
                                                     <p className="disc">
-                                                        Unlock your business's true potential with strategic financial planning, cash flow monitoring, and detailed MIS reporting tailored for startups and scaling enterprises.
+                                                        Unlock financial potential with professional CA support. Our firm provides strategic planning, cash flow tracking, and MIS reports.
                                                     </p>
                                                     <div className="check-area">
                                                         <i className="fas fa-check-circle" />
@@ -116,7 +115,7 @@ function AboutTwo() {
                                                     </div>
                                                     <a
                                                         className="rts-btn btn-primary-2 color-h-black"
-                                                        href="#"
+                                                        href="#f-contact"
                                                     >
                                                         Contact Us
                                                     </a>
@@ -130,7 +129,7 @@ function AboutTwo() {
                         </div>
                         <div className="col-xl-5 col-lg-5 col-md-12 col-sm-12 order-xl-1 order-lg-1 order-md-1 order-sm-1 order-1">
                             <div className="about-company-thumbnail">
-                                <img src="assets/images/about/01.png" alt="Business_company" />
+                                <img src="/assets/images/about/01.png" alt="Tax Fello - startup registration and compliance company" />
                             </div>
                         </div>
                     </div>

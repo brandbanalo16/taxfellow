@@ -42,12 +42,12 @@ function BannerTwo() {
                                             <div className="col-12">
                                                 <div className="banner-two-content text-center">
                                                     <div className="wrapper">
-                                                        <span className="sub">Expert Financial & Legal Advisors</span>
+                                                        <span className="sub">Tax Fello - Expert Financial & Legal Advisors</span>
                                                         <h1 className="title">
-                                                            <span>Seamless</span> Business Registrations <br />
-                                                            <span>&</span> Licensing
+                                                            <span>CA Services</span> Online India <br />
+                                                            <span>With</span> Tax Fello
                                                         </h1>
-                                                        <a className="rts-btn btn-primary-2" href="#service">
+                                                        <a className="rts-btn btn-primary-2" href="#about">
                                                             Explore Services
                                                         </a>
                                                     </div>
@@ -66,10 +66,10 @@ function BannerTwo() {
                                                     <div className="wrapper">
                                                         <span className="sub">Your Trusted Compliance Partner</span>
                                                         <h1 className="title">
-                                                            <span>Flawless</span> Tax & MCA Compliances <br />
-                                                            <span>For</span> Your Business
+                                                            <span>Online</span> Chartered Accountant Services <br />
+                                                            <span>For</span> Scaling Startups
                                                         </h1>
-                                                        <a className="rts-btn btn-primary-2" href="#service">
+                                                        <a className="rts-btn btn-primary-2" href="#about">
                                                             Get Started
                                                         </a>
                                                     </div>
@@ -88,8 +88,8 @@ function BannerTwo() {
                                                     <div className="wrapper">
                                                         <span className="sub">Strategic Financial Growth</span>
                                                         <h1 className="title">
-                                                            <span>Virtual CFO</span> Services For <br />
-                                                            <span>Scaling</span> Startups
+                                                            <span>One-Stop</span> CA Firm For <br />
+                                                            <span>Business Compliance</span>
                                                         </h1>
                                                         <a className="rts-btn btn-primary-2" href="#contact">
                                                             Book Consultation

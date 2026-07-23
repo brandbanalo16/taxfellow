@@ -1,0 +1,80 @@
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-sans: 'Gilroy', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --color-primary: #2c3255;
+  --color-secondary: #2c9295;
+}
+
+body, html, h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select, .title, .sub, .rts-btn {
+  font-family: var(--font-sans) !important;
+}
+
+/* Global Color Theming Overrides */
+a, .title-area span, .sub, .rts-btn.btn-primary-2, .rts-btn.btn-primary {
+  --primary-color: #2c3255 !important;
+  --secondary-color: #2c9295 !important;
+}
+
+/* Buttons styling */
+.rts-btn.btn-primary-2, .btn-primary-2, .rts-btn.btn-primary, .btn-primary {
+  background: #2c3255 !important;
+  border-color: #2c3255 !important;
+  color: #ffffff !important;
+}
+.rts-btn.btn-primary-2:hover, .btn-primary-2:hover, .rts-btn.btn-primary:hover, .btn-primary:hover {
+  background: #2c9295 !important;
+  border-color: #2c9295 !important;
+  color: #ffffff !important;
+}
+
+/* Override standard links and brand highlights */
+a:hover, .secondary-color, .color-secondary, .theme-color {
+  color: #2c9295 !important;
+}
+.primary-color, .color-primary, .theme-bg-primary {
+  color: #2c3255 !important;
+}
+
+/* Background replacements */
+.bg-primary, .theme-bg {
+  background-color: #2c3255 !important;
+}
+.bg-secondary {
+  background-color: #2c9295 !important;
+}
+
+/* Headers and active states */
+.active, .current, .nav-link:hover, .nav-item.active .nav-link {
+  color: #2c9295 !important;
+}
