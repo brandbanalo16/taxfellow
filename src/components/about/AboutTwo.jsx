@@ -14,12 +14,12 @@ function AboutTwo() {
                                 <span>About Us</span>
                                 <h2 className="title">
                                     Tax and Compliance Services <br />
-                                    <span>For Startups By Tax Fello</span>
+                                    <span>For Startups By Taxfello</span>
                                 </h2>
                             </div>
                             <div className="about-company-wrapper">
                                 <p className="disc">
-                                    We are Tax Fello, a team of expert Chartered Accountants and advisors
+                                    We are Taxfello, a team of expert Chartered Accountants and advisors
                                     providing top-rated business registration and compliance services across India.
                                 </p>
                                 <div className="rts-tab-style-one">
@@ -129,7 +129,7 @@ function AboutTwo() {
                         </div>
                         <div className="col-xl-5 col-lg-5 col-md-12 col-sm-12 order-xl-1 order-lg-1 order-md-1 order-sm-1 order-1">
                             <div className="about-company-thumbnail">
-                                <img src="/assets/images/about/01.png" alt="Tax Fello - startup registration and compliance company" />
+                                <img src="/assets/images/about/01.png" alt="Taxfello - startup registration and compliance company" />
                             </div>
                         </div>
                     </div>

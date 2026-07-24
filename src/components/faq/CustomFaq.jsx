@@ -23,19 +23,19 @@ const faqData = [
         answer: "If the tax paid or TDS deducted is higher than your actual tax liability calculated on your return, you can claim a refund. Ensure you provide correct bank account details (pre-validated) when submitting your ITR for direct refund credit."
     },
     {
-        question: "Is my data filed with Tax Fello secure?",
+        question: "Is my data filed with Taxfello secure?",
         answer: "Absolutely. Security is our top priority. We use bank-grade 256-bit encryption, strict data access controls, and secure server hosting to ensure all your financial documents, PAN/TAN information, and accounting files remain completely private and secure."
     },
     {
-        question: "What are the GST services offered by Tax Fello?",
-        answer: "Tax Fello offers end-to-end GST support: including GST registration, monthly/quarterly return filings (GSTR-1, GSTR-3B), annual returns (GSTR-9), input tax credit (ITC) reconciliation, and handling department queries or notices."
+        question: "What are the GST services offered by Taxfello?",
+        answer: "Taxfello offers end-to-end GST support: including GST registration, monthly/quarterly return filings (GSTR-1, GSTR-3B), annual returns (GSTR-9), input tax credit (ITC) reconciliation, and handling department queries or notices."
     },
     {
         question: "How to e-verify my ITR?",
         answer: "You can easily e-verify your filed income tax return using Aadhaar OTP, EVC through your pre-validated bank account, net banking, or Demat account. E-verification must be done within 30 days of filing."
     },
     {
-        question: "How does Tax Fello help small businesses and startups?",
+        question: "How does Taxfello help small businesses and startups?",
         answer: "We provide complete registration packages (Private Limited, LLP, GST, MSME, Trademark) and manage your ongoing compliance, payroll, monthly accounting, tax returns, and corporate filings under a single, cost-effective retainer."
     }
 ];
@@ -166,8 +166,8 @@ export default function CustomFaq() {
                             const isActive = openIndex === index;
                             return (
                                 <div key={index} className={`faq-item ${isActive ? 'active' : ''}`}>
-                                    <button 
-                                        className="faq-question-btn" 
+                                    <button
+                                        className="faq-question-btn"
                                         onClick={() => toggleFaq(index)}
                                         aria-expanded={isActive}
                                     >

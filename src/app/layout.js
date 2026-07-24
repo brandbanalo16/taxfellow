@@ -12,8 +12,8 @@ import Script from 'next/script';
 
 
 export const metadata = {
-  title: "Tax Fello — Startup registration and compliance company",
-  description: "Tax Fello is a premier online chartered accountant services provider and startup registration and compliance company, offering top-tier business registration and compliance services.",
+  title: "Taxfello — Startup registration and compliance company",
+  description: "Taxfello is a premier online chartered accountant services provider and startup registration and compliance company, offering top-tier business registration and compliance services.",
   icons: {
     icon: "/assets/images/fav.png",
   },
@@ -23,9 +23,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Head>
-        <title>Tax Fello — Startup registration and compliance company</title>
+        <title>Taxfello — Startup registration and compliance company</title>
         <meta name="author" content="themewant" />
-        <meta name="description" content="Tax Fello is a premier online chartered accountant services provider and startup registration and compliance company, offering top-tier business registration and compliance services." />
+        <meta name="description" content="Taxfello is a premier online chartered accountant services provider and startup registration and compliance company, offering top-tier business registration and compliance services." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/assets/images/fav.png" />
       </Head>

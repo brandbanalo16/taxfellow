@@ -13,7 +13,7 @@ const reviewsRow1 = [
     name: "Raman Rana",
     initials: "RR",
     avatarBg: "#c2410c",
-    review: "Extremely grateful to the Tax Fello support team for their assistance in filing my ITR(U) with foreign assets. They ensured thorough checks and filed the right ITR-3 for me. Highly recommend Tax Fello!"
+    review: "Extremely grateful to the Taxfello support team for their assistance in filing my ITR(U) with foreign assets. They ensured thorough checks and filed the right ITR-3 for me. Highly recommend Taxfello!"
   },
   {
     name: "Radhika Maheshwari",
@@ -31,7 +31,7 @@ const reviewsRow1 = [
     name: "Tanya Mehta",
     initials: "TM",
     avatarBg: "#6d28d9",
-    review: "Tax Fello made tax filing actually enjoyable! It walked me through everything step-by-step - no jargon, no panic. Auto-imported my stock data and made the whole thing a breeze."
+    review: "Taxfello made tax filing actually enjoyable! It walked me through everything step-by-step - no jargon, no panic. Auto-imported my stock data and made the whole thing a breeze."
   },
   {
     name: "Dhanush",
@@ -106,7 +106,7 @@ const reviewsRow2 = [
     name: "Divya Pillai",
     initials: "DP",
     avatarBg: "#db2777",
-    review: "Simple, easy onboarding. Tax Fello provides excellent bookkeeping tools, payroll support, and virtual CFO retainer services for scale."
+    review: "Simple, easy onboarding. Taxfello provides excellent bookkeeping tools, payroll support, and virtual CFO retainer services for scale."
   },
   {
     name: "Rahul Verma",
@@ -147,17 +147,17 @@ function TestimonialTwo() {
 
         {/* Double Row Testimonial Marquee */}
         <div className="d-flex flex-column gap-5 testimonial-marquee" style={{ width: '100%' }}>
-          
+
           {/* Row 1: Sliding Left (Right to Left) */}
           <div className="review-marquee-wrapper" style={{ display: 'flex', overflow: 'hidden', width: '100%' }} onMouseEnter={() => { const tracks = document.querySelectorAll('.review-marquee-track-rtl, .review-marquee-track-ltr'); tracks.forEach(t => t.style.animationPlayState = 'paused'); }} onMouseLeave={() => { const tracks = document.querySelectorAll('.review-marquee-track-rtl, .review-marquee-track-ltr'); tracks.forEach(t => t.style.animationPlayState = 'running'); }}>
             <div className="review-marquee-track-rtl" style={{ display: 'flex', gap: '30px', animation: 'scrollRtlReviews 38s linear infinite' }}>
               {[...reviewsRow1, ...reviewsRow1].map((item, idx) => (
-                <div 
-                  key={idx} 
-                  className="review-card" 
-                  style={{ 
-                    backgroundColor: '#ffffff', 
-                    border: '1px solid #dadce0', 
+                <div
+                  key={idx}
+                  className="review-card"
+                  style={{
+                    backgroundColor: '#ffffff',
+                    border: '1px solid #dadce0',
                     borderRadius: '24px',
                     padding: '32px',
                     boxShadow: '0 1px 2px 0 rgba(60,64,67,0.15), 0 2px 6px 2px rgba(60,64,67,0.1)',
@@ -181,10 +181,10 @@ function TestimonialTwo() {
                         <i className="fas fa-star" />
                       </div>
                       <div className="d-flex align-items-center" style={{ gap: '8px' }}>
-                        <img 
-                          src="/assets/images/logo/logo-google.svg" 
-                          alt="Google Logo" 
-                          style={{ width: '18px', height: '18px', display: 'block' }} 
+                        <img
+                          src="/assets/images/logo/logo-google.svg"
+                          alt="Google Logo"
+                          style={{ width: '18px', height: '18px', display: 'block' }}
                         />
                         <span style={{ fontSize: '15px', fontWeight: '500', color: '#5f6368', fontFamily: 'var(--font-sans)' }}>Google</span>
                       </div>
@@ -198,12 +198,12 @@ function TestimonialTwo() {
 
                   {/* Profile Section */}
                   <div className="d-flex align-items-center gap-3">
-                    <div 
-                      className="d-flex align-items-center justify-content-center text-white" 
-                      style={{ 
-                        width: '44px', 
-                        height: '44px', 
-                        borderRadius: '50%', 
+                    <div
+                      className="d-flex align-items-center justify-content-center text-white"
+                      style={{
+                        width: '44px',
+                        height: '44px',
+                        borderRadius: '50%',
                         backgroundColor: item.avatarBg,
                         fontSize: '15px',
                         fontWeight: '600',
@@ -216,14 +216,14 @@ function TestimonialTwo() {
                       <h6 className="title m-0" style={{ fontSize: '16px', fontWeight: '600', color: '#202124', fontFamily: 'var(--font-sans)' }}>
                         {item.name}
                       </h6>
-                      <span 
-                        style={{ 
-                          fontSize: '12px', 
-                          fontWeight: '500', 
-                          color: '#0f5132', 
-                          backgroundColor: '#d1e7dd', 
-                          padding: '4px 10px', 
-                          borderRadius: '4px', 
+                      <span
+                        style={{
+                          fontSize: '12px',
+                          fontWeight: '500',
+                          color: '#0f5132',
+                          backgroundColor: '#d1e7dd',
+                          padding: '4px 10px',
+                          borderRadius: '4px',
                           marginLeft: '12px',
                           display: 'inline-block',
                           fontFamily: 'var(--font-sans)'
@@ -242,12 +242,12 @@ function TestimonialTwo() {
           <div className="review-marquee-wrapper" style={{ display: 'flex', overflow: 'hidden', width: '100%' }}>
             <div className="review-marquee-track-ltr" style={{ display: 'flex', gap: '30px', animation: 'scrollLtrReviews 38s linear infinite' }}>
               {[...reviewsRow2, ...reviewsRow2].map((item, idx) => (
-                <div 
-                  key={idx} 
-                  className="review-card" 
-                  style={{ 
-                    backgroundColor: '#ffffff', 
-                    border: '1px solid #dadce0', 
+                <div
+                  key={idx}
+                  className="review-card"
+                  style={{
+                    backgroundColor: '#ffffff',
+                    border: '1px solid #dadce0',
                     borderRadius: '24px',
                     padding: '32px',
                     boxShadow: '0 1px 2px 0 rgba(60,64,67,0.15), 0 2px 6px 2px rgba(60,64,67,0.1)',
@@ -271,10 +271,10 @@ function TestimonialTwo() {
                         <i className="fas fa-star" />
                       </div>
                       <div className="d-flex align-items-center" style={{ gap: '8px' }}>
-                        <img 
-                          src="/assets/images/logo/logo-google.svg" 
-                          alt="Google Logo" 
-                          style={{ width: '18px', height: '18px', display: 'block' }} 
+                        <img
+                          src="/assets/images/logo/logo-google.svg"
+                          alt="Google Logo"
+                          style={{ width: '18px', height: '18px', display: 'block' }}
                         />
                         <span style={{ fontSize: '15px', fontWeight: '500', color: '#5f6368', fontFamily: 'var(--font-sans)' }}>Google</span>
                       </div>
@@ -288,12 +288,12 @@ function TestimonialTwo() {
 
                   {/* Profile Section */}
                   <div className="d-flex align-items-center gap-3">
-                    <div 
-                      className="d-flex align-items-center justify-content-center text-white" 
-                      style={{ 
-                        width: '44px', 
-                        height: '44px', 
-                        borderRadius: '50%', 
+                    <div
+                      className="d-flex align-items-center justify-content-center text-white"
+                      style={{
+                        width: '44px',
+                        height: '44px',
+                        borderRadius: '50%',
                         backgroundColor: item.avatarBg,
                         fontSize: '15px',
                         fontWeight: '600',
@@ -306,14 +306,14 @@ function TestimonialTwo() {
                       <h6 className="title m-0" style={{ fontSize: '16px', fontWeight: '600', color: '#202124', fontFamily: 'var(--font-sans)' }}>
                         {item.name}
                       </h6>
-                      <span 
-                        style={{ 
-                          fontSize: '12px', 
-                          fontWeight: '500', 
-                          color: '#0f5132', 
-                          backgroundColor: '#d1e7dd', 
-                          padding: '4px 10px', 
-                          borderRadius: '4px', 
+                      <span
+                        style={{
+                          fontSize: '12px',
+                          fontWeight: '500',
+                          color: '#0f5132',
+                          backgroundColor: '#d1e7dd',
+                          padding: '4px 10px',
+                          borderRadius: '4px',
                           marginLeft: '12px',
                           display: 'inline-block',
                           fontFamily: 'var(--font-sans)'
