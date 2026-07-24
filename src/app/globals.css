@@ -59,7 +59,7 @@ a {
   box-shadow: 0 1px 6px rgba(0,0,0,0.07);
 }
 .zolvit-header .main-header {
-  height: 64px;
+  height: 100px;
   display: flex;
   align-items: center;
 }
@@ -69,7 +69,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  height: 100px;
 }
 
 /* LEFT */
@@ -304,3 +304,18 @@ body { padding-top: 64px; }
 }
 .mega-menu-footer .footer-link:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.12); }
 
+
+/* -- Logo size override -- */
+.header-two .main-header {
+  padding: 12px 0 !important;
+  min-height: 110px !important;
+}
+.header-two .main-header .content .header-left a.thumbnail,
+.header-two .main-header .content .header-left a.thumbnail img,
+.header-two .main-header .content .header-left a.thumbnail span,
+.header-two .main-header .content .header-left a.thumbnail span img {
+  width: auto !important;
+  height: 90px !important;
+  max-height: none !important;
+  max-width: none !important;
+}

@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Nav from './Nav';
 import SideMenu from './SideMenu';
 
@@ -79,8 +80,15 @@ function HeaderTwo() {
                 <div className="main-header">
                     <div className="content">
                         <div className="header-left">
-                            <Link className="thumbnail" href="/">
-                                <img src="/assets/images/logo/TAXFELLOW.jpg.jpeg" alt="Taxfello Logo" style={{ maxHeight: '100px', width: 'auto' }} />
+                            <Link className="thumbnail" href="/" style={{ display: 'block', lineHeight: 0 }}>
+                                <Image
+                                    src="/assets/images/logo/TAXFELLOW.jpg.jpeg"
+                                    alt="Taxfello Logo"
+                                    width={220}
+                                    height={90}
+                                    style={{ width: 'auto', height: '90px', objectFit: 'contain' }}
+                                    priority
+                                />
                             </Link>
                             <Nav />
 

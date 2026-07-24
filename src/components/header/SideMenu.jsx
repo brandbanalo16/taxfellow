@@ -136,7 +136,7 @@ function SideMenu({ isSidebarOpen, toggleSidebar }) {
 
           {/* Logo variants */}
           <a href="/" className="mb-4 d-block">
-            <img src="/assets/images/logo/TAXFELLOW.jpg.jpeg" alt="Taxfello Logo" style={{ maxHeight: '100px', width: 'auto' }} />
+            <img src="/assets/images/logo/TAXFELLOW.jpg.jpeg" alt="Taxfello Logo" style={{ maxHeight: '150px', width: 'auto' }} />
           </a>
 
           {/* Desktop sidebar info panel */}
