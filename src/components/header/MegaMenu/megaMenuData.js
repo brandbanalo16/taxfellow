@@ -2,8 +2,9 @@
  * MEGA MENU DATA
  * ─────────────────────────────────────────────────
  * Single source of truth for all navigation content.
- * All service hrefs use /services/[slug] which resolves
- * via the global allServices array in services-content.js
+ * Individual service links use /services/[slug]
+ * Category pages use /services/[main-slug]/[sub-slug]
+ * Main pages use /services/[main-slug]
  * ─────────────────────────────────────────────────
  */
 
@@ -15,11 +16,13 @@ export const MEGA_MENU_DATA = [
   {
     id: 'registration',
     label: 'Registration & Licences',
+    viewAllHref: '/services/registration-and-licences',
     type: 'mega',
     categories: [
       {
         id: 'business-incorporation',
         label: 'Business Incorporation',
+        href: '/services/registration-and-licences/business-incorporation',
         subcategories: [
           {
             label: 'Popular Company Setup',
@@ -56,6 +59,7 @@ export const MEGA_MENU_DATA = [
       {
         id: 'startup-recognition',
         label: 'Startup Recognition',
+        href: '/services/registration-and-licences/startup-recognition',
         subcategories: [
           {
             label: 'Government Schemes',
@@ -71,6 +75,7 @@ export const MEGA_MENU_DATA = [
       {
         id: 'gst',
         label: 'GST Registration & Compliance',
+        href: '/services/registration-and-licences/gst-registration-and-compliance',
         subcategories: [
           {
             label: 'GST Registration',
@@ -99,6 +104,7 @@ export const MEGA_MENU_DATA = [
       {
         id: 'food-trade',
         label: 'Food, Trade & IP Licences',
+        href: '/services/registration-and-licences/food-trade-ip-licences',
         subcategories: [
           {
             label: 'FSSAI & Food Safety',
@@ -134,6 +140,7 @@ export const MEGA_MENU_DATA = [
       {
         id: 'state-tax',
         label: 'State & Labour Registrations',
+        href: '/services/registration-and-licences/state-labour-registrations',
         subcategories: [
           {
             label: 'State Tax Setup',
@@ -147,6 +154,7 @@ export const MEGA_MENU_DATA = [
       {
         id: 'ngo-trust',
         label: 'NGO & Charitable Trust',
+        href: '/services/registration-and-licences/ngo-charitable-trust',
         subcategories: [
           {
             label: 'NGO Registrations & Grants',
@@ -168,11 +176,13 @@ export const MEGA_MENU_DATA = [
   {
     id: 'compliances',
     label: 'Compliances',
+    viewAllHref: '/services/compliances',
     type: 'mega',
     categories: [
       {
         id: 'income-tax',
         label: 'Income Tax Filing',
+        href: '/services/compliances/income-tax-filing',
         subcategories: [
           {
             label: 'Business & Corporate Returns',
@@ -205,6 +215,7 @@ export const MEGA_MENU_DATA = [
       {
         id: 'roc-mca',
         label: 'ROC / MCA Compliance',
+        href: '/services/compliances/roc-mca-compliance',
         subcategories: [
           {
             label: 'Annual Filings',
@@ -238,6 +249,7 @@ export const MEGA_MENU_DATA = [
       {
         id: 'payroll-labour',
         label: 'Payroll & Labour Compliance',
+        href: '/services/compliances/payroll-labour-compliance',
         subcategories: [
           {
             label: 'Payroll Processing',
@@ -260,6 +272,7 @@ export const MEGA_MENU_DATA = [
       {
         id: 'legal-docs',
         label: 'Legal & Corporate Drafting',
+        href: '/services/compliances/legal-corporate-drafting',
         subcategories: [
           {
             label: 'Agreements & Deeds',
@@ -290,8 +303,10 @@ export const MEGA_MENU_DATA = [
   {
     id: 'bookkeeping',
     label: 'Bookkeeping & Accounting',
+    viewAllHref: '/services/bookkeeping-and-accounting',
     type: 'simple',
     heading: 'Accounting & Bookkeeping',
+    headingHref: '/services/bookkeeping-and-accounting/accounting-and-bookkeeping',
     subcategories: [
       {
         label: 'Bookkeeping & Records',
@@ -322,11 +337,13 @@ export const MEGA_MENU_DATA = [
   {
     id: 'cfo',
     label: 'Virtual CFO',
+    viewAllHref: '/services/virtual-cfo',
     type: 'mega',
     categories: [
       {
         id: 'financial-planning',
         label: 'Financial Planning',
+        href: '/services/virtual-cfo/financial-planning',
         subcategories: [
           {
             label: 'Budgets & Models',
@@ -342,6 +359,7 @@ export const MEGA_MENU_DATA = [
       {
         id: 'cash-flow',
         label: 'Cash Flow & Working Capital',
+        href: '/services/virtual-cfo/cash-flow-working-capital',
         subcategories: [
           {
             label: 'Liquidity Management',
@@ -356,6 +374,7 @@ export const MEGA_MENU_DATA = [
       {
         id: 'banking-finance',
         label: 'Banking & Project Finance',
+        href: '/services/virtual-cfo/banking-project-finance',
         subcategories: [
           {
             label: 'Bank Loan Support',
@@ -373,6 +392,7 @@ export const MEGA_MENU_DATA = [
       {
         id: 'fundraising',
         label: 'Fundraising & Investor Support',
+        href: '/services/virtual-cfo/fundraising-investor-support',
         subcategories: [
           {
             label: 'Investor & Bank Presentations',
@@ -387,6 +407,7 @@ export const MEGA_MENU_DATA = [
       {
         id: 'mis-kpi',
         label: 'MIS & KPI Reporting',
+        href: '/services/virtual-cfo/mis-kpi-reporting',
         subcategories: [
           {
             label: 'Management Reports',
@@ -402,6 +423,7 @@ export const MEGA_MENU_DATA = [
       {
         id: 'profitability',
         label: 'Profitability & Cost Control',
+        href: '/services/virtual-cfo/profitability-cost-control',
         subcategories: [
           {
             label: 'Margin Optimization',
@@ -416,6 +438,7 @@ export const MEGA_MENU_DATA = [
       {
         id: 'internal-controls',
         label: 'Internal Controls & Risk',
+        href: '/services/virtual-cfo/internal-controls-risk',
         subcategories: [
           {
             label: 'SOPs & Risk Registry',
@@ -430,6 +453,7 @@ export const MEGA_MENU_DATA = [
       {
         id: 'vcfo-retainer',
         label: 'Virtual CFO Retainer',
+        href: '/services/virtual-cfo/virtual-cfo-retainer',
         subcategories: [
           {
             label: 'Ongoing CFO Support',

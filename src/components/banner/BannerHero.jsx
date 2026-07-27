@@ -15,7 +15,7 @@ const slides = [
         subtext: 'Taxfello is your one-stop CA firm for company registration, tax filing, GST, and compliance — trusted by startups and businesses pan-India.',
         cta: 'Get Started',
         ctaLink: '#contact',
-        phone: '(307) 555-0133',
+        phone: '+91 88004 85106',
         image: '/assets/images/banner/banner-01.jpg',
     },
     {
@@ -27,7 +27,7 @@ const slides = [
         subtext: 'From Private Limited to LLP, OPC, and Section 8 — we handle end-to-end company registration, fully online, with expert guidance at every step.',
         cta: 'Register Now',
         ctaLink: '#contact',
-        phone: '(307) 555-0133',
+        phone: '+91 88004 85106',
         image: '/assets/images/banner/banner-02.jpg',
     },
     {
@@ -39,7 +39,7 @@ const slides = [
         subtext: 'GST registration, returns, and income tax filing handled accurately and on time — so you never miss a deadline or face a penalty.',
         cta: 'File Now',
         ctaLink: '#contact',
-        phone: '(307) 555-0133',
+        phone: '+91 88004 85106',
         image: '/assets/images/banner/banner-03.jpg',
     },
     {
@@ -51,7 +51,7 @@ const slides = [
         subtext: 'Get senior-level financial planning, MIS reporting, and strategic advisory — without the cost of a full-time CFO.',
         cta: 'Talk to an Expert',
         ctaLink: '#contact',
-        phone: '(307) 555-0133',
+        phone: '+91 88004 85106',
         image: '/assets/images/banner/banner-04.jpg',
     },
 ];

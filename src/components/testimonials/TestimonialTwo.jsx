@@ -136,10 +136,10 @@ function TestimonialTwo() {
           <div className="row text-center mb--60">
             <div className="col-12">
               <h2 className="title" style={{ fontSize: '40px', fontWeight: '700', color: '#092147', marginBottom: '15px', fontFamily: 'var(--font-sans)' }}>
-                Loved by over <span style={{ color: '#2c9295' }}>8M+ tax payers</span>
+                Trusted by over <span style={{ color: '#2c9295' }}>100+ tax payers</span>
               </h2>
               <span style={{ fontSize: '18px', color: '#5F6368', fontWeight: '500', fontFamily: 'var(--font-sans)' }}>
-                ₹1766 Cr+ Refunds delivered last year
+                1000+ Lives Simplified with TaxFello
               </span>
             </div>
           </div>

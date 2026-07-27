@@ -8,9 +8,9 @@ function FooterTwo() {
                 {/* footer area start */}
                 <div className="rts-footer-area rts-section-gap footer-two footer-bg-two mt--120 mt_md--80 mt_sm--60" id='f-contact'>
                     <div className="container">
-                        <div className="row">
-                            {/* single wized */}
-                            <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div className="row g-5">
+                            {/* Column 1 – Brand */}
+                            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
                                 <div className="footer-two-single-wized left">
                                     <div className="mb-4">
                                         <img src="/assets/images/logo/TAXFELLOW.jpg.jpeg" alt="Taxfello Logo" style={{ maxHeight: '100px', width: 'auto', marginBottom: '20px' }} />
@@ -30,141 +30,133 @@ function FooterTwo() {
                             <div className="col-xl-2 col-lg-6 col-md-6 col-sm-12 col-12 mt_sm--50">
                                 <div className="footer-two-single-wized two">
                                     <div className="wized-title-area">
-                                        <h5 className="wized-title">Important Links</h5>
-                                        <img
-                                            src="/assets/images/footer/under-title-2.png"
-                                            alt="finbiz_footer"
-                                        />
+                                        <h5 className="wized-title">Quick Links</h5>
+                                        <img src="/assets/images/footer/under-title-2.png" alt="finbiz_footer" />
                                     </div>
                                     <div className="wized-2-body">
                                         <ul>
-                                            <li>
-                                                <Link href={'/services'}>
-                                                    <i className="fal fa-chevron-double-right" />
-                                                    Registration & Licences
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link href={'/services'}>
-                                                    <i className="fal fa-chevron-double-right" />
-                                                    Compliances
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link href={'/services'}>
-                                                    <i className="fal fa-chevron-double-right" />
-                                                    Bookkeeping & Accounting
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link href={'/services'}>
-                                                    <i className="fal fa-chevron-double-right" />
-                                                    Virtual CFO
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link href={'/about'}>
-                                                    <i className="fal fa-chevron-double-right" />
-                                                    About Company
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link href={'/'}>
-                                                    <i className="fal fa-chevron-double-right" />
-                                                    Contact Us
-                                                </Link>
-                                            </li>
+                                            <li><Link href={'/services/registration-and-licences'}><i className="fal fa-chevron-double-right" />Registration &amp; Licences</Link></li>
+                                            <li><Link href={'/services/compliances'}><i className="fal fa-chevron-double-right" />Compliances</Link></li>
+                                            <li><Link href={'/services/bookkeeping-and-accounting'}><i className="fal fa-chevron-double-right" />Bookkeeping &amp; Accounting</Link></li>
+                                            <li><Link href={'/services/virtual-cfo'}><i className="fal fa-chevron-double-right" />Virtual CFO</Link></li>
+                                            <li><Link href={'/about-us'}><i className="fal fa-chevron-double-right" />About Company</Link></li>
+                                            <li><Link href={'/contactus'}><i className="fal fa-chevron-double-right" />Contact Us</Link></li>
+                                            <li><Link href={'/faq'}><i className="fal fa-chevron-double-right" />FAQ</Link></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
+
+                            {/* Column 3 – Registration & Compliances */}
                             <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 mt_sm--50">
                                 <div className="footer-two-single-wized two">
                                     <div className="wized-title-area">
                                         <h5 className="wized-title">Our Services</h5>
-                                        <img
-                                            src="/assets/images/footer/under-title-2.png"
-                                            alt="finbiz_footer"
-                                        />
+                                        <img src="/assets/images/footer/under-title-2.png" alt="finbiz_footer" />
                                     </div>
                                     <div className="wized-2-body">
-                                        <div className="row g-2">
-                                            <div className="col-6">
-                                                <ul className="list-unstyled p-0 m-0">
-                                                    <li className="mb-2"><Link href={'/services/private-limited-company-registration'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />Business Incorporation</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/startup-india-registration'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />Startup Recognition</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/gst-registration'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />GST Registration</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/fssai-registration'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />Food, Trade & IP Licences</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/shop-and-establishment-registration'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />State & Labour Registrations</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/section-8-company-registration'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />NGO & Charitable Trust</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/income-tax-return-filing'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />Income Tax Filing</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/roc-annual-filing'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />ROC / MCA Compliance</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/payroll-compliance-services'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />Payroll & Labour Compliance</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/legal-drafting-services'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />Legal & Corporate Drafting</Link></li>
-                                                </ul>
-                                            </div>
-                                            <div className="col-6">
-                                                <ul className="list-unstyled p-0 m-0">
-                                                    <li className="mb-2"><Link href={'/services/gst-registration'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />Compliance</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/bookkeeping-and-accounting-services'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />Accounting & Bookkeeping</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/financial-planning-and-budgeting'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />Financial Planning</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/cash-flow-management'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />Cash Flow & Working Capital</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/project-report-and-cma-data'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />Banking & Project Finance</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/pitch-deck-and-investor-documentation'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />Fundraising & Investor Support</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/mis-reporting-and-dashboards'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />MIS & KPI Reporting</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/cost-reduction-analysis'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />Profitability & Cost Control</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/internal-audit-and-sop'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />Internal Controls & Risk</Link></li>
-                                                    <li className="mb-2"><Link href={'/services/virtual-cfo-monthly-retainer'} style={{ fontSize: '13px' }}><i className="fal fa-chevron-double-right me-1" />Virtual CFO Retainer</Link></li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        <ul>
+                                            <li><Link href={'/services/registration-and-licences/business-incorporation'}><i className="fal fa-chevron-double-right" />Business Incorporation</Link></li>
+                                            <li><Link href={'/services/registration-and-licences/startup-recognition'}><i className="fal fa-chevron-double-right" />Startup Recognition</Link></li>
+                                            <li><Link href={'/services/registration-and-licences/gst-registration-and-compliance'}><i className="fal fa-chevron-double-right" />GST Registration</Link></li>
+                                            <li><Link href={'/services/registration-and-licences/food-trade-ip-licences'}><i className="fal fa-chevron-double-right" />Food, Trade &amp; IP Licences</Link></li>
+                                            <li><Link href={'/services/registration-and-licences/state-labour-registrations'}><i className="fal fa-chevron-double-right" />State &amp; Labour Registrations</Link></li>
+                                            <li><Link href={'/services/registration-and-licences/ngo-charitable-trust'}><i className="fal fa-chevron-double-right" />NGO &amp; Charitable Trust</Link></li>
+                                            <li><Link href={'/services/compliances/income-tax-filing'}><i className="fal fa-chevron-double-right" />Income Tax Filing</Link></li>
+                                            <li><Link href={'/services/compliances/roc-mca-compliance'}><i className="fal fa-chevron-double-right" />ROC / MCA Compliance</Link></li>
+                                            <li><Link href={'/services/compliances/payroll-labour-compliance'}><i className="fal fa-chevron-double-right" />Payroll &amp; Labour Compliance</Link></li>
+                                            <li><Link href={'/services/compliances/legal-corporate-drafting'}><i className="fal fa-chevron-double-right" />Legal &amp; Corporate Drafting</Link></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                            {/* single wized */}
-                            <div className="col-xl-2 col-lg-6 col-md-6 col-sm-12 col-12 mt_sm--30 mt_md--30">
-                                <div className="footer-two-single-wized">
+
+                            {/* Column 4 – Virtual CFO & Contact */}
+                            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 mt_sm--30 mt_md--30">
+                                <div className="footer-two-single-wized two">
                                     <div className="wized-title-area">
-                                        <h5 className="wized-title">Contact Us</h5>
-                                        <img
-                                            src="/assets/images/footer/under-title-2.png"
-                                            alt="finbiz_footer"
-                                        />
+                                        <h5 className="wized-title">Virtual CFO Services</h5>
+                                        <img src="/assets/images/footer/under-title-2.png" alt="finbiz_footer" />
                                     </div>
                                     <div className="wized-2-body">
-                                        <div className="contact-info-1">
-                                            <div className="icon">
-                                                <i className="fas fa-phone-alt" />
-                                            </div>
-                                            <div className="disc">
-                                                <span>Call Us 24/7</span>
-                                                <Link href={'#'}>8800485106, 8800485881</Link>
-                                            </div>
+                                        <ul>
+                                            <li><Link href={'/services/bookkeeping-and-accounting/accounting-and-bookkeeping'}><i className="fal fa-chevron-double-right" />Accounting &amp; Bookkeeping</Link></li>
+                                            <li><Link href={'/services/virtual-cfo/financial-planning'}><i className="fal fa-chevron-double-right" />Financial Planning</Link></li>
+                                            <li><Link href={'/services/virtual-cfo/cash-flow-working-capital'}><i className="fal fa-chevron-double-right" />Cash Flow &amp; Working Capital</Link></li>
+                                            <li><Link href={'/services/virtual-cfo/banking-project-finance'}><i className="fal fa-chevron-double-right" />Banking &amp; Project Finance</Link></li>
+                                            <li><Link href={'/services/virtual-cfo/fundraising-investor-support'}><i className="fal fa-chevron-double-right" />Fundraising &amp; Investor Support</Link></li>
+                                            <li><Link href={'/services/virtual-cfo/mis-kpi-reporting'}><i className="fal fa-chevron-double-right" />MIS &amp; KPI Reporting</Link></li>
+                                            <li><Link href={'/services/virtual-cfo/profitability-cost-control'}><i className="fal fa-chevron-double-right" />Profitability &amp; Cost Control</Link></li>
+                                            <li><Link href={'/services/virtual-cfo/internal-controls-risk'}><i className="fal fa-chevron-double-right" />Internal Controls &amp; Risk</Link></li>
+                                            <li><Link href={'/services/virtual-cfo/virtual-cfo-retainer'}><i className="fal fa-chevron-double-right" />Virtual CFO Retainer</Link></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Contact bar - full width horizontal row using native theme styles */}
+                        <div className="footer-contact-bar" style={{ marginTop: '50px', paddingTop: '40px', borderTop: '1px solid rgba(0, 0, 0, 0.08)' }}>
+                            <div className="row g-4">
+                                <div className="col-md-4 col-sm-12">
+                                    <div className="footer-two-single-wized">
+                                        <div className="wized-title-area">
+                                            <h5 className="wized-title">Company Email</h5>
+                                            <img src="/assets/images/footer/under-title-2.png" alt="finbiz_footer" />
                                         </div>
-                                        <div className="contact-info-1">
-                                            <div className="icon">
-                                                <i className="fas fa-envelope" />
-                                            </div>
-                                            <div className="disc">
-                                                <span>Work with us</span>
-                                                <Link href={'#'}>support@taxfello.com</Link>
-                                            </div>
+                                        <div className="wized-2-body" style={{ marginTop: '15px' }}>
+                                            <ul>
+                                                <li style={{ padding: '0', background: 'none' }}>
+                                                    <Link href="mailto:support@taxfello.com">
+                                                        <i className="fas fa-envelope" style={{ color: '#e8472a', marginRight: '8px' }} />
+                                                        support@taxfello.com
+                                                    </Link>
+                                                </li>
+                                            </ul>
                                         </div>
-                                        <div className="contact-info-1">
-                                            <div className="icon">
-                                                <i className="fas fa-map-marker-alt" />
-                                            </div>
-                                            <div className="disc">
-                                                <span>Our Location</span>
-                                                <Link href={'#'}>
-                                                    8th Floor, Westend Mall, 709, Janakpuri, Delhi, 110058
-                                                </Link>
-                                            </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-4 col-sm-12">
+                                    <div className="footer-two-single-wized">
+                                        <div className="wized-title-area">
+                                            <h5 className="wized-title">Company Phone</h5>
+                                            <img src="/assets/images/footer/under-title-2.png" alt="finbiz_footer" />
+                                        </div>
+                                        <div className="wized-2-body" style={{ marginTop: '15px' }}>
+                                            <ul>
+                                                <li style={{ padding: '0', background: 'none', marginBottom: '8px' }}>
+                                                    <Link href="tel:+918800485106">
+                                                        <i className="fas fa-phone-alt" style={{ color: '#e8472a', marginRight: '8px' }} />
+                                                        +91 88004 85106
+                                                    </Link>
+                                                </li>
+                                                <li style={{ padding: '0', background: 'none' }}>
+                                                    <Link href="tel:+918800485881">
+                                                        <i className="fas fa-phone-alt" style={{ color: '#e8472a', marginRight: '8px' }} />
+                                                        +91 88004 85881
+                                                    </Link>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-4 col-sm-12">
+                                    <div className="footer-two-single-wized">
+                                        <div className="wized-title-area">
+                                            <h5 className="wized-title">Company Location</h5>
+                                            <img src="/assets/images/footer/under-title-2.png" alt="finbiz_footer" />
+                                        </div>
+                                        <div className="wized-2-body" style={{ marginTop: '15px' }}>
+                                            <ul>
+                                                <li style={{ padding: '0', background: 'none', display: 'flex', alignItems: 'flex-start', color: 'var(--color-body, #64748b)', fontSize: '14px', lineHeight: '1.6' }}>
+                                                    <i className="fas fa-map-marker-alt" style={{ color: '#e8472a', marginRight: '8px', marginTop: '4px' }} />
+                                                    <span>8th Floor, Westend Mall, 709, Janakpuri, Delhi, 110058</span>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            {/* single wized */}
                         </div>
                     </div>
                 </div>
@@ -181,13 +173,10 @@ function FooterTwo() {
                                     <div className="right">
                                         <ul>
                                             <li>
-                                                <Link href="#">Terms & Conditions</Link>
+                                                <Link href="/terms-and-conditions">Terms & Conditions</Link>
                                             </li>
                                             <li>
-                                                <Link href={'#'}>Privacy Policy</Link>
-                                            </li>
-                                            <li>
-                                                <Link href="contactus.html">FAQ</Link>
+                                                <Link href="/privacy-policy">Privacy Policy</Link>
                                             </li>
                                         </ul>
                                     </div>

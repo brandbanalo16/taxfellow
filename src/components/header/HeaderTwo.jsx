@@ -45,8 +45,8 @@ function HeaderTwo() {
                         <div className="right-header-top">
                             <div className="working-time">
                                 <i className="fas fa-phone-alt" />
-                                <Link href="tel:+256214582146" style={{ color: 'inherit' }}>
-                                    <span>+256 21458.2146</span>
+                                <Link href="tel:+918800485106" style={{ color: 'inherit' }}>
+                                    <span>+91 88004 85106</span>
                                 </Link>
                             </div>
                             <div className="ht-social">

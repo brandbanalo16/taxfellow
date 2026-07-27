@@ -124,6 +124,7 @@
 .mm-panel-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 18px;
   padding-bottom: 14px;
   border-bottom: 1px solid #f0f2f9;
@@ -136,6 +137,34 @@
   text-transform: uppercase;
   letter-spacing: 1.2px;
   margin: 0;
+}
+
+/* View All main category link in panel header */
+.mm-view-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1E5EFF;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: #f0f5ff;
+  border: 1px solid #dce8ff;
+  transition: background 0.18s, color 0.18s;
+  white-space: nowrap;
+}
+.mm-view-all-link:hover {
+  background: #1E5EFF;
+  color: #fff;
+  text-decoration: none;
+}
+.mm-view-all-link svg {
+  transition: transform 0.18s;
+}
+.mm-view-all-link:hover svg {
+  transform: translateX(2px);
 }
 
 /* ──────────────────────────────────────────────────────
@@ -168,7 +197,7 @@
 .mm-left::-webkit-scrollbar-track { background: transparent; }
 .mm-left::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
 
-/* Category Button */
+/* Category Button — legacy .mm-cat-btn kept for backward compat */
 .mm-cat-btn {
   display: block;
   width: 100%;
@@ -198,6 +227,110 @@
 .mm-cat-btn.mm-cat-active {
   background: #1E5EFF;
   color: #ffffff;
+}
+
+/* New category button wrapper (replaces plain mm-cat-btn) */
+.mm-cat-btn-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  gap: 8px;
+}
+
+.mm-cat-btn-wrap:hover {
+  background: #F0F5FF;
+}
+
+.mm-cat-btn-wrap:hover .mm-cat-btn-text {
+  color: #1E5EFF;
+}
+
+.mm-cat-btn-wrap.mm-cat-active {
+  background: #1E5EFF;
+}
+
+.mm-cat-btn-wrap.mm-cat-active .mm-cat-btn-text {
+  color: #ffffff;
+}
+
+.mm-cat-btn-wrap.mm-cat-active .mm-cat-page-link {
+  opacity: 0.8;
+  color: #fff;
+  border-color: rgba(255,255,255,0.3);
+}
+
+.mm-cat-btn-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #404060;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.15s;
+}
+
+/* Small "→" link to sub-category page */
+.mm-cat-page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid #dce8ff;
+  color: #1E5EFF;
+  text-decoration: none;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.15s, background 0.15s, color 0.15s;
+}
+
+.mm-cat-btn-wrap:hover .mm-cat-page-link {
+  opacity: 1;
+  background: #fff;
+}
+
+/* Services heading wrapper (heading + view all) */
+.mm-services-heading-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  gap: 12px;
+}
+
+.mm-services-heading-wrap .mm-services-heading {
+  margin-bottom: 0;
+}
+
+/* "View All" link next to sub-category heading */
+.mm-view-all-cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #1E5EFF;
+  text-decoration: none;
+  padding: 4px 9px;
+  border-radius: 16px;
+  background: #f0f5ff;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.18s, color 0.18s;
+}
+.mm-view-all-cat:hover {
+  background: #1E5EFF;
+  color: #fff;
+  text-decoration: none;
 }
 
 /* ── Right Panel ── */

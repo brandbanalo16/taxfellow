@@ -149,11 +149,11 @@ function SideMenu({ isSidebarOpen, toggleSidebar }) {
               <div className="wrapper">
                 <div className="single">
                   <i className="fas fa-phone-alt" />
-                  <Link href="tel:+918001234567">+91 800 123 4567</Link>
+                  <Link href="tel:+918800485106">+91 88004 85106</Link>
                 </div>
                 <div className="single">
                   <i className="fas fa-envelope" />
-                  <Link href="mailto:hello@taxfello.com">hello@taxfello.com</Link>
+                  <Link href="mailto:support@taxfello.com">support@taxfello.com</Link>
                 </div>
                 <div className="single">
                   <i className="fas fa-globe" />

@@ -5,8 +5,10 @@
  * All content is driven by megaMenuData.js (single source).
  *
  * Features:
- *  - Click to open/close panel
+ *  - CLICK to open/close panel
  *  - Hover on left category → right panel updates instantly
+ *  - Sub-category labels link to sub-category pages
+ *  - "View All →" link in panel header for main category page
  *  - Showcases services grouped by subcategory (column-wise)
  *  - Clean vector check-circle icon before each service link
  * ──────────────────────────────────────────────────────────
@@ -15,14 +17,14 @@
 import { MEGA_MENU_DATA } from './megaMenuData.js';
 
 /* ── State ─────────────────────────────────────────── */
-let activeMenuId   = null;   // currently open panel id
-let backdrop       = null;   // shared backdrop element
-let panelsRoot     = null;   // container injected into <body>
-const panelsMap    = {};     // id → panel DOM element
+let activeMenuId = null;   // currently open panel id
+let backdrop = null;   // shared backdrop element
+let panelsRoot = null;   // container injected into <body>
+const panelsMap = {};     // id → panel DOM element
 
 /* ════════════════════════════════════════════════════
    BUILD HELPERS — create DOM from data
-════════════════════════════════════════════════════ */
+ ════════════════════════════════════════════════════ */
 
 const checkIconSvg = `
 <svg class="mm-svc-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width: 15px; height: 15px; flex-shrink: 0; margin-right: 8px; color: #1E5EFF;">
@@ -36,9 +38,36 @@ function buildServicesPanel(category, isFirst) {
   wrap.className = 'mm-services-panel' + (isFirst ? ' mm-services-active' : '');
   wrap.dataset.catId = category.id;
 
-  const h = document.createElement('p');
-  h.className = 'mm-services-heading';
-  h.textContent = category.label;
+  const h = document.createElement('div');
+  h.className = 'mm-services-heading-wrap';
+
+  const hText = document.createElement('p');
+  hText.className = 'mm-services-heading';
+
+  // If the category has its own page, make heading a link
+  if (category.href) {
+    const hLink = document.createElement('a');
+    hLink.href = category.href;
+    hLink.textContent = category.label;
+    hLink.className = 'mm-services-heading-link';
+    hLink.style.cssText = 'color: inherit; text-decoration: none;';
+    hLink.addEventListener('mouseenter', () => hLink.style.textDecoration = 'underline');
+    hLink.addEventListener('mouseleave', () => hLink.style.textDecoration = 'none');
+    hText.appendChild(hLink);
+  } else {
+    hText.textContent = category.label;
+  }
+
+  h.appendChild(hText);
+
+  if (category.href) {
+    const viewAll = document.createElement('a');
+    viewAll.href = category.href;
+    viewAll.className = 'mm-view-all-cat';
+    viewAll.innerHTML = 'View All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    h.appendChild(viewAll);
+  }
+
   wrap.appendChild(h);
 
   /* Showcase subcategories in columns */
@@ -82,13 +111,23 @@ function buildMegaPanel(menu) {
   panel.setAttribute('role', 'dialog');
   panel.setAttribute('aria-label', menu.label);
 
-  /* Title bar */
+  /* Title bar with View All link */
   const header = document.createElement('div');
   header.className = 'mm-panel-header';
+
   const title = document.createElement('p');
   title.className = 'mm-panel-title';
   title.textContent = menu.label;
   header.appendChild(title);
+
+  if (menu.viewAllHref) {
+    const viewAll = document.createElement('a');
+    viewAll.href = menu.viewAllHref;
+    viewAll.className = 'mm-view-all-link';
+    viewAll.innerHTML = `View All ${menu.label} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    header.appendChild(viewAll);
+  }
+
   panel.appendChild(header);
 
   /* Body: left + right */
@@ -104,19 +143,31 @@ function buildMegaPanel(menu) {
   right.className = 'mm-right';
 
   menu.categories.forEach((cat, idx) => {
-    /* Category button */
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'mm-cat-btn' + (idx === 0 ? ' mm-cat-active' : '');
-    btn.textContent = cat.label;
-    btn.dataset.catId = cat.id;
+    /* Category button — wraps link + label */
+    const btnWrap = document.createElement('div');
+    btnWrap.className = 'mm-cat-btn-wrap' + (idx === 0 ? ' mm-cat-active' : '');
+    btnWrap.dataset.catId = cat.id;
+
+    const btnText = document.createElement('span');
+    btnText.className = 'mm-cat-btn-text';
+    btnText.textContent = cat.label;
+    btnWrap.appendChild(btnText);
+
+    if (cat.href) {
+      const catLink = document.createElement('a');
+      catLink.href = cat.href;
+      catLink.className = 'mm-cat-page-link';
+      catLink.title = `View all ${cat.label} services`;
+      catLink.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+      btnWrap.appendChild(catLink);
+    }
 
     /* Hover → switch right panel instantly */
-    btn.addEventListener('mouseenter', () => {
+    btnWrap.addEventListener('mouseenter', () => {
       activateCategory(panel, cat.id);
     });
 
-    left.appendChild(btn);
+    left.appendChild(btnWrap);
 
     /* Corresponding right panel */
     right.appendChild(buildServicesPanel(cat, idx === 0));
@@ -136,20 +187,55 @@ function buildSimplePanel(menu) {
   panel.setAttribute('role', 'dialog');
   panel.setAttribute('aria-label', menu.label);
 
-  /* Title bar */
+  /* Title bar with View All link */
   const header = document.createElement('div');
   header.className = 'mm-panel-header';
+
   const title = document.createElement('p');
   title.className = 'mm-panel-title';
   title.textContent = menu.label;
   header.appendChild(title);
+
+  if (menu.viewAllHref) {
+    const viewAll = document.createElement('a');
+    viewAll.href = menu.viewAllHref;
+    viewAll.className = 'mm-view-all-link';
+    viewAll.innerHTML = `View All ${menu.label} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    header.appendChild(viewAll);
+  }
+
   panel.appendChild(header);
 
-  /* Heading */
+  /* Heading with link */
+  const headWrap = document.createElement('div');
+  headWrap.className = 'mm-services-heading-wrap';
   const h = document.createElement('p');
   h.className = 'mm-services-heading';
-  h.textContent = menu.heading;
-  panel.appendChild(h);
+
+  if (menu.headingHref) {
+    const hLink = document.createElement('a');
+    hLink.href = menu.headingHref;
+    hLink.textContent = menu.heading;
+    hLink.className = 'mm-services-heading-link';
+    hLink.style.cssText = 'color: inherit; text-decoration: none;';
+    hLink.addEventListener('mouseenter', () => hLink.style.textDecoration = 'underline');
+    hLink.addEventListener('mouseleave', () => hLink.style.textDecoration = 'none');
+    h.appendChild(hLink);
+  } else {
+    h.textContent = menu.heading;
+  }
+
+  headWrap.appendChild(h);
+
+  if (menu.headingHref) {
+    const viewAll = document.createElement('a');
+    viewAll.href = menu.headingHref;
+    viewAll.className = 'mm-view-all-cat';
+    viewAll.innerHTML = 'View All <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    headWrap.appendChild(viewAll);
+  }
+
+  panel.appendChild(headWrap);
 
   /* Grid of subcategories */
   const grid = document.createElement('div');
@@ -184,10 +270,7 @@ function buildSimplePanel(menu) {
   return panel;
 }
 
-/* ════════════════════════════════════════════════════
-   PANEL POSITIONING
-════════════════════════════════════════════════════ */
-
+/* ── PANEL POSITIONING ── */
 function positionPanels() {
   const header = document.querySelector('.header-two') || document.querySelector('header');
   if (!header) return;
@@ -198,17 +281,14 @@ function positionPanels() {
   });
 }
 
-/* ════════════════════════════════════════════════════
-   OPEN / CLOSE LOGIC
-════════════════════════════════════════════════════ */
-
+/* ── OPEN / CLOSE LOGIC (PURE CLICK-DRIVEN) ── */
 function openPanel(menuId) {
-  const panel   = panelsMap[menuId];
+  const panel = panelsMap[menuId];
   const trigger = document.querySelector(`.mm-has-menu[data-menu="${menuId}"] .mm-nav-btn`);
   if (!panel) return;
 
   if (activeMenuId && activeMenuId !== menuId) {
-    closePanel(activeMenuId, false);
+    closePanelImmediate(activeMenuId);
   }
 
   panel.classList.add('mm-panel-open');
@@ -221,8 +301,8 @@ function openPanel(menuId) {
   positionPanels();
 }
 
-function closePanel(menuId, clearActive = true) {
-  const panel   = panelsMap[menuId];
+function closePanelImmediate(menuId) {
+  const panel = panelsMap[menuId];
   const trigger = document.querySelector(`.mm-has-menu[data-menu="${menuId}"] .mm-nav-btn`);
   if (!panel) return;
 
@@ -231,23 +311,25 @@ function closePanel(menuId, clearActive = true) {
     trigger.classList.remove('mm-active');
     trigger.setAttribute('aria-expanded', 'false');
   }
-  if (clearActive) {
-    backdrop && backdrop.classList.remove('mm-backdrop-visible');
+  backdrop && backdrop.classList.remove('mm-backdrop-visible');
+  if (activeMenuId === menuId) {
     activeMenuId = null;
   }
 }
 
 function closeAllPanels() {
-  if (activeMenuId) closePanel(activeMenuId);
+  if (activeMenuId) {
+    closePanelImmediate(activeMenuId);
+  }
   backdrop && backdrop.classList.remove('mm-backdrop-visible');
   activeMenuId = null;
 }
 
-/* ════════════════════════════════════════════════════
-   CATEGORY SWITCHING (left panel hover)
-════════════════════════════════════════════════════ */
-
+/* ── CATEGORY SWITCHING ── */
 function activateCategory(panel, catId) {
+  panel.querySelectorAll('.mm-cat-btn-wrap').forEach(btn => {
+    btn.classList.toggle('mm-cat-active', btn.dataset.catId === catId);
+  });
   panel.querySelectorAll('.mm-cat-btn').forEach(btn => {
     btn.classList.toggle('mm-cat-active', btn.dataset.catId === catId);
   });
@@ -256,12 +338,9 @@ function activateCategory(panel, catId) {
   });
 }
 
-/* ════════════════════════════════════════════════════
-   INITIALISE
-════════════════════════════════════════════════════ */
-
+/* ── INITIALISE ── */
 export function initMegaMenu() {
-  if (document.getElementById('mm-panels-root')) return () => {};
+  if (document.getElementById('mm-panels-root')) return () => { };
 
   backdrop = document.createElement('div');
   backdrop.className = 'mm-backdrop';
@@ -284,9 +363,10 @@ export function initMegaMenu() {
 
   positionPanels();
 
+  /* ── CLICK on nav items to open/close menu ── */
   document.querySelectorAll('.mm-has-menu').forEach(item => {
     const menuId = item.dataset.menu;
-    const btn    = item.querySelector('.mm-nav-btn');
+    const btn = item.querySelector('.mm-nav-btn');
     if (!btn) return;
 
     btn.addEventListener('click', e => {
@@ -299,6 +379,13 @@ export function initMegaMenu() {
     });
   });
 
+  /* Close on Escape key */
+  const onKeydown = e => {
+    if (e.key === 'Escape') closeAllPanels();
+  };
+  document.addEventListener('keydown', onKeydown);
+
+  /* Close when clicking outside */
   const onDocClick = e => {
     if (
       !e.target.closest('.mm-has-menu') &&
@@ -308,11 +395,6 @@ export function initMegaMenu() {
     }
   };
   document.addEventListener('click', onDocClick);
-
-  const onKeydown = e => {
-    if (e.key === 'Escape') closeAllPanels();
-  };
-  document.addEventListener('keydown', onKeydown);
 
   const onScrollResize = () => positionPanels();
   window.addEventListener('scroll', onScrollResize, { passive: true });
@@ -330,16 +412,13 @@ export function initMegaMenu() {
   };
 }
 
-/* ════════════════════════════════════════════════════
-   MOBILE SIDEBAR ACCORDION INIT
-════════════════════════════════════════════════════ */
-
+/* ── MOBILE SIDEBAR ACCORDION INIT ── */
 export function initMobileAccordion() {
   document.querySelectorAll('.mm-mob-trigger').forEach(trigger => {
     trigger.addEventListener('click', () => {
-      const isOpen   = trigger.classList.contains('mm-mob-open');
+      const isOpen = trigger.classList.contains('mm-mob-open');
       const targetId = trigger.dataset.target;
-      const body     = document.getElementById(targetId);
+      const body = document.getElementById(targetId);
       if (!body) return;
 
       document.querySelectorAll('.mm-mob-trigger.mm-mob-open').forEach(t => {
@@ -357,9 +436,9 @@ export function initMobileAccordion() {
 
   document.querySelectorAll('.mm-mob-cat-trigger').forEach(trigger => {
     trigger.addEventListener('click', () => {
-      const isOpen   = trigger.classList.contains('mm-mob-cat-open');
+      const isOpen = trigger.classList.contains('mm-mob-cat-open');
       const targetId = trigger.dataset.target;
-      const body     = document.getElementById(targetId);
+      const body = document.getElementById(targetId);
       if (!body) return;
 
       const parent = trigger.closest('.mm-mob-cats, .mm-mob-simple-services');

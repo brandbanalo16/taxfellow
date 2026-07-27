@@ -1,16 +1,17 @@
 "use client"
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import HeaderTwo from "@/components/header/HeaderTwo";
 import BackToTop from "@/components/BackToTop";
 import FooterTwo from "@/components/footer/FooterTwo";
-import Breadcrumb from "@/components/Breadcrumb";
+import Breadcrumb from '@/components/Breadcrumb';
 
 export default function Home() {
     const breadcrumbs = [
         { label: 'Home', link: '/' },
         { label: 'Contact Us' }
     ];
+
     return (
 
         <div className="">
@@ -35,8 +36,8 @@ export default function Home() {
                                     </div>
                                     <div className="info">
                                         <span>Call Us 24/7</span>
-                                        <Link href={'tel:+18475555555'}>
-                                            <h5>+584 (25) 21453</h5>
+                                        <Link href={'tel:+918800485106'}>
+                                            <h5>+91 88004 85106</h5>
                                         </Link>
                                     </div>
                                 </div>
@@ -54,9 +55,9 @@ export default function Home() {
                                         <img src="assets/images/contact/shape/02.svg" alt="" />
                                     </div>
                                     <div className="info">
-                                        <span>MAke A Quote</span>
-                                        <Link href={'mailto:someone@example.com'}>
-                                            <h5>info@finbiz.com</h5>
+                                        <span>Make A Quote</span>
+                                        <Link href={'mailto:support@taxfello.com'}>
+                                            <h5>support@taxfello.com</h5>
                                         </Link>
                                     </div>
                                 </div>
@@ -74,9 +75,9 @@ export default function Home() {
                                         <img src="assets/images/contact/shape/03.svg" alt="" />
                                     </div>
                                     <div className="info">
-                                        <span>Service Station</span>
+                                        <span>Our Office Address</span>
                                         <Link href={'#'}>
-                                            <h5>25 Hilton Street.</h5>
+                                            <h5>709, 8th Floor, Westend Mall, Janakpuri, Delhi 110058</h5>
                                         </Link>
                                     </div>
                                 </div>
@@ -95,16 +96,11 @@ export default function Home() {
                             <div className="contact-map-area-fluid">
                                 <iframe
                                     className="contact-map"
-                                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14602.288851207937!2d90.47855065!3d23.798243149999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1663151706353!5m2!1sen!2sbd"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.001872605192!2d77.07698767550066!3d28.62970597566627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d05850fb921f3%3A0xdcf90824977f2349!2sTaxfello!5e0!3m2!1sen!2sin!4v1785150692284!5m2!1sen!2sin"
                                     style={{ border: 0 }}
                                     allowFullScreen=""
                                     loading="lazy"
-                                    referrerPolicy="no-referrer-when-downgrade"
-                                />
-                                <img
-                                    className="location"
-                                    src="assets/images/contact/shape/location.svg"
-                                    alt="Business_map"
+                                    referrerPolicy="strict-origin-when-cross-origin"
                                 />
                             </div>
                         </div>

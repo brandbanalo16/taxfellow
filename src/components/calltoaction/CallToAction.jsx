@@ -20,8 +20,8 @@ function CallToAction() {
                                     Ready to start or scale your business? Let our experts handle the compliance while you focus on growth.{" "}
                                     <span>(Free Consultation)</span>
                                 </p>
-                                <a href="tel:+919876543210" className="number">
-                                    +91 98765 43210
+                                <a href="tel:+918800485106" className="number">
+                                    +91 88004 85106
                                 </a>
                                 <a href="#" className="rts-btn btn-primary-2">
                                     Contact Us

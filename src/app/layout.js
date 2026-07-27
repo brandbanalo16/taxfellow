@@ -28,6 +28,21 @@ export default function RootLayout({ children }) {
         <meta name="description" content="Taxfello is a premier online chartered accountant services provider and startup registration and compliance company, offering top-tier business registration and compliance services." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/assets/images/fav.png" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "TaxFello",
+            "legalName": "Clearverge Consulting Private Limited",
+            "url": "https://www.taxfello.com",
+            "logo": "https://www.taxfello.com/assets/images/logo.png",
+            "sameAs": [
+              "https://www.facebook.com/TaxFello",
+              "https://twitter.com/TaxFello",
+              "https://www.linkedin.com/company/TaxFello"
+            ]
+          })
+        }} />
       </Head>
       <body className='index-one'>
 
