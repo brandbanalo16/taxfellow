@@ -64,8 +64,8 @@ function WhyChooseUs() {
                                         </a>
                                         <div className="details">
                                             <span>24/7 Support Team</span>
-                                            <a href="team-details.html">
-                                                <h6 className="title">(+214) 2158.31598</h6>
+                                            <a href="tel:+918308240905">
+                                                <h6 className="title">+91 8308240905</h6>
                                             </a>
                                         </div>
                                     </div>
