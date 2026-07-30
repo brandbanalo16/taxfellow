@@ -16,13 +16,13 @@ export default function Home() {
         <div className="home-blue">
             <HeaderTwo />
             <BannerHero />
+            <BrandTwo />
             <AboutTwo />
-            <TrustedPlatform />
             <BusinessCase />
+            <TrustedPlatform />
             <WhyChooseUs />
             <WorkingProcess />
             <TestimonialTwo />
-            <BrandTwo />
             <CustomFaq />
             <FooterTwo />
             <BackToTop />
