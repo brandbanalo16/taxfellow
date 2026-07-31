@@ -57,7 +57,7 @@ export default function Home() {
                                     <img
                                         className="mt--110 img-1"
                                         src="/assets/images/about/main/about-03.jpg"
-                                        alt="Taxfello CA Firm"
+                                        alt="Taxfello"
                                     />
                                     <img
                                         className="img-over"
@@ -72,13 +72,22 @@ export default function Home() {
                                 <div className="title-area">
                                     <span>ABOUT TAXFELLO</span>
                                     <h2 className="title">
-                                        Your Trusted One-Stop CA & Compliance Partner
+                                        Your Trusted One-Stop Tax & Compliance Partner
                                     </h2>
                                 </div>
                                 {/* inner start */}
                                 <div className="inner">
+                                    <p className="disc" style={{ marginBottom: '15px' }}>
+                                        Taxfello is a professional tax consultancy, accounting, financial advisory, and business compliance platform led by experienced Chartered Accountants. We serve individuals, startups, MSMEs, professionals, and growing businesses with reliable, transparent, and timely financial solutions.
+                                    </p>
+                                    <p className="disc" style={{ marginBottom: '15px' }}>
+                                        Our services include Income Tax Return Filing, GST Registration and GST Return Filing, Company Registration, LLP Incorporation, Startup Registration, MSME Registration, ROC Compliance, Accounting and Bookkeeping, Audit Support, TDS Return Filing, Payroll Management, Tax Planning, Financial Advisory, Virtual CFO Services, Business Setup Consultancy, Financial Statement Preparation, Project Reports, Business Valuation Support, and Corporate Compliance Advisory.
+                                    </p>
+                                    <p className="disc" style={{ marginBottom: '15px' }}>
+                                        Based in Janakpuri, we serve clients across West Delhi, including Rajouri Garden, Tilak Nagar, Paschim Vihar, Dwarka, and nearby areas. We also assist individuals and businesses across Delhi NCR, Noida, Gurgaon, and Faridabad.
+                                    </p>
                                     <p className="disc">
-                                        Taxfello is a premier online chartered accountant firm and business compliance partner. We specialize in business incorporation, GST registration & return filings, income tax returns, ROC filings, and end-to-end Virtual CFO services for startups, SMEs, and growing enterprises across India.
+                                        Our experienced tax and compliance consultants focus on accuracy, personalized service, timely filings, and practical financial solutions. We simplify taxation, accounting, GST, company law, and regulatory compliance while helping businesses improve financial management and achieve sustainable growth.
                                     </p>
                                     <div className="rts-progress-one-wrapper">
                                         <div className="single-progress">

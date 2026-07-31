@@ -31,11 +31,11 @@ function WhyChooseUs() {
                             <div className="service-h2-content pl--30">
                                 <div className="title-area  service-h2 service">
                                     <span>Why Choose Taxfello</span>
-                                    <h2 className="title">Taxfello: One-stop CA firm for business compliance</h2>
+                                    <h2 className="title">Taxfello: One-stop platform for business compliance</h2>
                                 </div>
                                 <div className="content-wrapper">
                                     <p className="disc">
-                                        As a premier choice for online chartered accountant services, Taxfello takes the burden of tax filings, corporate compliance, and bookkeeping off your shoulders so you can focus entirely on scaling your business.
+                                        Taxfello is your trusted partner for tax, accounting, GST, compliance, and financial advisory. We take the burden of tax filings, corporate compliance, and bookkeeping off your shoulders — so you can focus entirely on scaling your business.
                                     </p>
                                     <div className="feature-one-wrapper mt--40">
                                         <div className="single-feature-one">

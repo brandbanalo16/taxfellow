@@ -20,7 +20,7 @@ function FooterTwo() {
                                         Taxfello?
                                     </h3>
                                     <p className="disc">
-                                        Taxfello is a trusted one-stop CA firm for business compliance, offering premier business registration and compliance services and online chartered accountant services.
+                                        Taxfello is a trusted one-stop platform for business compliance, offering premier business registration and compliance services and online financial advisory.
                                     </p>
                                     <Link className="rts-btn btn-primary-2 color-h-black" href={'#f-contact'}>
                                         Get a Quote

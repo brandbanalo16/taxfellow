@@ -192,10 +192,16 @@ function AboutTwo() {
                         </div>
 
                         <p className="about-pro-desc">
-                            <strong>Taxfello</strong> is a leading CA and Business Consultancy firm committed to simplifying taxation, financial management, and legal compliance for startups, entrepreneurs, SMEs, and established businesses across India. With a team of experienced <strong>Chartered Accountants, tax professionals, and business advisors</strong>, we deliver reliable, transparent, and end-to-end solutions that help businesses stay compliant and grow confidently.
+                            Taxfello is a professional tax consultancy, accounting, financial advisory, and business compliance platform led by experienced Chartered Accountants. We serve individuals, startups, MSMEs, professionals, and growing businesses with reliable, transparent, and timely financial solutions.
                         </p>
                         <p className="about-pro-desc" style={{ marginTop: '-15px' }}>
-                            From Company Registration, GST Registration & Return Filing, Income Tax Filing, Trademark Registration, MSME Registration, ROC Compliance, and Accounting & Bookkeeping to Virtual CFO Services, we provide <strong>comprehensive support under one roof</strong>. Our client-centric approach, industry expertise, and commitment to excellence ensure seamless execution, timely compliance, and long-term business success.
+                            Our services include Income Tax Return Filing, GST Registration and GST Return Filing, Company Registration, LLP Incorporation, Startup Registration, MSME Registration, ROC Compliance, Accounting and Bookkeeping, Audit Support, TDS Return Filing, Payroll Management, Tax Planning, Financial Advisory, Virtual CFO Services, Business Setup Consultancy, Financial Statement Preparation, Project Reports, Business Valuation Support, and Corporate Compliance Advisory.
+                        </p>
+                        <p className="about-pro-desc" style={{ marginTop: '-15px' }}>
+                            Based in Janakpuri, we serve clients across West Delhi, including Rajouri Garden, Tilak Nagar, Paschim Vihar, Dwarka, and nearby areas. We also assist individuals and businesses across Delhi NCR, Noida, Gurgaon, and Faridabad.
+                        </p>
+                        <p className="about-pro-desc" style={{ marginTop: '-15px' }}>
+                            Our experienced tax and compliance consultants focus on accuracy, personalized service, timely filings, and practical financial solutions. We simplify taxation, accounting, GST, company law, and regulatory compliance while helping businesses improve financial management and achieve sustainable growth.
                         </p>
 
                         <a href="#f-contact" className="about-pro-btn">

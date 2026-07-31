@@ -10,8 +10,8 @@ const slides = [
     {
         id: 1,
         welcome: 'Trusted Tax & Compliance Experts Across India',
-        hTop: "India's Trusted CA & Business Consultancy Partner",
-        subtext: 'From company registration and GST compliance to income tax filing and virtual CFO services, Taxfello simplifies business compliance with expert Chartered Accountants, transparent pricing, and end-to-end professional support.',
+        hTop: "India's Trusted Tax & Business Compliance Partner",
+        subtext: 'From company registration and GST compliance to income tax filing and Virtual CFO services, Taxfello is a professional tax consultancy and financial advisory platform serving individuals, startups, MSMEs, and growing businesses with reliable, transparent, and timely financial solutions.',
         cta: 'Get Free Consultation',
         ctaLink: '/contactus',
         cta2: 'Explore Services',
