@@ -37,7 +37,7 @@ function HeaderTwo() {
                         <div className="left-header-top">
                             <p className="top-details">
                                 Are you ready to grow up your business?{" "}
-                                <Link href={'#'}>
+                                <Link href={'/contactus'}>
                                     Contact Us <i className="fal fa-arrow-right" />
                                 </Link>
                             </p>
