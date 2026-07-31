@@ -122,7 +122,21 @@ export default function TrustedPlatform() {
                 }
                 @media (max-width: 640px) {
                     .trusted-grid {
-                        grid-template-columns: 1fr;
+                        display: flex;
+                        flex-wrap: nowrap;
+                        overflow-x: auto;
+                        scroll-snap-type: x mandatory;
+                        gap: 20px;
+                        padding-bottom: 20px;
+                        -webkit-overflow-scrolling: touch;
+                        scrollbar-width: none; /* Firefox */
+                    }
+                    .trusted-grid::-webkit-scrollbar {
+                        display: none; /* Chrome/Safari */
+                    }
+                    .trusted-card {
+                        flex: 0 0 85%;
+                        scroll-snap-align: center;
                     }
                     .trusted-title {
                         font-size: 28px;

@@ -371,13 +371,24 @@ export default function BannerHero() {
                         display: none;
                     }
                     .bh-stats {
-                        flex-direction: column;
-                        align-items: flex-start;
-                        gap: 15px;
-                        padding: 16px;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 12px;
+                        padding: 12px 16px;
                     }
                     .bh-stat-divider {
-                        display: none;
+                        display: block;
+                        margin: 0 10px;
+                        height: 24px;
+                    }
+                    .bh-stat-item h4 {
+                        font-size: 15px;
+                    }
+                    .bh-stat-item p {
+                        font-size: 11px;
+                    }
+                    .bh-stat-item h4 span.stars {
+                        font-size: 11px;
                     }
                     .bh-right {
                         height: auto;
@@ -385,6 +396,68 @@ export default function BannerHero() {
                     }
                     .bh-right img {
                         max-height: 400px;
+                    }
+                }
+
+                @media (max-width: 767px) {
+                    .bh-slide {
+                        min-height: auto;
+                    }
+                    .bh-container {
+                        padding: 80px 15px 40px;
+                    }
+                    .bh-title {
+                        font-size: 32px;
+                    }
+                    .bh-desc {
+                        font-size: 16px;
+                        margin-bottom: 24px;
+                    }
+                    .bh-actions {
+                        flex-direction: column;
+                        width: 100%;
+                        align-items: stretch;
+                        gap: 12px;
+                    }
+                    .bh-btn-primary, .bh-btn-secondary {
+                        width: 100%;
+                        text-align: center;
+                    }
+                    .bh-right {
+                        margin-top: 30px;
+                    }
+                    .bh-right img {
+                        max-height: 300px;
+                    }
+                    .bh-feature-item {
+                        align-items: flex-start;
+                    }
+                    .bh-feature-text p {
+                        max-width: 100%;
+                    }
+                }
+
+                @media (max-width: 575px) {
+                    .bh-title {
+                        font-size: 28px;
+                    }
+                    .bh-right img {
+                        max-height: 250px;
+                    }
+                    .bh-dots {
+                        bottom: 20px;
+                    }
+                    .bh-stat-divider {
+                        margin: 0 5px;
+                    }
+                    .bh-stat-item h4 {
+                        font-size: 13px;
+                    }
+                    .bh-stat-item p {
+                        font-size: 9px;
+                    }
+                    .bh-stat-item h4 span.stars {
+                        font-size: 9px;
                     }
                 }
             `}</style>

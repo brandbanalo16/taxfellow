@@ -157,6 +157,22 @@ function AboutTwo() {
                         display: none;
                     }
                 }
+                
+                @media (max-width: 767px) {
+                    .about-pro-section {
+                        padding: 60px 0;
+                    }
+                    .about-pro-title-dark,
+                    .about-pro-title-light {
+                        font-size: 28px;
+                    }
+                    .about-pro-desc {
+                        font-size: 16px;
+                    }
+                    .about-pro-subtitle {
+                        font-size: 16px;
+                    }
+                }
             `}</style>
 
             <div className="about-pro-container">
