@@ -4,9 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Nav from './Nav';
 import SideMenu from './SideMenu';
+import ConsultationModal from '../consultation/ConsultationModal';
 
 function HeaderTwo() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
@@ -53,22 +55,12 @@ function HeaderTwo() {
                                 <span>Visit Us:</span>
                                 <ul>
                                     <li>
-                                        <Link href={'#'}>
+                                        <Link href={'https://www.facebook.com/taxfello'}>
                                             <i className="fab fa-facebook-f" />
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href={'#'}>
-                                            <i className="fab fa-twitter" />
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link href={'#'}>
-                                            <i className="fab fa-linkedin-in" />
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <Link href={'#'}>
+                                        <Link href={'https://www.instagram.com/taxfello/'}>
                                             <i className="fab fa-instagram" />
                                         </Link>
                                     </li>
@@ -94,9 +86,16 @@ function HeaderTwo() {
 
                         </div>
                         <div className="header-right">
-                            <Link className="rts-btn btn-primary-2 menu-block-none" href={'#'}>
+                            <a 
+                                className="rts-btn btn-primary-2 menu-block-none" 
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setIsModalOpen(true);
+                                }}
+                            >
                                 Book a Meeting
-                            </Link>
+                            </a>
                             <button
                                 id="menu-btn"
                                 className="menu rts-btn btn-primary-alta ml--20" onClick={toggleSidebar}
@@ -117,6 +116,7 @@ function HeaderTwo() {
                 </div>
             </header>
             <SideMenu isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+            <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </div>
     )
 }

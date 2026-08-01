@@ -1,7 +1,10 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link';
+import ConsultationModal from '../consultation/ConsultationModal';
+
 function FooterTwo() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     return (
         <div>
             <>
@@ -22,9 +25,16 @@ function FooterTwo() {
                                     <p className="disc">
                                         Taxfello is a trusted one-stop platform for business compliance, offering premier business registration and compliance services and online financial advisory.
                                     </p>
-                                    <Link className="rts-btn btn-primary-2 color-h-black" href={'#f-contact'}>
-                                        Get a Quote
-                                    </Link>
+                                    <a 
+                                        className="rts-btn btn-primary-2 color-h-black" 
+                                        href="#"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setIsModalOpen(true);
+                                        }}
+                                    >
+                                        Book a Meeting
+                                    </a>
                                 </div>
                             </div>
                             <div className="col-xl-2 col-lg-6 col-md-6 col-sm-12 col-12 mt_sm--50">
@@ -187,7 +197,7 @@ function FooterTwo() {
                 </div>
                 {/* copyright-area end */}
             </>
-
+            <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </div>
     )
 }
