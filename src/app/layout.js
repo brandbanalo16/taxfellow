@@ -23,10 +23,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Head>
-        <title>Taxfello — Startup registration and compliance company</title>
+        <title>Taxfello test — Startup registration and compliance company</title>
         <meta name="author" content="themewant" />
         <meta name="description" content="Taxfello is a premier online chartered accountant services provider and startup registration and compliance company, offering top-tier business registration and compliance services." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="google-site-verification" content="YB4JszdC5b7oLdFQTdcXsRw_iYGkIyIpJ7Ya7WgvJFE" />
         <link rel="icon" href="/assets/images/fav.png" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{
           __html: JSON.stringify({
