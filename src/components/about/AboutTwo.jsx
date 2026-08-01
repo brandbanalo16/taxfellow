@@ -134,7 +134,6 @@ function AboutTwo() {
                     font-size: 16px;
                 }
                 
-                /* Right Content / Image */
                 .about-pro-image-wrapper {
                     border-radius: 20px;
                     overflow: hidden;
@@ -142,10 +141,13 @@ function AboutTwo() {
                 }
                 .about-pro-image {
                     width: 100%;
-                    aspect-ratio: 1 / 1;
+                    aspect-ratio: 3 / 4;
                     object-fit: cover;
+                    object-position: top center;
                     display: block;
+                    max-height: 820px;
                 }
+
                 
                 /* Responsive */
                 @media (max-width: 991px) {
