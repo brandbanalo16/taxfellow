@@ -44,10 +44,7 @@ export default function RootLayout({ children }) {
             ]
           })
         }} />
-  <Head>
-  <meta name="google-site-verification" content="YB4JszdC5b7oLdFQTdcXsRw_iYGkIyIpJ7Ya7WgvJFE" />
-  {/* baaki meta tags / scripts yahin rehne do */}
-</Head>
+  
       </Head>
       <body className='index-one'>
 
