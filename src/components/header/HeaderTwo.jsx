@@ -76,9 +76,9 @@ function HeaderTwo() {
                                 <Image
                                     src="/assets/images/logo/TAXFELLOW.jpg.jpeg"
                                     alt="Taxfello Logo"
-                                    width={220}
-                                    height={90}
-                                    style={{ width: 'auto', height: '90px', objectFit: 'contain' }}
+                                    width={280}
+                                    height={110}
+                                    style={{ width: 'auto', height: '110px', objectFit: 'contain' }}
                                     priority
                                 />
                             </Link>

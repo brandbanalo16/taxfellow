@@ -16956,22 +16956,29 @@ body.sal-disabled [data-sal|=flip] {
 }
 
 .header-two .main-header .content .header-left a.thumbnail {
-  margin-right: 20px;
-}
-
-@media only screen and (max-width: 767px) {
-  .header-two .main-header .content .header-left a.thumbnail {
-    margin-right: 0;
-  }
+  width: 250px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .header-two .main-header .content .header-left a.thumbnail img {
-  width: 100%;
+  width: auto;
+  height: 110px;
+  max-height: 110px;
+  object-fit: contain;
+}
+
+@media only screen and (max-width: 767px) {
+  .header-two .main-header .content .header-left a.thumbnail img {
+    height: 90px;
+    max-height: 90px;
+  }
 }
 
 @media only screen and (max-width: 479px) {
   .header-two .main-header .content .header-left a.thumbnail img {
-    width: 73%;
+    height: 72px;
+    max-height: 72px;
   }
 }
 
