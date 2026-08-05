@@ -44,6 +44,7 @@ export default function RootLayout({ children }) {
             ]
           })
         }} />
+  
       </Head>
       <body className='index-one'>
 
