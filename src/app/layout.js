@@ -8,6 +8,7 @@ import "../../public/assets/css/vendor/bootstrap.min.css";
 import "../../public/assets/css/style.css";
 import "../styles/mega-menu.css";
 import "../styles/fonts.css";
+import "./globals.css";
 import Script from 'next/script';
 
 

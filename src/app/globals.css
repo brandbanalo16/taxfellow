@@ -17,12 +17,11 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
   color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -157,11 +156,6 @@ a {
 .menu-btn-custom i {
   font-size: 22px;
   color: #374151;
-}
-
-/* Push page content below fixed header */
-body {
-  padding-top: 64px;
 }
 
 /* =====================================================

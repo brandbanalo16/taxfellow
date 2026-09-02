@@ -1,6 +1,6 @@
 "use client"
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'next/navigation';
 import HeaderTwo from "@/components/header/HeaderTwo";
 import FooterTwo from "@/components/footer/FooterTwo";
@@ -8,538 +8,355 @@ import Breadcrumb from "@/components/Breadcrumb";
 import BackToTop from "@/components/BackToTop";
 import Posts from "@/data/Posts.json";
 
+export default function BlogDetailsPage() {
+    const { slug } = useParams();
+    const [enquiry, setEnquiry] = useState({ name: '', email: '', phone: '', message: '' });
+    const [enquirySubmitted, setEnquirySubmitted] = useState(false);
+    const [comment, setComment] = useState({ name: '', email: '', subject: '', message: '' });
 
-export default function Home() {
     const breadcrumbs = [
         { label: 'Home', link: '/' },
+        { label: 'Blog', link: '/blog-grid' },
         { label: 'Blog Details' }
     ];
 
-
-    const { slug } = useParams(); // Get the slug from URL parameters
     const blogPost = Posts.find(post => post.slug === slug);
 
+    // All 19 main sub-services as sidebar categories
+    const categories = [
+        { title: 'Business Incorporation', href: '/services/registration-and-licences/business-incorporation' },
+        { title: 'Startup Recognition', href: '/services/registration-and-licences/startup-recognition' },
+        { title: 'GST Registration & Compliance', href: '/services/registration-and-licences/gst-registration-and-compliance' },
+        { title: 'Food, Trade & IP Licences', href: '/services/registration-and-licences/food-trade-ip-licences' },
+        { title: 'State & Labour Registrations', href: '/services/registration-and-licences/state-labour-registrations' },
+        { title: 'NGO & Charitable Trust', href: '/services/registration-and-licences/ngo-charitable-trust' },
+        { title: 'Income Tax Filing', href: '/services/compliances/income-tax-filing' },
+        { title: 'ROC / MCA Compliance', href: '/services/compliances/roc-mca-compliance' },
+        { title: 'Payroll & Labour Compliance', href: '/services/compliances/payroll-labour-compliance' },
+        { title: 'Legal & Corporate Drafting', href: '/services/compliances/legal-corporate-drafting' },
+        { title: 'Accounting & Bookkeeping', href: '/services/bookkeeping-and-accounting/accounting-and-bookkeeping' },
+        { title: 'Financial Planning', href: '/services/virtual-cfo/financial-planning' },
+        { title: 'Cash Flow & Working Capital', href: '/services/virtual-cfo/cash-flow-working-capital' },
+        { title: 'Banking & Project Finance', href: '/services/virtual-cfo/banking-project-finance' },
+        { title: 'Fundraising & Investor Support', href: '/services/virtual-cfo/fundraising-investor-support' },
+        { title: 'MIS & KPI Reporting', href: '/services/virtual-cfo/mis-kpi-reporting' },
+        { title: 'Profitability & Cost Control', href: '/services/virtual-cfo/profitability-cost-control' },
+        { title: 'Internal Controls & Risk', href: '/services/virtual-cfo/internal-controls-risk' },
+        { title: 'Virtual CFO Retainer', href: '/services/virtual-cfo/virtual-cfo-retainer' },
+    ];
+
+    const handleCommentSubmit = (e) => {
+        e.preventDefault();
+        alert('Comment submitted! Thank you for your feedback.');
+        setComment({ name: '', email: '', subject: '', message: '' });
+    };
+
+    const handleEnquirySubmit = (e) => {
+        e.preventDefault();
+        setEnquirySubmitted(true);
+        // Add form submission logic here if needed
+        setTimeout(() => setEnquirySubmitted(false), 5000);
+        setEnquiry({ name: '', email: '', phone: '', message: '' });
+    };
+
     if (!blogPost) {
-        return <div>Post not found Man!</div>;
+        return (
+            <div>
+                <HeaderTwo />
+                <Breadcrumb title="Blog Details" breadcrumbs={breadcrumbs} />
+                <div style={{ textAlign: 'center', padding: '100px 20px' }}>
+                    <i className="fal fa-exclamation-circle" style={{ fontSize: '60px', color: '#ccc', display: 'block', marginBottom: '20px' }} />
+                    <h3>Post Not Found</h3>
+                    <p style={{ color: '#888', marginTop: '10px', marginBottom: '24px' }}>
+                        The blog post you are looking for does not exist or may have been removed.
+                    </p>
+                    <Link className="rts-btn btn-primary" href="/blog-grid">
+                        Back to Blog
+                    </Link>
+                </div>
+                <FooterTwo />
+            </div>
+        );
     }
 
-
-
-
-
     return (
+        <>
+            {/* SEO Meta Tags */}
+            <title>{blogPost.metaTitle || blogPost.title}</title>
+            <meta name="description" content={blogPost.metaDescription || blogPost.descripTion} />
+            {blogPost.url && <link rel="canonical" href={blogPost.url} />}
 
-        <div className="">
             <HeaderTwo />
             <BackToTop />
             <Breadcrumb title="Blog Details" breadcrumbs={breadcrumbs} />
 
-
-
-
-            {/* rts blog mlist area */}
+            {/* Blog Details Area */}
             <div className="rts-blog-list-area rts-section-gap">
                 <div className="container">
                     <div className="row g-5">
-                        {/* rts blo post area */}
+
+                        {/* Main Content */}
                         <div className="col-xl-8 col-md-12 col-sm-12 col-12">
-                            {/* single post */}
                             <div className="blog-single-post-listing details mb--0">
+
+                                {/* Featured Image */}
                                 <div className="thumbnail">
-                                    <img src={`/assets/images/blog/${blogPost.bannerImg}`}
-                                        alt={blogPost.title} />
+                                    <img
+                                        src={blogPost.imageUrl ? `/assets/images/blog/${blogPost.imageUrl}` : `/assets/images/blog/${blogPost.bannerImg}`}
+                                        alt={blogPost.title}
+                                        style={{ width: '100%', borderRadius: '12px', objectFit: 'cover' }}
+                                    />
                                 </div>
+
                                 <div className="blog-listing-content">
+                                    {/* Meta Info */}
                                     <div className="user-info">
-                                        {/* single info */}
                                         <div className="single">
                                             <i className="far fa-user-circle" />
-                                            <span>by David Smith</span>
+                                            <span style={{ color: 'black !important' }}>by {blogPost.author || 'Admin'}</span>
                                         </div>
-                                        {/* single infoe end */}
-                                        {/* single info */}
                                         <div className="single">
                                             <i className="far fa-clock" />
-                                            <span>by David Smith</span>
+                                            <span style={{ color: 'black !important' }}>{blogPost.publishedDate}</span>
                                         </div>
-                                        {/* single infoe end */}
-                                        {/* single info */}
                                         <div className="single">
                                             <i className="far fa-tags" />
-                                            <span>by David Smith</span>
-                                        </div>
-                                        {/* single infoe end */}
-                                    </div>
-                                    <h3 className="title">{blogPost.title}</h3>
-                                    <p className="disc para-1">
-                                        Collaboratively pontificate bleeding edge resources with
-                                        inexpensive methodologies globally initiate multidisciplinary
-                                        compatible architectures pidiously repurpose leading edge growth
-                                        strategies with just in time web readiness communicate timely
-                                        meta services
-                                    </p>
-                                    <p className="disc">
-                                        Onubia semper vel donec torquent fusce mauris felis aptent
-                                        lacinia nisl, lectus himenaeos euismod molestie iaculis interdum
-                                        in laoreet condimentum dictum, quisque quam risus sollicitudin
-                                        gravida ut odio per a et. Gravida maecenas lobortis suscipit mus
-                                        sociosqu convallis, mollis vestibulum donec aliquam risus sapien
-                                        ridiculus, nulla sollicitudin eget in venenatis. Tortor montes
-                                        platea iaculis posuere per mauris, eros porta blandit curabitur
-                                        ullamcorper varius
-                                    </p>
-                                    {/* quote area start */}
-                                    <div className="rts-quote-area text-center">
-                                        <h5 className="title">
-                                            “Placerat pretium tristique mattis tellus accuan metus
-                                            dictumst vivamus odio nulla fusce auctor into suscipit
-                                            habitasse class congue potenti iaculis”
-                                        </h5>
-                                        <a href="#" className="name">
-                                            Daniel X. Horrar
-                                        </a>
-                                        <span>Author</span>
-                                    </div>
-                                    {/* quote area end */}
-                                    <p className="disc">
-                                        Ultrices iaculis commodo parturient euismod pulvinar donec cum
-                                        eget a, accumsan viverra cras praesent cubilia dignissim ad
-                                        rhoncus. Gravida maecenas lobortis suscipit mus sociosqu
-                                        convallis, mollis vestibulum donec aliquam risus sapien
-                                        ridiculus, nulla sollicitudin eget in venenatis. Tortor montes
-                                        platea iaculis posuere per mauris, eros porta blandit curabitur
-                                        ullamcorper varius, nostra ante risus egestas suscipit. Quisque
-                                        interdum nec parturient facilisis nunc ac quam, ad est cubilia
-                                        mauris himenaeos nascetur vestibulum.
-                                    </p>
-                                    <div className="row g-5">
-                                        <div className="col-lg-6 col-md-6">
-                                            <div className="thumbnail details">
-                                                <img
-                                                    src="/assets/images/blog/details/01.jpg"
-                                                    alt="finbiz_buseness"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-6 col-md-6">
-                                            <div className="thumbnail details">
-                                                <img
-                                                    src="/assets/images/blog/details/02.jpg"
-                                                    alt="finbiz_buseness"
-                                                />
-                                            </div>
+                                            <span style={{ color: 'black !important' }}>{blogPost.category || 'General'}</span>
                                         </div>
                                     </div>
-                                    <h4 className="title mt--40 mt_sm--20">
-                                        Ultimate Business Strategy Solution
-                                    </h4>
-                                    <p className="disc mb--25">
-                                        Gravida maecenas lobortis suscipit mus sociosqu convallis,
-                                        mollis vestibulum donec aliquam risus sapien ridiculus, nulla
-                                        sollicitudin eget in venenatis. Tortor montes platea iaculis
-                                        posuere per mauris, eros porta blandit curabitur ullamcorper
-                                        varius nostra ante risus egestas.
-                                    </p>
-                                    <div className="row align-items-center">
-                                        <div className="col-lg-5">
-                                            <div className="thumbnail details mb_sm--15">
-                                                <img
-                                                    src="/assets/images/blog/details/03.jpg"
-                                                    alt="finbiz_buseness"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-7">
-                                            <div className="check-area-details">
-                                                {/* single check */}
-                                                <div className="single-check">
-                                                    <i className="far fa-check-circle" />
-                                                    <span>How will activities traditional manufacturing</span>
-                                                </div>
-                                                {/* single check End */}
-                                                {/* single check */}
-                                                <div className="single-check">
-                                                    <i className="far fa-check-circle" />
-                                                    <span>All these digital and projects aim to enhance</span>
-                                                </div>
-                                                {/* single check End */}
-                                                {/* single check */}
-                                                <div className="single-check">
-                                                    <i className="far fa-check-circle" />
-                                                    <span>I monitor my software that takes screenshots</span>
-                                                </div>
-                                                {/* single check End */}
-                                                {/* single check */}
-                                                <div className="single-check">
-                                                    <i className="far fa-check-circle" />
-                                                    <span>Laoreet dolore niacin sodium glutimate</span>
-                                                </div>
-                                                {/* single check End */}
-                                                {/* single check */}
-                                                <div className="single-check">
-                                                    <i className="far fa-check-circle" />
-                                                    <span>Minim veniam sodium glutimate nostrud</span>
-                                                </div>
-                                                {/* single check End */}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p className="disc mt--30">
-                                        Cubilia hendrerit luctus sem aptent curae gravida maecenas
-                                        eleifend nunc nec vitae morbi sodales fusce tristique aenean
-                                        habitasse mattis sociis feugiat conubia mus auctor praesent urna
-                                        tincidunt taciti dui lobortis nullam. Mattis placerat feugiat
-                                        ridiculus sed a per curae fermentum aenean facilisi, vitae urna
-                                        imperdiet ac mauris non inceptos luctus hac odio.
-                                    </p>
-                                    <div className="row  align-items-center">
-                                        <div className="col-lg-6 col-md-12">
-                                            {/* tags details */}
-                                            <div className="details-tag">
-                                                <h6>Tags:</h6>
-                                                <button>Services</button>
-                                                <button>Business</button>
-                                                <button>Growth</button>
-                                            </div>
-                                            {/* tags details End */}
-                                        </div>
-                                        <div className="col-lg-6 col-md-12">
-                                            <div className="details-share">
-                                                <h6>Share:</h6>
-                                                <button>
-                                                    <i className="fab fa-facebook-f" />
-                                                </button>
-                                                <button>
-                                                    <i className="fab fa-twitter" />
-                                                </button>
-                                                <button>
-                                                    <i className="fab fa-instagram" />
-                                                </button>
-                                                <button>
-                                                    <i className="fab fa-linkedin-in" />
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="author-area">
-                                        <div className="thumbnail details mb_sm--15">
-                                            <img
-                                                src="/assets/images/blog/details/author.jpg"
-                                                alt="finbiz_buseness"
+
+                                    {/* Title / Page Heading */}
+                                    <h2 className="title">{blogPost.pageHeading || blogPost.title}</h2>
+
+                                    {/* Description / Content */}
+                                    {blogPost.htmlContent ? (
+                                        <>
+                                            <div
+                                                className="dynamic-blog-content"
+                                                dangerouslySetInnerHTML={{ __html: blogPost.htmlContent }}
                                             />
-                                        </div>
-                                        <div className="author-details team">
-                                            <span>Brand Designer</span>
-                                            <h5>Angelina H. Dekato</h5>
-                                            <p className="disc">
-                                                Nullam varius luctus pharetra ultrices volpat facilisis
-                                                donec tortor, nibhkisys habitant curabitur at nunc nisl
-                                                magna ac rhoncus vehicula sociis tortor nist hendrerit
-                                                molestie integer.
-                                            </p>
-                                        </div>
-                                    </div>
+                                            <style dangerouslySetInnerHTML={{
+                                                __html: `
+                                                .dynamic-blog-content h2 {
+                                                    font-size: 28px;
+                                                    margin-top: 40px;
+                                                    margin-bottom: 20px;
+                                                    color: var(--color-title, #1c2539);
+                                                    font-weight: 700;
+                                                    line-height: 1.3;
+                                                }
+                                                .dynamic-blog-content h3 {
+                                                    font-size: 22px;
+                                                    margin-top: 35px;
+                                                    margin-bottom: 15px;
+                                                    color: var(--color-title, #1c2539);
+                                                    font-weight: 700;
+                                                    line-height: 1.4;
+                                                }
+                                                .dynamic-blog-content p {
+                                                    color: var(--color-body, #555555);
+                                                    line-height: 1.8;
+                                                    margin-bottom: 25px;
+                                                    font-size: 16px;
+                                                }
+                                                .dynamic-blog-content ul {
+                                                    list-style-type: none;
+                                                    padding-left: 0;
+                                                    margin-bottom: 30px;
+                                                }
+                                                .dynamic-blog-content ul li {
+                                                    color: var(--color-body, #555555);
+                                                    margin-bottom: 12px;
+                                                    line-height: 1.7;
+                                                    padding-left: 25px;
+                                                    position: relative;
+                                                }
+                                                .dynamic-blog-content ul li::before {
+                                                    content: '\\f058'; /* FontAwesome check-circle */
+                                                    font-family: "Font Awesome 5 Pro";
+                                                    position: absolute;
+                                                    left: 0;
+                                                    top: 2px;
+                                                    color: var(--color-primary, #2c9295);
+                                                    font-weight: 400;
+                                                }
+                                                .dynamic-blog-content strong {
+                                                    color: var(--color-title, #1c2539);
+                                                    font-weight: 600;
+                                                }
+                                            `}} />
+                                        </>
+                                    ) : (
+                                        <p className="disc para-1">
+                                            {blogPost.descripTion}
+                                        </p>
+                                    )}
+
+                                    {/* Comment Form */}
                                     <div className="replay-area-details">
                                         <h4 className="title">Leave a Reply</h4>
-                                        <form action="#">
+                                        <form onSubmit={handleCommentSubmit}>
                                             <div className="row g-4">
                                                 <div className="col-lg-6">
-                                                    <input type="text" placeholder="Your Name" />
+                                                    <input
+                                                        type="text"
+                                                        placeholder="Your Name"
+                                                        value={comment.name}
+                                                        onChange={e => setComment({ ...comment, name: e.target.value })}
+                                                        required
+                                                    />
                                                 </div>
                                                 <div className="col-lg-6">
-                                                    <input type="text" placeholder="Your Name" />
+                                                    <input
+                                                        type="email"
+                                                        placeholder="Your Email"
+                                                        value={comment.email}
+                                                        onChange={e => setComment({ ...comment, email: e.target.value })}
+                                                        required
+                                                    />
                                                 </div>
                                                 <div className="col-12">
-                                                    <input type="text" placeholder="Select Topic" />
-                                                    <textarea defaultValue={""} />
+                                                    <input
+                                                        type="text"
+                                                        placeholder="Subject"
+                                                        value={comment.subject}
+                                                        onChange={e => setComment({ ...comment, subject: e.target.value })}
+                                                    />
+                                                </div>
+                                                <div className="col-12">
+                                                    <textarea
+                                                        placeholder="Write your comment here..."
+                                                        value={comment.message}
+                                                        onChange={e => setComment({ ...comment, message: e.target.value })}
+                                                        rows={5}
+                                                        required
+                                                    />
                                                 </div>
                                             </div>
+                                            <button type="submit" className="rts-btn btn-primary" style={{ marginTop: '20px' }}>
+                                                Submit Comment
+                                            </button>
                                         </form>
                                     </div>
-                                    <a className="rts-btn btn-primary" href="#">
-                                        Submit Message
-                                    </a>
+
                                 </div>
                             </div>
-                            {/* single post End*/}
                         </div>
-                        {/* rts-blog post end area */}
-                        {/*rts blog wizered area */}
-                        <div className="col-xl-4 col-md-12 col-sm-12 col-12">
-                            {/* single wizered start */}
-                            <div className="rts-single-wized search">
-                                <div className="wized-header">
-                                    <h5 className="title">Search Hear</h5>
-                                </div>
-                                <div className="wized-body">
-                                    <div className="rts-search-wrapper">
-                                        <input
-                                            className="Search"
-                                            type="text"
-                                            placeholder="Enter Keyword"
-                                        />
-                                        <button>
-                                            <i className="fal fa-search" />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            {/* single wizered End */}
-                            {/* single wizered start */}
+                        {/* Main Content End */}
+
+                        {/* Sidebar */}
+                        <div className="col-xl-4 col-md-12 col-sm-12 col-12" style={{ height: '100%' }}>
+
+                            {/* Categories Widget */}
                             <div className="rts-single-wized Categories">
                                 <div className="wized-header">
-                                    <h5 className="title">Categories</h5>
+                                    <h5 className="title">Our Services</h5>
                                 </div>
                                 <div className="wized-body">
-                                    {/* single categoris */}
-                                    <ul className="single-categories">
-                                        <li>
-                                            <a href="#">
-                                                Business Solution <i className="far fa-long-arrow-right" />
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    {/* single categoris End */}
-                                    {/* single categoris */}
-                                    <ul className="single-categories">
-                                        <li>
-                                            <a href="#">
-                                                Strategy Growth
-                                                <i className="far fa-long-arrow-right" />
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    {/* single categoris End */}
-                                    {/* single categoris */}
-                                    <ul className="single-categories">
-                                        <li>
-                                            <a href="#">
-                                                Finance Solution
-                                                <i className="far fa-long-arrow-right" />
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    {/* single categoris End */}
-                                    {/* single categoris */}
-                                    <ul className="single-categories">
-                                        <li>
-                                            <a href="#">
-                                                Investment Policy
-                                                <i className="far fa-long-arrow-right" />
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    {/* single categoris End */}
-                                    {/* single categoris */}
-                                    <ul className="single-categories">
-                                        <li>
-                                            <a href="#">
-                                                Tax Managment
-                                                <i className="far fa-long-arrow-right" />
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    {/* single categoris End */}
+                                    {categories.map((cat, idx) => (
+                                        <ul key={idx} className="single-categories">
+                                            <li>
+                                                <Link href={cat.href}>
+                                                    {cat.title} <i className="far fa-long-arrow-right" />
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                    ))}
                                 </div>
                             </div>
-                            {/* single wizered End */}
-                            {/* single wizered start */}
-                            <div className="rts-single-wized Recent-post">
-                                <div className="wized-header">
-                                    <h5 className="title">Recent Posts</h5>
-                                </div>
-                                <div className="wized-body">
-                                    {/* recent-post */}
-                                    <div className="recent-post-single">
-                                        <div className="thumbnail">
-                                            <a href="#">
-                                                <img
-                                                    src="/assets/images/blog/details/recent-post/01.png"
-                                                    alt="Blog_post"
-                                                />
-                                            </a>
-                                        </div>
-                                        <div className="content-area">
-                                            <div className="user">
-                                                <i className="fal fa-clock" />
-                                                <span>15 Jan, 2023</span>
-                                            </div>
-                                            <a className="post-title" href="#">
-                                                <h6 className="title">
-                                                    We would love to share a similar experience
-                                                </h6>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    {/* recent-post End */}
-                                    {/* recent-post */}
-                                    <div className="recent-post-single">
-                                        <div className="thumbnail">
-                                            <a href="#">
-                                                <img
-                                                    src="/assets/images/blog/details/recent-post/02.png"
-                                                    alt="Blog_post"
-                                                />
-                                            </a>
-                                        </div>
-                                        <div className="content-area">
-                                            <div className="user">
-                                                <i className="fal fa-clock" />
-                                                <span>15 Jan, 2023</span>
-                                            </div>
-                                            <a className="post-title" href="#">
-                                                <h6 className="title">
-                                                    We would love to share a similar experience
-                                                </h6>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    {/* recent-post End */}
-                                    {/* recent-post */}
-                                    <div className="recent-post-single">
-                                        <div className="thumbnail">
-                                            <a href="#">
-                                                <img
-                                                    src="/assets/images/blog/details/recent-post/03.png"
-                                                    alt="Blog_post"
-                                                />
-                                            </a>
-                                        </div>
-                                        <div className="content-area">
-                                            <div className="user">
-                                                <i className="fal fa-clock" />
-                                                <span>15 Jan, 2023</span>
-                                            </div>
-                                            <a className="post-title" href="#">
-                                                <h6 className="title">
-                                                    We would love to share a similar experience
-                                                </h6>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    {/* recent-post End */}
-                                    {/* recent-post */}
-                                    <div className="recent-post-single">
-                                        <div className="thumbnail">
-                                            <a href="#">
-                                                <img
-                                                    src="/assets/images/blog/details/recent-post/04.png"
-                                                    alt="Blog_post"
-                                                />
-                                            </a>
-                                        </div>
-                                        <div className="content-area">
-                                            <div className="user">
-                                                <i className="fal fa-clock" />
-                                                <span>15 Jan, 2023</span>
-                                            </div>
-                                            <a className="post-title" href="#">
-                                                <h6 className="title">
-                                                    We would love to share a similar experience
-                                                </h6>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    {/* recent-post End */}
-                                </div>
-                            </div>
-                            {/* single wizered End */}
-                            {/* single wizered start */}
-                            <div className="rts-single-wized Recent-post">
-                                <div className="wized-header">
-                                    <h5 className="title">Gallery Posts</h5>
-                                </div>
-                                <div className="wized-body">
-                                    <div className="gallery-inner">
-                                        <div className="row-1 single-row">
-                                            <a href="#">
-                                                <img
-                                                    src="/assets/images/blog/details/gallery/01.png"
-                                                    alt="Gallery"
-                                                />
-                                            </a>
-                                            <a href="#">
-                                                <img
-                                                    src="/assets/images/blog/details/gallery/02.png"
-                                                    alt="Gallery"
-                                                />
-                                            </a>
-                                            <a href="#">
-                                                <img
-                                                    src="/assets/images/blog/details/gallery/03.png"
-                                                    alt="Gallery"
-                                                />
-                                            </a>
-                                        </div>
-                                        <div className="row-2 single-row">
-                                            <a href="#">
-                                                <img
-                                                    src="/assets/images/blog/details/gallery/04.png"
-                                                    alt="Gallery"
-                                                />
-                                            </a>
-                                            <a href="#">
-                                                <img
-                                                    src="/assets/images/blog/details/gallery/05.png"
-                                                    alt="Gallery"
-                                                />
-                                            </a>
-                                            <a href="#">
-                                                <img
-                                                    src="/assets/images/blog/details/gallery/06.png"
-                                                    alt="Gallery"
-                                                />
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {/* single wizered End */}
-                            {/* single wizered start */}
-                            <div className="rts-single-wized">
-                                <div className="wized-header">
-                                    <h5 className="title">Popular Tags</h5>
-                                </div>
-                                <div className="wized-body">
-                                    <div className="tags-wrapper">
-                                        <a href="#">Services</a>
-                                        <a href="#">Business</a>
-                                        <a href="#">Growth</a>
-                                        <a href="#">Finance</a>
-                                        <a href="#">UI/UX Design</a>
-                                        <a href="#">Solution</a>
-                                        <a href="#">Speed</a>
-                                        <a href="#">Strategy</a>
-                                        <a href="#">Technology</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {/* single wizered End */}
-                            {/* single wizered start */}
+
+                            {/* Contact Widget */}
                             <div className="rts-single-wized contact">
                                 <div className="wized-header">
-                                    <a href="#">
-                                        <img src="/assets/images/logo/logo-2.svg" alt="Business_logo" />
-                                    </a>
+                                    <Link href="/">
+                                        <img src="/assets/images/logo/logo-tax.webp" alt="Taxfello_logo" style={{ borderRadius: '100px' }} />
+                                    </Link>
                                 </div>
                                 <div className="wized-body">
                                     <h5 className="title">Need Help? We Are Here To Help You</h5>
-                                    <a className="rts-btn btn-primary" href="/contactus">
+                                    <Link className="rts-btn btn-primary" href="/contactus">
                                         Contact Us
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
-                            {/* single wizered End */}
+
+                            {/* Search Widget */}
+                            <div className="rts-single-wized search" style={{ position: 'sticky', top: '120px', zIndex: 10 }}>
+                                <div className="wized-header">
+                                    <h5 className="title">Get Free Consultation</h5>
+                                </div>
+                                <div className="wized-body">
+                                    {enquirySubmitted ? (
+                                        <div style={{ textAlign: 'center', padding: '20px 0', color: 'var(--color-primary, #2c9295)' }}>
+                                            <i className="fal fa-check-circle" style={{ fontSize: '36px', display: 'block', margin: '0 auto 10px' }} />
+                                            <p style={{ fontWeight: '600', margin: 0 }}>Thank you! We'll get back to you shortly.</p>
+                                        </div>
+                                    ) : (
+                                        <form onSubmit={handleEnquirySubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                                            <input
+                                                type="text"
+                                                placeholder="Name *"
+                                                required
+                                                value={enquiry.name}
+                                                onChange={e => setEnquiry({ ...enquiry, name: e.target.value })}
+                                                style={{
+                                                    width: '100%', padding: '12px 16px', border: '1px solid #e0e0e0',
+                                                    borderRadius: '6px', fontSize: '15px', outline: 'none',
+                                                    background: '#f9f9f9', color: '#333'
+                                                }}
+                                            />
+                                            <input
+                                                type="email"
+                                                placeholder="Email *"
+                                                required
+                                                value={enquiry.email}
+                                                onChange={e => setEnquiry({ ...enquiry, email: e.target.value })}
+                                                style={{
+                                                    width: '100%', padding: '12px 16px', border: '1px solid #e0e0e0',
+                                                    borderRadius: '6px', fontSize: '15px', outline: 'none',
+                                                    background: '#f9f9f9', color: '#333'
+                                                }}
+                                            />
+                                            <input
+                                                type="tel"
+                                                placeholder="Phone *"
+                                                required
+                                                value={enquiry.phone}
+                                                onChange={e => setEnquiry({ ...enquiry, phone: e.target.value })}
+                                                style={{
+                                                    width: '100%', padding: '12px 16px', border: '1px solid #e0e0e0',
+                                                    borderRadius: '6px', fontSize: '15px', outline: 'none',
+                                                    background: '#f9f9f9', color: '#333'
+                                                }}
+                                            />
+                                            <textarea
+                                                placeholder="Message"
+                                                rows={4}
+                                                value={enquiry.message}
+                                                onChange={e => setEnquiry({ ...enquiry, message: e.target.value })}
+                                                style={{
+                                                    width: '100%', padding: '12px 16px', border: '1px solid #e0e0e0',
+                                                    borderRadius: '6px', fontSize: '15px', outline: 'none',
+                                                    background: '#f9f9f9', color: '#333', resize: 'vertical'
+                                                }}
+                                            />
+                                            <button type="submit" className="rts-btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+                                                Submit <i className="fal fa-arrow-right" style={{ marginLeft: '8px' }} />
+                                            </button>
+                                        </form>
+                                    )}
+                                </div>
+                            </div>
+
                         </div>
-                        {/* rts- blog wizered end area */}
+                        {/* Sidebar End */}
+
                     </div>
                 </div>
             </div>
-            {/* rts blog mlist area End */}
-
+            {/* Blog Details Area End */}
 
             <FooterTwo />
-        </div>
-
+        </>
     );
 }

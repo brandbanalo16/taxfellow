@@ -52,6 +52,7 @@ function FooterTwo() {
                                             <li><Link href={'/about-us'}><i className="fal fa-chevron-double-right" />About Company</Link></li>
                                             <li><Link href={'/contactus'}><i className="fal fa-chevron-double-right" />Contact Us</Link></li>
                                             <li><Link href={'/faq'}><i className="fal fa-chevron-double-right" />FAQ</Link></li>
+                                            <li><Link href={'/blog-grid'}><i className="fal fa-chevron-double-right" />Blog</Link></li>
                                         </ul>
                                     </div>
                                 </div>

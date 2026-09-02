@@ -55,39 +55,55 @@ export default function ContactForm() {
                                     <h2 className="title">Request a free quote</h2>
                                 </div>
                                 <div id="form-messages" />
-                                <form onSubmit={handleSubmit} className="space-y-4 max-w-md w-full mt-4">
-                                    <div>
-                                        <label className="block text-sm font-medium mb-1">Name *</label>
-                                        <input name="name" value={form.name} onChange={handleChange} required className="border w-full p-2 rounded" />
+                                <form id="contact-form" onSubmit={handleSubmit}>
+                                    <div className="name-email">
+                                        <input
+                                            type="text"
+                                            placeholder="Your Name *"
+                                            name="name"
+                                            value={form.name}
+                                            onChange={handleChange}
+                                            required
+                                        />
+                                        <input
+                                            type="email"
+                                            placeholder="Email Address"
+                                            name="email"
+                                            value={form.email}
+                                            onChange={handleChange}
+                                        />
                                     </div>
-                                    <div>
-                                        <label className="block text-sm font-medium mb-1">Email (optional)</label>
-                                        <input type="email" name="email" value={form.email} onChange={handleChange} className="border w-full p-2 rounded" />
+                                    <div className="name-email">
+                                        <input
+                                            type="tel"
+                                            placeholder="Phone Number *"
+                                            name="phone"
+                                            value={form.phone}
+                                            onChange={handleChange}
+                                            required
+                                            maxLength={10}
+                                        />
+                                        <input
+                                            type="text"
+                                            placeholder="City *"
+                                            name="city"
+                                            value={form.city}
+                                            onChange={handleChange}
+                                            required
+                                        />
                                     </div>
-                                    <div className="flex gap-2">
-                                        <div>
-                                            <label className="block text-sm font-medium mb-1">Code</label>
-                                            <input value="+91" disabled className="border p-2 rounded bg-gray-100 w-16 text-center" />
-                                        </div>
-                                        <div className="flex-1">
-                                            <label className="block text-sm font-medium mb-1">Phone Number *</label>
-                                            <input type="tel" name="phone" value={form.phone} onChange={handleChange} required maxLength={10} className="border w-full p-2 rounded" />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium mb-1">City *</label>
-                                        <input name="city" value={form.city} onChange={handleChange} required className="border w-full p-2 rounded" />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium mb-1">Message (optional)</label>
-                                        <textarea name="message" value={form.message} onChange={handleChange} rows={4} className="border w-full p-2 rounded" />
-                                    </div>
-                                    <button type="submit" disabled={status.loading} className="bg-blue-600 text-white px-4 py-2 rounded">
-                                        {status.loading ? "Sending..." : "Send Enquiry"}
+                                    <textarea
+                                        placeholder="Type Your Message"
+                                        name="message"
+                                        value={form.message}
+                                        onChange={handleChange}
+                                    />
+                                    <button type="submit" disabled={status.loading} className="rts-btn btn-primary">
+                                        {status.loading ? "Sending..." : "Submit Message"}
                                     </button>
-                                    {status.success === true && <p className="text-green-600 mt-2">Thanks! We'll get back to you soon.</p>}
+                                    {status.success === true && <p style={{ color: 'green', marginTop: '10px' }}>Thanks! We'll get back to you soon.</p>}
                                     {status.success === false && (
-                                        <ul className="text-red-600 text-sm mt-2">
+                                        <ul style={{ color: 'red', marginTop: '10px', fontSize: '14px' }}>
                                             {status.errors.map((err, i) => <li key={i}>{err}</li>)}
                                         </ul>
                                     )}
