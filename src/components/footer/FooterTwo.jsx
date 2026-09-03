@@ -184,6 +184,9 @@ function FooterTwo() {
                                     <div className="right">
                                         <ul>
                                             <li>
+                                                <Link href="/blog-grid">Blog</Link>
+                                            </li>
+                                            <li>
                                                 <Link href="/terms-and-conditions">Terms & Conditions</Link>
                                             </li>
                                             <li>
