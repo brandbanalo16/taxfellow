@@ -20,9 +20,11 @@ export default function DynamicServicePage() {
         name: '',
         email: '',
         phone: '',
+        city: '',
         message: ''
     });
-    const [submitStatus, setSubmitStatus] = useState('');
+    const [submitStatus, setSubmitStatus] = useState(''); // '', 'submitting', 'success', 'error'
+    const [formError, setFormError] = useState('');
 
     useEffect(() => {
         const handleScroll = () => {
@@ -81,16 +83,46 @@ export default function DynamicServicePage() {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        if (name === 'phone') {
+            const digits = value.replace(/\D/g, '').slice(0, 10);
+            setFormData(prev => ({ ...prev, phone: digits }));
+        } else {
+            setFormData(prev => ({ ...prev, [name]: value }));
+        }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setFormError('');
+        if (!formData.name.trim()) { setFormError('Name is required.'); return; }
+        if (!formData.phone || !/^[0-9]{10}$/.test(formData.phone)) { setFormError('Please enter a valid 10-digit phone number.'); return; }
+        if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) { setFormError('Please enter a valid email address.'); return; }
+        if (!formData.city.trim()) { setFormError('City is required.'); return; }
         setSubmitStatus('submitting');
-        setTimeout(() => {
-            setSubmitStatus('success');
-            setFormData({ name: '', email: '', phone: '', message: '' });
-        }, 1500);
+        try {
+            const res = await fetch('/api/send-enquiry', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: formData.name.trim(),
+                    email: formData.email.trim(),
+                    phone: formData.phone,
+                    city: formData.city.trim(),
+                    message: formData.message.trim(),
+                }),
+            });
+            const data = await res.json();
+            if (data.ok) {
+                setSubmitStatus('success');
+                setFormData({ name: '', email: '', phone: '', city: '', message: '' });
+            } else {
+                setFormError(data.error || 'Something went wrong. Please try again.');
+                setSubmitStatus('error');
+            }
+        } catch {
+            setFormError('Network error. Please try again.');
+            setSubmitStatus('error');
+        }
     };
 
     return (
@@ -408,22 +440,29 @@ export default function DynamicServicePage() {
                             ) : (
                                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                                     <div>
-                                        <label style={{ fontSize: '12px', fontWeight: '600', color: '#4a4a4a', display: 'block', marginBottom: '5px' }}>Full Name</label>
+                                        <label style={{ fontSize: '12px', fontWeight: '600', color: '#4a4a4a', display: 'block', marginBottom: '5px' }}>Name *</label>
                                         <input
                                             type="text"
                                             name="name"
                                             value={formData.name}
                                             onChange={handleInputChange}
                                             required
-                                            placeholder="John Doe"
-                                            style={{
-                                                width: '100%',
-                                                padding: '10px 14px',
-                                                borderRadius: '6px',
-                                                border: '1px solid #cbd5e1',
-                                                fontSize: '14px',
-                                                outline: 'none'
-                                            }}
+                                            placeholder="Your Name"
+                                            style={{ width: '100%', padding: '10px 14px', borderRadius: '6px', border: '1px solid #cbd5e1', fontSize: '14px', outline: 'none' }}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label style={{ fontSize: '12px', fontWeight: '600', color: '#4a4a4a', display: 'block', marginBottom: '5px' }}>Phone Number *</label>
+                                        <input
+                                            type="tel"
+                                            name="phone"
+                                            value={formData.phone}
+                                            onChange={handleInputChange}
+                                            required
+                                            placeholder="10-digit number"
+                                            maxLength={10}
+                                            inputMode="numeric"
+                                            style={{ width: '100%', padding: '10px 14px', borderRadius: '6px', border: '1px solid #cbd5e1', fontSize: '14px', outline: 'none' }}
                                         />
                                     </div>
                                     <div>
@@ -433,35 +472,20 @@ export default function DynamicServicePage() {
                                             name="email"
                                             value={formData.email}
                                             onChange={handleInputChange}
-                                            required
-                                            placeholder="john@example.com"
-                                            style={{
-                                                width: '100%',
-                                                padding: '10px 14px',
-                                                borderRadius: '6px',
-                                                border: '1px solid #cbd5e1',
-                                                fontSize: '14px',
-                                                outline: 'none'
-                                            }}
+                                            placeholder="Email (optional)"
+                                            style={{ width: '100%', padding: '10px 14px', borderRadius: '6px', border: '1px solid #cbd5e1', fontSize: '14px', outline: 'none' }}
                                         />
                                     </div>
                                     <div>
-                                        <label style={{ fontSize: '12px', fontWeight: '600', color: '#4a4a4a', display: 'block', marginBottom: '5px' }}>Phone Number</label>
+                                        <label style={{ fontSize: '12px', fontWeight: '600', color: '#4a4a4a', display: 'block', marginBottom: '5px' }}>City *</label>
                                         <input
-                                            type="tel"
-                                            name="phone"
-                                            value={formData.phone}
+                                            type="text"
+                                            name="city"
+                                            value={formData.city}
                                             onChange={handleInputChange}
                                             required
-                                            placeholder="+91 XXXXX XXXXX"
-                                            style={{
-                                                width: '100%',
-                                                padding: '10px 14px',
-                                                borderRadius: '6px',
-                                                border: '1px solid #cbd5e1',
-                                                fontSize: '14px',
-                                                outline: 'none'
-                                            }}
+                                            placeholder="Your City"
+                                            style={{ width: '100%', padding: '10px 14px', borderRadius: '6px', border: '1px solid #cbd5e1', fontSize: '14px', outline: 'none' }}
                                         />
                                     </div>
                                     <div>
@@ -470,33 +494,18 @@ export default function DynamicServicePage() {
                                             name="message"
                                             value={formData.message}
                                             onChange={handleInputChange}
-                                            placeholder="Interested in incorporating a business..."
+                                            placeholder="Any additional details..."
                                             rows="3"
-                                            style={{
-                                                width: '100%',
-                                                padding: '10px 14px',
-                                                borderRadius: '6px',
-                                                border: '1px solid #cbd5e1',
-                                                fontSize: '14px',
-                                                outline: 'none',
-                                                resize: 'none'
-                                            }}
+                                            style={{ width: '100%', padding: '10px 14px', borderRadius: '6px', border: '1px solid #cbd5e1', fontSize: '14px', outline: 'none', resize: 'none' }}
                                         />
                                     </div>
-                                    
+                                    {formError && (
+                                        <p style={{ color: '#dc2626', fontSize: '13px', margin: 0, fontWeight: 600 }}>{formError}</p>
+                                    )}
                                     <button
                                         type="submit"
                                         disabled={submitStatus === 'submitting'}
-                                        style={{
-                                            backgroundColor: '#0056b3',
-                                            color: '#fff',
-                                            border: 'none',
-                                            padding: '12px',
-                                            borderRadius: '6px',
-                                            fontSize: '14px',
-                                            fontWeight: '600',
-                                            cursor: 'pointer'
-                                        }}
+                                        style={{ backgroundColor: '#0056b3', color: '#fff', border: 'none', padding: '12px', borderRadius: '6px', fontSize: '14px', fontWeight: '600', cursor: submitStatus === 'submitting' ? 'not-allowed' : 'pointer', opacity: submitStatus === 'submitting' ? 0.7 : 1 }}
                                     >
                                         {submitStatus === 'submitting' ? 'Submitting...' : 'Request Callback'}
                                     </button>

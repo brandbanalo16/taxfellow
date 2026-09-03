@@ -49,8 +49,9 @@ const getLucideIcon = (emoji, size = 28) => {
 
 export default function SubCategoryPage({ subData, parentData }) {
     const [openFaq, setOpenFaq] = useState(null);
-    const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
-    const [submitStatus, setSubmitStatus] = useState('');
+    const [formData, setFormData] = useState({ name: '', email: '', phone: '', city: '', message: '' });
+    const [submitStatus, setSubmitStatus] = useState(''); // '', 'submitting', 'success', 'error'
+    const [formError, setFormError] = useState('');
 
     if (!subData) {
         return (
@@ -74,16 +75,46 @@ export default function SubCategoryPage({ subData, parentData }) {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        if (name === 'phone') {
+            const digits = value.replace(/\D/g, '').slice(0, 10);
+            setFormData(prev => ({ ...prev, phone: digits }));
+        } else {
+            setFormData(prev => ({ ...prev, [name]: value }));
+        }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setFormError('');
+        if (!formData.name.trim()) { setFormError('Name is required.'); return; }
+        if (!formData.phone || !/^[0-9]{10}$/.test(formData.phone)) { setFormError('Please enter a valid 10-digit phone number.'); return; }
+        if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) { setFormError('Please enter a valid email address.'); return; }
+        if (!formData.city.trim()) { setFormError('City is required.'); return; }
         setSubmitStatus('submitting');
-        setTimeout(() => {
-            setSubmitStatus('success');
-            setFormData({ name: '', email: '', phone: '', message: '' });
-        }, 1200);
+        try {
+            const res = await fetch('/api/send-enquiry', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: formData.name.trim(),
+                    email: formData.email.trim(),
+                    phone: formData.phone,
+                    city: formData.city.trim(),
+                    message: formData.message.trim(),
+                }),
+            });
+            const data = await res.json();
+            if (data.ok) {
+                setSubmitStatus('success');
+                setFormData({ name: '', email: '', phone: '', city: '', message: '' });
+            } else {
+                setFormError(data.error || 'Something went wrong. Please try again.');
+                setSubmitStatus('error');
+            }
+        } catch {
+            setFormError('Network error. Please try again.');
+            setSubmitStatus('error');
+        }
     };
 
     const relatedServices = subData.services || [];
@@ -143,16 +174,7 @@ export default function SubCategoryPage({ subData, parentData }) {
                                             value={formData.name}
                                             onChange={handleInputChange}
                                             required
-                                            placeholder="Your Full Name"
-                                            style={{ width: '100%', padding: '11px 14px', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '13.5px', outline: 'none' }}
-                                        />
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            value={formData.email}
-                                            onChange={handleInputChange}
-                                            required
-                                            placeholder="Your Email Address"
+                                            placeholder="Your Full Name *"
                                             style={{ width: '100%', padding: '11px 14px', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '13.5px', outline: 'none' }}
                                         />
                                         <input
@@ -161,11 +183,41 @@ export default function SubCategoryPage({ subData, parentData }) {
                                             value={formData.phone}
                                             onChange={handleInputChange}
                                             required
-                                            placeholder="Your Phone Number"
+                                            placeholder="Phone Number * (10 digits)"
+                                            maxLength={10}
+                                            inputMode="numeric"
                                             style={{ width: '100%', padding: '11px 14px', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '13.5px', outline: 'none' }}
                                         />
-                                        <button type="submit" className="rts-btn btn-primary" style={{ width: '100%', borderRadius: '8px', padding: '12px', fontWeight: '700' }}>
-                                            Request Callback
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleInputChange}
+                                            placeholder="Email Address (optional)"
+                                            style={{ width: '100%', padding: '11px 14px', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '13.5px', outline: 'none' }}
+                                        />
+                                        <input
+                                            type="text"
+                                            name="city"
+                                            value={formData.city}
+                                            onChange={handleInputChange}
+                                            required
+                                            placeholder="City *"
+                                            style={{ width: '100%', padding: '11px 14px', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '13.5px', outline: 'none' }}
+                                        />
+                                        <textarea
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleInputChange}
+                                            placeholder="Message (optional)"
+                                            rows={3}
+                                            style={{ width: '100%', padding: '11px 14px', borderRadius: '8px', border: '1px solid #CBD5E1', fontSize: '13.5px', outline: 'none', resize: 'none' }}
+                                        />
+                                        {formError && (
+                                            <p style={{ color: '#dc2626', fontSize: '13px', margin: 0, fontWeight: 600 }}>{formError}</p>
+                                        )}
+                                        <button type="submit" disabled={submitStatus === 'submitting'} className="rts-btn btn-primary" style={{ width: '100%', borderRadius: '8px', padding: '12px', fontWeight: '700', opacity: submitStatus === 'submitting' ? 0.7 : 1, cursor: submitStatus === 'submitting' ? 'not-allowed' : 'pointer' }}>
+                                            {submitStatus === 'submitting' ? 'Sending...' : 'Request Callback'}
                                         </button>
                                     </form>
                                 )}

@@ -490,17 +490,17 @@ export default function BannerHero() {
                                         <div className="bh-stats">
                                             <div className="bh-stat-item">
                                                 <h4>10,000+</h4>
-                                                <p>Businesses Trust Us</p>
+                                                <p>Businesses Trust Us.</p>
                                             </div>
                                             <div className="bh-stat-divider"></div>
                                             <div className="bh-stat-item">
                                                 <h4>500+</h4>
-                                                <p>Expert Professionals</p>
+                                                <p>Expert Professionals.</p>
                                             </div>
                                             <div className="bh-stat-divider"></div>
                                             <div className="bh-stat-item">
                                                 <h4>4.9 <span className="stars">★★★★★</span></h4>
-                                                <p>Client Satisfaction</p>
+                                                <p>Client Satisfaction.</p>
                                             </div>
                                         </div>
 

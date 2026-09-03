@@ -75,8 +75,9 @@ const inputStyle = {
 export default function ServicePageClient({ service }) {
     const [openFaq, setOpenFaq] = useState(null);
     const [activeSection, setActiveSection] = useState('overview');
-    const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
-    const [submitStatus, setSubmitStatus] = useState('');
+    const [formData, setFormData] = useState({ name: '', email: '', phone: '', city: '', message: '' });
+    const [submitStatus, setSubmitStatus] = useState(''); // '', 'submitting', 'success', 'error'
+    const [formError, setFormError] = useState('');
     const tocSections = ['overview', 'benefits', 'documents', 'process', 'why-taxfello', 'faqs'];
 
     const breadcrumbs = [
@@ -122,16 +123,48 @@ export default function ServicePageClient({ service }) {
     };
 
     /* ── Form ─────────────────────────────── */
-    const handleChange = (e) =>
-        setFormData((p) => ({ ...p, [e.target.name]: e.target.value }));
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        if (name === 'phone') {
+            const digits = value.replace(/\D/g, '').slice(0, 10);
+            setFormData((p) => ({ ...p, phone: digits }));
+        } else {
+            setFormData((p) => ({ ...p, [name]: value }));
+        }
+    };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setFormError('');
+        if (!formData.name.trim()) { setFormError('Name is required.'); return; }
+        if (!formData.phone || !/^[0-9]{10}$/.test(formData.phone)) { setFormError('Please enter a valid 10-digit phone number.'); return; }
+        if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) { setFormError('Please enter a valid email address.'); return; }
+        if (!formData.city.trim()) { setFormError('City is required.'); return; }
         setSubmitStatus('submitting');
-        setTimeout(() => {
-            setSubmitStatus('success');
-            setFormData({ name: '', email: '', phone: '', message: '' });
-        }, 1500);
+        try {
+            const res = await fetch('/api/send-enquiry', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: formData.name.trim(),
+                    email: formData.email.trim(),
+                    phone: formData.phone,
+                    city: formData.city.trim(),
+                    message: formData.message.trim(),
+                }),
+            });
+            const data = await res.json();
+            if (data.ok) {
+                setSubmitStatus('success');
+                setFormData({ name: '', email: '', phone: '', city: '', message: '' });
+            } else {
+                setFormError(data.error || 'Something went wrong. Please try again.');
+                setSubmitStatus('error');
+            }
+        } catch {
+            setFormError('Network error. Please try again.');
+            setSubmitStatus('error');
+        }
     };
 
     const content = service.pageContent || {};
@@ -598,9 +631,9 @@ export default function ServicePageClient({ service }) {
                                     ) : (
                                         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                                             {[
-                                                { label: 'Full Name', name: 'name', type: 'text', placeholder: 'Full Name', icon: 'fas fa-user' },
-                                                { label: 'Email Address', name: 'email', type: 'email', placeholder: 'Email Address', icon: 'fas fa-envelope' },
-                                                { label: 'Phone Number', name: 'phone', type: 'tel', placeholder: 'Phone Number', icon: 'fas fa-phone' },
+                                                { label: 'Name *', name: 'name', type: 'text', placeholder: 'Full Name', icon: 'fas fa-user' },
+                                                { label: 'Email', name: 'email', type: 'email', placeholder: 'Email (optional)', icon: 'fas fa-envelope' },
+                                                { label: 'City *', name: 'city', type: 'text', placeholder: 'Your City', icon: 'fas fa-map-marker-alt' },
                                             ].map((field) => (
                                                 <div key={field.name}>
                                                     <label style={{ fontSize: '11.5px', fontWeight: '700', color: colors.body, display: 'block', marginBottom: '5px', textTransform: 'uppercase', letterSpacing: '0.3px' }}>
@@ -620,7 +653,6 @@ export default function ServicePageClient({ service }) {
                                                             name={field.name}
                                                             value={formData[field.name]}
                                                             onChange={handleChange}
-                                                            required
                                                             placeholder={field.placeholder}
                                                             className="sdp-form-input"
                                                             style={{ ...inputStyle, paddingLeft: '38px' }}
@@ -628,6 +660,25 @@ export default function ServicePageClient({ service }) {
                                                     </div>
                                                 </div>
                                             ))}
+                                            <div>
+                                                <label style={{ fontSize: '11.5px', fontWeight: '700', color: colors.body, display: 'block', marginBottom: '5px', textTransform: 'uppercase', letterSpacing: '0.3px' }}>
+                                                    Phone Number *
+                                                </label>
+                                                <div style={{ position: 'relative' }}>
+                                                    <i className="fas fa-phone" style={{ position: 'absolute', left: '13px', top: '50%', transform: 'translateY(-50%)', color: colors.primaryMid, fontSize: '13px' }} />
+                                                    <input
+                                                        type="tel"
+                                                        name="phone"
+                                                        value={formData.phone}
+                                                        onChange={handleChange}
+                                                        placeholder="10-digit number"
+                                                        maxLength={10}
+                                                        inputMode="numeric"
+                                                        className="sdp-form-input"
+                                                        style={{ ...inputStyle, paddingLeft: '38px' }}
+                                                    />
+                                                </div>
+                                            </div>
                                             <div>
                                                 <label style={{ fontSize: '11.5px', fontWeight: '700', color: colors.body, display: 'block', marginBottom: '5px', textTransform: 'uppercase', letterSpacing: '0.3px' }}>
                                                     Message (Optional)
@@ -642,6 +693,9 @@ export default function ServicePageClient({ service }) {
                                                     style={{ ...inputStyle, resize: 'none' }}
                                                 />
                                             </div>
+                                            {formError && (
+                                                <p style={{ color: '#ef4444', fontSize: '13px', margin: 0, fontWeight: 600 }}>{formError}</p>
+                                            )}
                                             <button
                                                 type="submit"
                                                 disabled={submitStatus === 'submitting'}

@@ -2,44 +2,14 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const SUB_SERVICES = [
-  // Income Tax
-  "Individual ITR Filing", "Business ITR Filing", "NRI Tax Filing", "Capital Gain Filing", "Revised Return", "Defective Return Response",
-  // GST
-  "GST Registration", "GST Return Filing", "GST Cancellation", "GST Amendment", "GST Notice Reply", "GST Audit",
-  // Business Registration & Incorporation
-  "Sole Proprietorship", "Partnership Firm", "LLP Registration", "Private Limited Company", "OPC Registration", "Section 8 Company", "Producer Company",
-  // Trademark
-  "Trademark Search", "Trademark Filing", "Trademark Objection", "Trademark Renewal",
-  // Accounting
-  "Monthly Bookkeeping", "Bank Reconciliation", "MIS Reports", "Financial Statements",
-  // TDS
-  "TDS Return Filing", "TDS Certificate", "TDS Compliance", "TDS Notice Reply",
-  // ROC
-  "Annual Filing", "Director KYC", "Charge Registration", "ROC Notice Reply",
-  // MSME
-  "Udyam Registration", "MSME Update", "MSME Certificate", "MSME Benefits Advisory",
-  // IEC
-  "IEC Registration", "IEC Modification", "IEC Surrender", "Export Documentation",
-  // Payroll
-  "Salary Processing", "PF Compliance", "ESI Compliance", "Payslip Generation",
-  // Tax Notice
-  "Income Tax Notice", "GST Notice", "TDS Notice", "Scrutiny Assessment",
-  // Financial & CFO
-  "Business Valuation", "Project Report", "CMA Data", "Investment Advisory", "Cash Flow Planning", "Financial Strategy", "Budget Planning", "Investor Reporting",
-  // Other
-  "Custom Consultation", "Advisory Call", "Documentation Support"
-];
-
-// Ensure unique services
-const UNIQUE_SERVICES = Array.from(new Set(SUB_SERVICES));
-
 export default function ConsultationModal({ isOpen, onClose }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [service, setService] = useState("");
-  const [consent, setConsent] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    city: "",
+    message: "",
+  });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -52,31 +22,40 @@ export default function ConsultationModal({ isOpen, onClose }) {
     };
   }, [isOpen]);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === 'phone') {
+      const digits = value.replace(/\D/g, '').slice(0, 10);
+      setForm(prev => ({ ...prev, phone: digits }));
+      setErrors(prev => ({ ...prev, phone: '' }));
+    } else {
+      setForm(prev => ({ ...prev, [name]: value }));
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = {};
-    if (!name.trim()) errs.name = "Full Name is required";
-    if (!email.trim()) errs.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.email = "Invalid email";
-    if (!phone.trim()) errs.phone = "Phone is required";
-    else if (!/^\d{10}$/.test(phone)) errs.phone = "Invalid phone number";
-    if (!service) errs.service = "Please select a service";
-    if (!consent) errs.consent = "You must agree to the terms";
+    if (!form.name.trim()) errs.name = "Name is required.";
+    if (!form.phone || !/^[0-9]{10}$/.test(form.phone)) errs.phone = "Please enter a valid 10-digit phone number.";
+    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = "Please enter a valid email address.";
+    if (!form.city.trim()) errs.city = "City is required.";
 
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setErrors({});
     setLoading(true);
     setApiError('');
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch('/api/send-enquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          form_type: 'Consultation Request',
-          name, email,
-          phone: '+91 ' + phone,
-          service,
-          message: `Consultation Request for: ${service}`,
+          name: form.name.trim(),
+          email: form.email.trim(),
+          phone: form.phone,
+          city: form.city.trim(),
+          message: form.message.trim(),
         }),
       });
       const data = await res.json();
@@ -90,8 +69,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
   };
 
   const handleClose = () => {
-    setName(""); setEmail(""); setPhone("");
-    setService(""); setConsent(false);
+    setForm({ name: "", email: "", phone: "", city: "", message: "" });
     setErrors({}); setSubmitted(false);
     setLoading(false); setApiError('');
     onClose();
@@ -152,75 +130,74 @@ export default function ConsultationModal({ isOpen, onClose }) {
                   <form onSubmit={handleSubmit} className="cmp-form">
 
                     <div className="cmp-field">
-                      <label>Full Name <span className="cmp-req">*</span></label>
+                      <label>Name <span className="cmp-req">*</span></label>
                       <input
                         type="text"
+                        name="name"
                         placeholder="Enter your full name"
-                        value={name}
-                        onChange={(e) => { setName(e.target.value); setErrors(prev => ({ ...prev, name: "" })) }}
+                        value={form.name}
+                        onChange={handleChange}
                         className={errors.name ? "has-error" : ""}
                       />
                       {errors.name && <span className="cmp-error">{errors.name}</span>}
                     </div>
 
                     <div className="cmp-field">
-                      <label>Email Address <span className="cmp-req">*</span></label>
-                      <input
-                        type="email"
-                        placeholder="Enter your email"
-                        value={email}
-                        onChange={(e) => { setEmail(e.target.value); setErrors(prev => ({ ...prev, email: "" })) }}
-                        className={errors.email ? "has-error" : ""}
-                      />
-                      {errors.email && <span className="cmp-error">{errors.email}</span>}
-                    </div>
-
-                    <div className="cmp-field">
-                      <label>Phone Number</label>
+                      <label>Phone Number <span className="cmp-req">*</span></label>
                       <div className={`cmp-phone-input ${errors.phone ? "has-error" : ""}`}>
                         <div className="cmp-phone-prefix">
                           <span>🇮🇳</span>
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
                           <strong>+91</strong>
                         </div>
                         <input
                           type="tel"
-                          value={phone}
-                          onChange={(e) => { setPhone(e.target.value.replace(/\D/g, '')); setErrors(prev => ({ ...prev, phone: "" })) }}
+                          name="phone"
+                          value={form.phone}
+                          onChange={handleChange}
                           maxLength={10}
+                          inputMode="numeric"
+                          placeholder="10-digit number"
                         />
                       </div>
                       {errors.phone && <span className="cmp-error">{errors.phone}</span>}
                     </div>
 
                     <div className="cmp-field">
-                      <label>Service Selection</label>
-                      <select
-                        value={service}
-                        onChange={(e) => { setService(e.target.value); setErrors(prev => ({ ...prev, service: "" })) }}
-                        className={`cmp-select ${errors.service ? "has-error" : ""}`}
-                      >
-                        <option value="">Select Service</option>
-                        {UNIQUE_SERVICES.map(s => (
-                          <option key={s} value={s}>{s}</option>
-                        ))}
-                      </select>
-                      {errors.service && <span className="cmp-error">{errors.service}</span>}
+                      <label>Email</label>
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Enter your email (optional)"
+                        value={form.email}
+                        onChange={handleChange}
+                        className={errors.email ? "has-error" : ""}
+                      />
+                      {errors.email && <span className="cmp-error">{errors.email}</span>}
                     </div>
 
                     <div className="cmp-field">
-                      <label className="cmp-checkbox-label">
-                        <input
-                          type="checkbox"
-                          checked={consent}
-                          onChange={(e) => { setConsent(e.target.checked); setErrors(prev => ({ ...prev, consent: "" })) }}
-                          className={errors.consent ? "has-error" : ""}
-                        />
-                        <span className={errors.consent ? "cmp-error-text" : ""}>
-                          Confirm that you agree to our terms of service by checking this box.
-                        </span>
-                      </label>
-                      {errors.consent && <span className="cmp-error">{errors.consent}</span>}
+                      <label>City <span className="cmp-req">*</span></label>
+                      <input
+                        type="text"
+                        name="city"
+                        placeholder="Enter your city"
+                        value={form.city}
+                        onChange={handleChange}
+                        className={errors.city ? "has-error" : ""}
+                      />
+                      {errors.city && <span className="cmp-error">{errors.city}</span>}
+                    </div>
+
+                    <div className="cmp-field">
+                      <label>Message</label>
+                      <textarea
+                        name="message"
+                        placeholder="Any additional details... (optional)"
+                        value={form.message}
+                        onChange={handleChange}
+                        rows={3}
+                        style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '14px', resize: 'none', outline: 'none', fontFamily: 'inherit' }}
+                      />
                     </div>
 
                     {apiError && (
@@ -397,7 +374,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
         .cmp-form {
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 14px;
         }
         
         .cmp-field label {
@@ -424,35 +401,16 @@ export default function ConsultationModal({ isOpen, onClose }) {
           color: #0B1A2E;
           outline: none;
           transition: all 0.2s;
-        }
-
-        .cmp-select {
-          width: 100%;
-          height: 42px;
-          padding: 0 14px;
-          border-radius: 8px;
-          border: 1px solid #e2e8f0;
-          background: #fff;
-          font-size: 14px;
-          color: #0B1A2E;
-          outline: none;
-          transition: all 0.2s;
-          cursor: pointer;
-          appearance: none;
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-          background-repeat: no-repeat;
-          background-position: right 12px center;
+          box-sizing: border-box;
         }
         
         .cmp-field input[type="text"]:focus,
-        .cmp-field input[type="email"]:focus,
-        .cmp-select:focus {
+        .cmp-field input[type="email"]:focus {
           border-color: #60a5fa;
           box-shadow: 0 0 0 3px #eff6ff;
         }
         
-        .cmp-field input.has-error,
-        .cmp-select.has-error {
+        .cmp-field input.has-error {
           border-color: #f87171 !important;
         }
         
@@ -480,11 +438,10 @@ export default function ConsultationModal({ isOpen, onClose }) {
           gap: 6px;
           padding: 0 12px;
           height: 100%;
-          cursor: pointer;
+          background: #f8fafc;
+          border-right: 1px solid #e2e8f0;
         }
-        .cmp-phone-prefix:hover { background: #f8fafc; }
         .cmp-phone-prefix span { font-size: 16px; }
-        .cmp-phone-prefix svg { color: #64748b; }
         .cmp-phone-prefix strong { font-size: 14px; color: #1e293b; font-weight: 600; }
         
         .cmp-phone-input input {
@@ -498,32 +455,6 @@ export default function ConsultationModal({ isOpen, onClose }) {
           color: #0B1A2E;
           padding: 0 8px;
           width: 100%;
-        }
-        
-        .cmp-checkbox-label {
-          display: flex;
-          align-items: flex-start;
-          gap: 10px;
-          font-weight: normal !important;
-          cursor: pointer;
-        }
-        
-        .cmp-checkbox-label input[type="checkbox"] {
-          margin-top: 3px;
-          width: 16px;
-          height: 16px;
-          cursor: pointer;
-          accent-color: #2189D9;
-        }
-
-        .cmp-checkbox-label span {
-          font-size: 13px;
-          color: #475569;
-          line-height: 1.4;
-        }
-        
-        .cmp-error-text {
-          color: #ef4444 !important;
         }
 
         .cmp-error {

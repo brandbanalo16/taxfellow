@@ -6,23 +6,7 @@ import BackToTop from "@/components/BackToTop";
 import FooterTwo from "@/components/footer/FooterTwo";
 import Breadcrumb from '@/components/Breadcrumb';
 
-const SUB_SERVICES = [
-  "Individual ITR Filing", "Business ITR Filing", "NRI Tax Filing", "Capital Gain Filing", "Revised Return", "Defective Return Response",
-  "GST Registration", "GST Return Filing", "GST Cancellation", "GST Amendment", "GST Notice Reply", "GST Audit",
-  "Sole Proprietorship", "Partnership Firm", "LLP Registration", "Private Limited Company", "OPC Registration", "Section 8 Company", "Producer Company",
-  "Trademark Search", "Trademark Filing", "Trademark Objection", "Trademark Renewal",
-  "Monthly Bookkeeping", "Bank Reconciliation", "MIS Reports", "Financial Statements",
-  "TDS Return Filing", "TDS Certificate", "TDS Compliance", "TDS Notice Reply",
-  "Annual Filing", "Director KYC", "Charge Registration", "ROC Notice Reply",
-  "Udyam Registration", "MSME Update", "MSME Certificate", "MSME Benefits Advisory",
-  "IEC Registration", "IEC Modification", "IEC Surrender", "Export Documentation",
-  "Salary Processing", "PF Compliance", "ESI Compliance", "Payslip Generation",
-  "Income Tax Notice", "GST Notice", "TDS Notice", "Scrutiny Assessment",
-  "Business Valuation", "Project Report", "CMA Data", "Investment Advisory",
-  "Cash Flow Planning", "Financial Strategy", "Budget Planning", "Investor Reporting",
-  "Custom Consultation", "Advisory Call", "Documentation Support"
-];
-const UNIQUE_SERVICES = Array.from(new Set(SUB_SERVICES));
+const UNIQUE_SERVICES = [];
 
 const PhoneIcon = () => (
   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -73,27 +57,42 @@ export default function ContactUs() {
     { label: 'Contact Us' }
   ];
 
-  const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', consent: false });
+  const [form, setForm] = useState({ name: '', email: '', phone: '', city: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState('');
+  const [formError, setFormError] = useState('');
   const [cardHover, setCardHover] = useState(null);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === 'phone') {
+      const digits = value.replace(/\D/g, '').slice(0, 10);
+      setForm(prev => ({ ...prev, phone: digits }));
+    } else {
+      setForm(prev => ({ ...prev, [name]: value }));
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setFormError('');
     setApiError('');
+    if (!form.name.trim()) { setFormError('Name is required.'); return; }
+    if (!form.phone || !/^[0-9]{10}$/.test(form.phone)) { setFormError('Please enter a valid 10-digit phone number.'); return; }
+    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) { setFormError('Please enter a valid email address.'); return; }
+    if (!form.city.trim()) { setFormError('City is required.'); return; }
+    setLoading(true);
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch('/api/send-enquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          form_type: 'Contact Form',
-          name: form.name,
-          email: form.email,
+          name: form.name.trim(),
+          email: form.email.trim(),
           phone: form.phone,
-          service: form.service,
-          message: `Service: ${form.service || 'Not specified'}`,
+          city: form.city.trim(),
+          message: form.message.trim(),
         }),
       });
       const data = await res.json();
@@ -227,29 +226,15 @@ export default function ContactUs() {
 
                   <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
 
-                    {/* Full Name */}
+                    {/* Name */}
                     <div>
-                      <label style={labelStyle}>Full Name <span style={{ color: '#ef4444' }}>*</span></label>
+                      <label style={labelStyle}>Name <span style={{ color: '#ef4444' }}>*</span></label>
                       <input
                         type="text"
+                        name="name"
                         placeholder="Enter your full name"
                         value={form.name}
-                        onChange={e => setForm({ ...form, name: e.target.value })}
-                        required
-                        style={inputStyle}
-                        onFocus={e => { e.target.style.borderColor = '#3b82f6'; e.target.style.boxShadow = '0 0 0 3px #eff6ff'; }}
-                        onBlur={e => { e.target.style.borderColor = '#e2e8f0'; e.target.style.boxShadow = 'none'; }}
-                      />
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                      <label style={labelStyle}>Email Address <span style={{ color: '#ef4444' }}>*</span></label>
-                      <input
-                        type="email"
-                        placeholder="Enter your email address"
-                        value={form.email}
-                        onChange={e => setForm({ ...form, email: e.target.value })}
+                        onChange={handleChange}
                         required
                         style={inputStyle}
                         onFocus={e => { e.target.style.borderColor = '#3b82f6'; e.target.style.boxShadow = '0 0 0 3px #eff6ff'; }}
@@ -259,62 +244,76 @@ export default function ContactUs() {
 
                     {/* Phone */}
                     <div>
-                      <label style={labelStyle}>Phone</label>
+                      <label style={labelStyle}>Phone Number <span style={{ color: '#ef4444' }}>*</span></label>
                       <div style={{ display: 'flex', height: 48, border: '1.5px solid #e2e8f0', borderRadius: 12, overflow: 'hidden', background: '#fff' }}>
-                        <div style={{
-                          display: 'flex', alignItems: 'center', gap: 6,
-                          padding: '0 14px', background: '#f8fafc',
-                          borderRight: '1.5px solid #e2e8f0',
-                          fontSize: 14, fontWeight: 600, color: '#334155', whiteSpace: 'nowrap'
-                        }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '0 14px', background: '#f8fafc', borderRight: '1.5px solid #e2e8f0', fontSize: 14, fontWeight: 600, color: '#334155', whiteSpace: 'nowrap' }}>
                           🇮🇳 +91
                         </div>
                         <input
                           type="tel"
-                          placeholder="Enter mobile number"
+                          name="phone"
+                          placeholder="10-digit number"
                           value={form.phone}
-                          onChange={e => setForm({ ...form, phone: e.target.value.replace(/\D/g, '') })}
+                          onChange={handleChange}
                           maxLength={10}
+                          inputMode="numeric"
                           style={{ flex: 1, border: 'none', outline: 'none', padding: '0 14px', fontSize: 14, color: '#0f172a', background: 'transparent' }}
                         />
                       </div>
                     </div>
 
-                    {/* Service */}
+                    {/* Email */}
                     <div>
-                      <label style={labelStyle}>Service Selection</label>
-                      <select
-                        value={form.service}
-                        onChange={e => setForm({ ...form, service: e.target.value })}
-                        style={{
-                          ...inputStyle,
-                          cursor: 'pointer',
-                          appearance: 'none',
-                          backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E\")",
-                          backgroundRepeat: 'no-repeat',
-                          backgroundPosition: 'right 14px center',
-                        }}
+                      <label style={labelStyle}>Email Address</label>
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Enter your email address (optional)"
+                        value={form.email}
+                        onChange={handleChange}
+                        style={inputStyle}
                         onFocus={e => { e.target.style.borderColor = '#3b82f6'; e.target.style.boxShadow = '0 0 0 3px #eff6ff'; }}
                         onBlur={e => { e.target.style.borderColor = '#e2e8f0'; e.target.style.boxShadow = 'none'; }}
-                      >
-                        <option value="">Select Service</option>
-                        {UNIQUE_SERVICES.map(s => <option key={s} value={s}>{s}</option>)}
-                      </select>
+                      />
                     </div>
 
-                    {/* Consent Checkbox */}
-                    <label style={{ display: 'flex', alignItems: 'flex-start', gap: 12, cursor: 'pointer', marginTop: 4 }}>
+                    {/* City */}
+                    <div>
+                      <label style={labelStyle}>City <span style={{ color: '#ef4444' }}>*</span></label>
                       <input
-                        type="checkbox"
-                        checked={form.consent}
-                        onChange={e => setForm({ ...form, consent: e.target.checked })}
+                        type="text"
+                        name="city"
+                        placeholder="Your city"
+                        value={form.city}
+                        onChange={handleChange}
                         required
-                        style={{ marginTop: 3, width: 16, height: 16, accentColor: '#2563eb', cursor: 'pointer', flexShrink: 0 }}
+                        style={inputStyle}
+                        onFocus={e => { e.target.style.borderColor = '#3b82f6'; e.target.style.boxShadow = '0 0 0 3px #eff6ff'; }}
+                        onBlur={e => { e.target.style.borderColor = '#e2e8f0'; e.target.style.boxShadow = 'none'; }}
                       />
-                      <span style={{ fontSize: 13, color: '#64748b', lineHeight: 1.55 }}>
-                        Confirm that you agree to our terms of service by checking this box.
-                      </span>
-                    </label>
+                    </div>
+
+                    {/* Message */}
+                    <div>
+                      <label style={labelStyle}>Message</label>
+                      <textarea
+                        name="message"
+                        placeholder="How can we help you?"
+                        value={form.message}
+                        onChange={handleChange}
+                        rows={4}
+                        style={{ ...inputStyle, height: 'auto', padding: '12px 14px', resize: 'none' }}
+                        onFocus={e => { e.target.style.borderColor = '#3b82f6'; e.target.style.boxShadow = '0 0 0 3px #eff6ff'; }}
+                        onBlur={e => { e.target.style.borderColor = '#e2e8f0'; e.target.style.boxShadow = 'none'; }}
+                      />
+                    </div>
+
+                    {/* Validation Error */}
+                    {formError && (
+                      <p style={{ color: '#ef4444', fontSize: 13, fontWeight: 600, margin: '0', background: '#fff1f2', padding: '10px 14px', borderRadius: 8, border: '1px solid #fecaca' }}>
+                        {formError}
+                      </p>
+                    )}
 
                     {/* API Error */}
                     {apiError && (
@@ -327,16 +326,7 @@ export default function ContactUs() {
                     <button
                       type="submit"
                       disabled={loading}
-                      style={{
-                        width: '100%', height: 52,
-                        background: loading ? '#93c5fd' : '#1e3a8a', color: '#fff',
-                        border: 'none', borderRadius: 12,
-                        fontSize: 16, fontWeight: 700,
-                        cursor: loading ? 'not-allowed' : 'pointer', marginTop: 8,
-                        fontFamily: 'Poppins, sans-serif',
-                        transition: 'background 0.2s, transform 0.1s',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
-                      }}
+                      style={{ width: '100%', height: 52, background: loading ? '#93c5fd' : '#1e3a8a', color: '#fff', border: 'none', borderRadius: 12, fontSize: 16, fontWeight: 700, cursor: loading ? 'not-allowed' : 'pointer', marginTop: 8, fontFamily: 'Poppins, sans-serif', transition: 'background 0.2s, transform 0.1s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}
                       onMouseEnter={e => { if (!loading) { e.currentTarget.style.background = '#172554'; e.currentTarget.style.transform = 'translateY(-1px)'; } }}
                       onMouseLeave={e => { if (!loading) { e.currentTarget.style.background = '#1e3a8a'; e.currentTarget.style.transform = 'translateY(0)'; } }}
                     >
