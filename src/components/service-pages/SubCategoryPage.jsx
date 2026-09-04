@@ -92,7 +92,7 @@ export default function SubCategoryPage({ subData, parentData }) {
         if (!formData.city.trim()) { setFormError('City is required.'); return; }
         setSubmitStatus('submitting');
         try {
-            const res = await fetch('/api/send-enquiry', {
+            const res = await fetch('/api/send-mail', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -101,14 +101,16 @@ export default function SubCategoryPage({ subData, parentData }) {
                     phone: formData.phone,
                     city: formData.city.trim(),
                     message: formData.message.trim(),
+                    service: subData.title,
+                    source: 'Service category page',
                 }),
             });
             const data = await res.json();
-            if (data.ok) {
+            if (data.success) {
                 setSubmitStatus('success');
                 setFormData({ name: '', email: '', phone: '', city: '', message: '' });
             } else {
-                setFormError(data.error || 'Something went wrong. Please try again.');
+                setFormError(data.message || 'Unable to send enquiry');
                 setSubmitStatus('error');
             }
         } catch {

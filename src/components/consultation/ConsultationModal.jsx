@@ -47,7 +47,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
     setLoading(true);
     setApiError('');
     try {
-      const res = await fetch('/api/send-enquiry', {
+      const res = await fetch('/api/send-mail', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -56,11 +56,12 @@ export default function ConsultationModal({ isOpen, onClose }) {
           phone: form.phone,
           city: form.city.trim(),
           message: form.message.trim(),
+          source: 'Consultation modal',
         }),
       });
       const data = await res.json();
-      if (data.ok) { setSubmitted(true); }
-      else { setApiError(data.error || 'Something went wrong. Please try again.'); }
+      if (data.success) { setSubmitted(true); }
+      else { setApiError(data.message || 'Unable to send enquiry'); }
     } catch {
       setApiError('Network error. Please try again.');
     } finally {

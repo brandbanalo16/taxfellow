@@ -36,7 +36,7 @@ export default function Home() {
         if (!form.city.trim()) { setFormError('City is required.'); return; }
         setSubmitStatus('submitting');
         try {
-            const res = await fetch('/api/send-enquiry', {
+            const res = await fetch('/api/send-mail', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -45,14 +45,15 @@ export default function Home() {
                     phone: form.phone,
                     city: form.city.trim(),
                     message: form.message.trim(),
+                    source: 'Appointment page',
                 }),
             });
             const data = await res.json();
-            if (data.ok) {
+            if (data.success) {
                 setSubmitStatus('success');
                 setForm({ name: '', email: '', phone: '', city: '', message: '' });
             } else {
-                setFormError(data.error || 'Something went wrong. Please try again.');
+                setFormError(data.message || 'Unable to send enquiry');
                 setSubmitStatus('error');
             }
         } catch {

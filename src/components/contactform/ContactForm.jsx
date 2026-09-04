@@ -39,7 +39,7 @@ export default function ContactForm() {
         }
         setStatus({ loading: true, success: null, error: '' });
         try {
-            const res = await fetch("/api/send-enquiry", {
+            const res = await fetch("/api/send-mail", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -48,14 +48,15 @@ export default function ContactForm() {
                     phone: form.phone,
                     city: form.city.trim(),
                     message: form.message.trim(),
+                    source: 'Contact form',
                 }),
             });
             const data = await res.json();
-            if (data.ok) {
+            if (data.success) {
                 setStatus({ loading: false, success: true, error: '' });
                 setForm({ name: "", email: "", phone: "", city: "", message: "" });
             } else {
-                setStatus({ loading: false, success: false, error: data.error || 'Something went wrong. Please try again.' });
+                setStatus({ loading: false, success: false, error: data.message || 'Unable to send enquiry' });
             }
         } catch (err) {
             setStatus({ loading: false, success: false, error: 'Network error. Please try again.' });

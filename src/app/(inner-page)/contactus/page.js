@@ -84,7 +84,7 @@ export default function ContactUs() {
     if (!form.city.trim()) { setFormError('City is required.'); return; }
     setLoading(true);
     try {
-      const res = await fetch('/api/send-enquiry', {
+      const res = await fetch('/api/send-mail', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -93,13 +93,14 @@ export default function ContactUs() {
           phone: form.phone,
           city: form.city.trim(),
           message: form.message.trim(),
+          source: 'Contact us page',
         }),
       });
       const data = await res.json();
-      if (data.ok) {
+      if (data.success) {
         setSubmitted(true);
       } else {
-        setApiError(data.error || 'Something went wrong. Please try again.');
+        setApiError(data.message || 'Unable to send enquiry');
       }
     } catch {
       setApiError('Network error. Please check your connection and try again.');

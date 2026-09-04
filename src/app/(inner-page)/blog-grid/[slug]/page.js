@@ -12,6 +12,8 @@ export default function BlogDetailsPage() {
     const { slug } = useParams();
     const [enquiry, setEnquiry] = useState({ name: '', email: '', phone: '', message: '' });
     const [enquirySubmitted, setEnquirySubmitted] = useState(false);
+    const [enquiryLoading, setEnquiryLoading] = useState(false);
+    const [enquiryError, setEnquiryError] = useState('');
     const [comment, setComment] = useState({ name: '', email: '', subject: '', message: '' });
 
     const breadcrumbs = [
@@ -51,12 +53,45 @@ export default function BlogDetailsPage() {
         setComment({ name: '', email: '', subject: '', message: '' });
     };
 
-    const handleEnquirySubmit = (e) => {
+    const handleEnquirySubmit = async (e) => {
         e.preventDefault();
-        setEnquirySubmitted(true);
-        // Add form submission logic here if needed
-        setTimeout(() => setEnquirySubmitted(false), 5000);
-        setEnquiry({ name: '', email: '', phone: '', message: '' });
+        setEnquiryError('');
+        if (!enquiry.name.trim()) { setEnquiryError('Name is required.'); return; }
+        if (!enquiry.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(enquiry.email)) {
+            setEnquiryError('Please enter a valid email address.');
+            return;
+        }
+        const phoneDigits = enquiry.phone.replace(/\D/g, '');
+        if (!/^[0-9]{10}$/.test(phoneDigits)) {
+            setEnquiryError('Please enter a valid 10-digit phone number.');
+            return;
+        }
+        setEnquiryLoading(true);
+        try {
+            const res = await fetch('/api/send-mail', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: enquiry.name.trim(),
+                    email: enquiry.email.trim(),
+                    phone: phoneDigits,
+                    message: enquiry.message.trim(),
+                    source: 'Blog consultation',
+                    service: blogPost?.title || '',
+                }),
+            });
+            const data = await res.json();
+            if (data.success) {
+                setEnquirySubmitted(true);
+                setEnquiry({ name: '', email: '', phone: '', message: '' });
+            } else {
+                setEnquiryError(data.message || 'Unable to send enquiry');
+            }
+        } catch {
+            setEnquiryError('Unable to send enquiry');
+        } finally {
+            setEnquiryLoading(false);
+        }
     };
 
     if (!blogPost) {
@@ -322,7 +357,9 @@ export default function BlogDetailsPage() {
                                                 placeholder="Phone *"
                                                 required
                                                 value={enquiry.phone}
-                                                onChange={e => setEnquiry({ ...enquiry, phone: e.target.value })}
+                                                onChange={e => setEnquiry({ ...enquiry, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })}
+                                                maxLength={10}
+                                                inputMode="numeric"
                                                 style={{
                                                     width: '100%', padding: '12px 16px', border: '1px solid #e0e0e0',
                                                     borderRadius: '6px', fontSize: '15px', outline: 'none',
@@ -340,9 +377,12 @@ export default function BlogDetailsPage() {
                                                     background: '#f9f9f9', color: '#333', resize: 'vertical'
                                                 }}
                                             />
-                                            <button type="submit" className="rts-btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-                                                Submit <i className="fal fa-arrow-right" style={{ marginLeft: '8px' }} />
+                                            <button type="submit" disabled={enquiryLoading} className="rts-btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+                                                {enquiryLoading ? 'Sending...' : 'Submit'} {!enquiryLoading && <i className="fal fa-arrow-right" style={{ marginLeft: '8px' }} />}
                                             </button>
+                                            {enquiryError && (
+                                                <p style={{ color: 'red', margin: 0, fontSize: '14px' }}>{enquiryError}</p>
+                                            )}
                                         </form>
                                     )}
                                 </div>
