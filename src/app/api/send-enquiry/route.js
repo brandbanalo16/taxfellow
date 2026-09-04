@@ -1,1 +1,1 @@
-export { POST, GET } from '../send-mail/route';
+export { POST, GET } from '@/lib/enquiryMailRoute';

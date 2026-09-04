@@ -37,7 +37,7 @@ function FooterTwo() {
                                     </a>
                                 </div>
                             </div>
-                            <div className="col-xl-2 col-lg-6 col-md-6 col-sm-12 col-12 mt_sm--50">
+                            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 mt_sm--50">
                                 <div className="footer-two-single-wized two">
                                     <div className="wized-title-area">
                                         <h5 className="wized-title">Quick Links</h5>
@@ -59,7 +59,7 @@ function FooterTwo() {
                             </div>
 
                             {/* Column 3 – Registration & Compliances */}
-                            <div className="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 mt_sm--50">
+                            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 mt_sm--50">
                                 <div className="footer-two-single-wized two">
                                     <div className="wized-title-area">
                                         <h5 className="wized-title">Our Services</h5>
