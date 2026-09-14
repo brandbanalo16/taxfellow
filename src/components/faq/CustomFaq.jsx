@@ -53,7 +53,7 @@ export default function CustomFaq() {
                 .custom-faq-section {
                     padding: 90px 0;
                     background-color: #ffffff;
-                    font-family: 'Gilroy', sans-serif;
+                    font-family: var(--font-sans);
                 }
                 .faq-layout-grid {
                     display: grid;

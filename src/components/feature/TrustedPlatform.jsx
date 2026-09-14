@@ -8,7 +8,7 @@ export default function TrustedPlatform() {
                 .trusted-platform-sec {
                     padding: 80px 0;
                     background-color: #ffffff;
-                    font-family: 'Gilroy', sans-serif;
+                    font-family: var(--font-sans);
                 }
                 .trusted-title-wrap {
                     text-align: center;

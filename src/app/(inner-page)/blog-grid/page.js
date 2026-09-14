@@ -27,7 +27,7 @@ export default function BlogGridPage() {
 
     // Filter posts by search and category
     const filteredPosts = useMemo(() => {
-        return Posts.filter(post => {
+        return [...Posts].reverse().filter(post => {
             const matchesSearch = !searchQuery ||
                 post.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 post.category?.toLowerCase().includes(searchQuery.toLowerCase());
